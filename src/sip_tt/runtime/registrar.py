@@ -72,6 +72,12 @@ class Registrar:
         # like a refresh — which is how a refresh test can pass in 0.0s
         # having waited for nothing.
         self.accepted: list[Message] = []
+        # Narrower still: the ones that actually created or renewed a binding.
+        # A REGISTER with no Contact is a *query* for the current bindings
+        # (RFC 3261 §10.2.1) and one with expires=0 is a removal; both are
+        # answered 200 and neither is a renewal. Counting `accepted` would let
+        # a device that only ever queried pass both refresh purposes.
+        self.registrations: list[Message] = []
         self.bindings: dict[str, Binding] = {}
         self.challenged: dict[str, str] = {}     # Call-ID -> nonce
         self.rejected: list[Message] = []
@@ -98,19 +104,21 @@ class Registrar:
                 return self.registers[after]
         return None
 
-    def wait_for_refresh(self, timeout: float) -> Message | None:
-        """Wait for a *second* accepted registration — a genuine refresh.
+    def wait_for_registration(self, count: int, timeout: float) -> Message | None:
+        """Wait until at least `count` bindings have been created or renewed.
 
-        Not the second REGISTER: a 401 and its retry are one registration, and
-        counting messages instead of registrations is how this test used to
-        pass instantly against a device that had refreshed nothing.
+        Counted absolutely rather than relative to whatever has arrived so
+        far, because "one more than now" silently accepts the *first*
+        registration as though it were a refresh when the caller happens to
+        ask before any has landed. A refresh is registration number two.
         """
-        want = len(self.accepted) + 1
+        if len(self.registrations) >= count:
+            return self.registrations[count - 1]
         deadline = time.monotonic() + timeout
         while time.monotonic() < deadline:
             self.endpoint.pump(min(1.0, max(0.05, deadline - time.monotonic())))
-            if len(self.accepted) >= want:
-                return self.accepted[-1]
+            if len(self.registrations) >= count:
+                return self.registrations[count - 1]
         return None
 
     @property
@@ -159,16 +167,20 @@ class Registrar:
 
         # No Contact at all is a query for the current bindings
         # (RFC 3261 §10.2.1), not a registration.
-        if contacts:
-            for c in contacts:
-                self._apply(aor, c, msg)
+        bound = False
+        for c in contacts:
+            if self._apply(aor, c, msg):
+                bound = True
 
         self.accepted.append(msg)
+        if bound:
+            self.registrations.append(msg)
         self.endpoint.respond(msg, 200, "OK",
                               extra=self._binding_headers(aor))
         return True
 
-    def _apply(self, aor: str, contact: str, msg: Message) -> None:
+    def _apply(self, aor: str, contact: str, msg: Message) -> bool:
+        """Apply one Contact. True when a binding was created or renewed."""
         body, params = split_params(contact)
         header_expires = msg.headers.get("expires")
         if body.strip() == "*":
@@ -176,7 +188,7 @@ class Registrar:
             if header_expires.strip() == "0":
                 for key in [k for k in self.bindings if k.startswith(aor + "|")]:
                     del self.bindings[key]
-            return
+            return False
         requested = params.get("expires") or header_expires or "3600"
         try:
             requested_i = int(requested)
@@ -185,11 +197,12 @@ class Registrar:
         key = f"{aor}|{_bare_uri(contact)}"
         if requested_i == 0:
             self.bindings.pop(key, None)
-            return
+            return False
         self.bindings[key] = Binding(
             aor=aor, contact=_bare_uri(contact),
             expires=min(requested_i, self.grant_expires),
             call_id=msg.call_id, cseq=msg.cseq_number)
+        return True
 
     def _binding_headers(self, aor: str) -> list[tuple[str, str]]:
         """The current registration list, as §10.3 step 8 requires."""

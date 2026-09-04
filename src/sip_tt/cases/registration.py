@@ -136,28 +136,54 @@ def register_retries_a_challenge_with_credentials(registrar, profile):
     RFC 3261 §8.1.3.5 and §22.2, and the retry takes a *new* CSeq: it is a new
     request, not a retransmission of the challenged one, and a registrar that
     treats a repeated CSeq as a duplicate will ignore it.
+
+    A credential has to be configured for this to mean anything — without one
+    the registrar never challenges, and there is nothing to retry. That is a
+    gap in the run's setup and not a property of the device, so it is reported
+    as a failure to exercise rather than as a skip: a skip would claim the
+    purpose does not apply to a device that has simply never been asked.
     """
     if not profile.password:
-        pytest.skip("no credential configured, so the registrar does not "
-                    "challenge and there is nothing to retry")
+        pytest.fail(
+            "no credential is configured for this device, so the registrar "
+            "never issued a challenge and the device was never asked to "
+            "authenticate. Set `password` in the profile. Reported as a "
+            "failure and not a skip: the purpose was not exercised, which is "
+            "not the same as it not applying")
+
     first = _first(registrar)
-    registrar.wait_for_register(timeout=30.0)
+    # Wait for a REGISTER *after* the one already in hand. Asking for the
+    # default index returns that same message immediately, so the test used to
+    # conclude "the device did not retry" without having waited at all.
+    seen = len(registrar.registers)
+    registrar.wait_for_register(timeout=30.0, after=seen)
+
     retry = None
-    for i in range(1, len(registrar.registers)):
-        candidate = registrar.registers[i]
+    for candidate in registrar.registers[1:]:
         if candidate.headers.get("authorization"):
             retry = candidate
             break
-    else:
+    if retry is None:
         pytest.fail(
             f"the device was challenged 401 and did not repeat its REGISTER "
-            f"with an Authorization header ({len(registrar.registers)} "
-            f"REGISTERs seen). Without it the device never registers and "
-            f"cannot be called")
+            f"with an Authorization header within 30s "
+            f"({len(registrar.registers)} REGISTERs seen). Without it the "
+            f"device never registers and cannot be called")
+
     assert retry.cseq_number > first.cseq_number, (
         f"the retry carries CSeq {retry.cseq_number}, the same as or lower "
         f"than the challenged request's {first.cseq_number}. §8.1.3.5 makes "
         f"the retry a new request, so its CSeq increments")
+
+    # Presence of the header is not the measurement. A wrong password or a
+    # malformed digest also produces an Authorization header, and the
+    # registrar answers it 403 — which would otherwise pass this purpose.
+    assert retry in registrar.accepted, (
+        f"the device did retry with an Authorization header, but the "
+        f"registrar could not authenticate it and answered "
+        f"{'403 Forbidden' if retry in registrar.rejected else 'a challenge'}. "
+        f"Either the credential in the profile differs from the device's, or "
+        f"the digest is being computed wrongly (RFC 3261 §22.2)")
 
 
 @register("SIP_RG_RT_V_011", roles={"registrant"}, mandatory=True,
@@ -170,17 +196,24 @@ def refresh_increments_cseq_on_the_same_call_id(registrar):
     address; the CSeq is what orders them. A device that draws a fresh Call-ID
     each time cannot have its bindings distinguished from a duplicate.
     """
-    first = _first(registrar)
-    later = registrar.wait_for_refresh(timeout=180.0)
+    _first(registrar)
+    initial = registrar.wait_for_registration(1, timeout=FIRST_TIMEOUT)
+    if initial is None:
+        pytest.fail(
+            f"no REGISTER that created a binding arrived in "
+            f"{FIRST_TIMEOUT:.0f}s, so there is no registration to refresh "
+            f"({len(registrar.registers)} REGISTER(s) seen in total)")
+    later = registrar.wait_for_registration(2, timeout=180.0)
     if later is None:
         pytest.fail(
-            f"no refresh arrived in 3 minutes — {len(registrar.accepted)} "
-            f"registration(s) accepted in total. We granted "
+            f"no refresh arrived in 3 minutes — {len(registrar.registrations)} "
+            f"binding(s) created or renewed in total. We granted "
             f"{registrar.grant_expires}s, which §10.2.4 makes authoritative")
-    same_cid = [m for m in registrar.accepted if m.call_id == first.call_id]
+    same_cid = [m for m in registrar.registrations
+                if m.call_id == initial.call_id]
     assert len(same_cid) >= 2, (
         f"the refresh used Call-ID {later.call_id!r} where the first "
-        f"registration used {first.call_id!r}. §10.2 keeps one Call-ID for "
+        f"registration used {initial.call_id!r}. §10.2 keeps one Call-ID for "
         f"the life of a registration")
     assert same_cid[-1].cseq_number > same_cid[0].cseq_number, (
         f"CSeq went from {same_cid[0].cseq_number} to "
@@ -202,9 +235,15 @@ def refresh_happens_within_the_granted_lifetime(registrar):
     is a device that is unreachable rather than one that is broken.
     """
     _first(registrar)
+    initial = registrar.wait_for_registration(1, timeout=FIRST_TIMEOUT)
+    if initial is None:
+        pytest.fail(
+            f"no REGISTER that created a binding arrived in "
+            f"{FIRST_TIMEOUT:.0f}s, so there is no registration whose "
+            f"lifetime could be measured")
     granted = registrar.grant_expires
     window = granted * 2.0
-    later = registrar.wait_for_refresh(timeout=window)
+    later = registrar.wait_for_registration(2, timeout=window)
     if later is None:
         pytest.fail(
             f"we granted a {granted}s registration and no refresh arrived "

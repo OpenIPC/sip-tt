@@ -63,8 +63,8 @@ def fresh_outbound_call(endpoint, profile, timeout: float = 30.0):
     # purposes have something to release.
     ip = profile.local_ip or endpoint.advertise_ip
     offer = _sdp.parse(invite.body) if invite.body else None
-    body = ""
     if offer is not None:
+        # Answer what was offered, under the numbers it was offered with.
         media = []
         for m in offer.media:
             if not m.active:
@@ -75,6 +75,14 @@ def fresh_outbound_call(endpoint, profile, timeout: float = 30.0):
             media.append(_sdp.Media(m.kind, 40000 + 2 * len(media), [fmt],
                                     _sdp.Direction.SENDRECV))
         body = _sdp.build(address=ip, media=media)
+    else:
+        # An INVITE with no body is legal (RFC 3261 §13.2.1) and puts the
+        # offer on us: the caller answers it in the ACK. Replying 200 with an
+        # empty body would leave the session with no media described at all
+        # and no Contact — Endpoint.respond only adds one when there is a body
+        # — so the dialog we then try to inspect and release would be
+        # malformed by our own doing.
+        body = _sdp.g711_offer(ip, 40000)
 
     endpoint.respond(invite, 180, "Ringing")
     call = endpoint.accept_call(invite, body)
@@ -150,10 +158,14 @@ def invite_from_header_has_a_tag(endpoint, profile):
     tag = inv.tag("from")
     assert tag, ("the INVITE's From header carries no tag parameter; §8.1.1.3 "
                  "requires one, and it is half the dialog identifier")
-    assert len(tag) >= 4, (
-        f"the From tag is {tag!r}, which is too short to be the 32 bits of "
-        f"randomness §19.3 asks for — collisions between two calls become "
-        f"likely")
+    # Only the presence and syntax are asserted. §19.3 asks for at least 32
+    # bits of randomness, and one tag's length is no evidence either way:
+    # a long tag can be a counter and a short one can be random. Measuring
+    # entropy would take a sample of tags across many calls, which this
+    # purpose does not gather — so nothing is claimed about it.
+    assert all(c.isalnum() or c in "-.!%*_+`'~" for c in tag), (
+        f"the From tag is {tag!r}, which contains characters outside the "
+        f"token syntax RFC 3261 §25.1 allows for a tag parameter")
 
 
 @register("SIP_CC_OE_CE_V_005", roles={"originating"}, mandatory=True,
@@ -203,20 +215,35 @@ def invite_via_is_well_formed(endpoint, profile):
     retransmission can be taken for a new request.
     """
     inv = outbound_invite(endpoint, profile)
-    via = inv.headers.get("via")
-    assert via, "the INVITE carried no Via header"
-    sent_protocol = via.split()[0] if via.split() else ""
+    vias = inv.headers.all("via")
+    assert vias, "the INVITE carried no Via header"
+
+    # Via repeats, and each hop *prepends* its own (§8.1.1.7), so the topmost
+    # belongs to the last proxy the request passed through and the bottom-most
+    # is the device's own. Reading only `inv.branch` — which is the topmost —
+    # measures a proxy whenever there is one in the path.
+    own = vias[-1]
+    if len(vias) > 1:
+        hops = len(vias) - 1
+        note = (f" (the request arrived through {hops} proxy hop(s); this "
+                f"checks the bottom-most Via, which is the device's own)")
+    else:
+        note = ""
+
+    sent_protocol = own.split()[0] if own.split() else ""
     assert sent_protocol.upper().startswith("SIP/2.0/"), (
-        f"the Via sent-protocol is {sent_protocol!r}; §8.1.1.7 wants "
-        f"SIP/2.0/<transport>")
-    branch = inv.branch
-    assert branch, "the Via header carries no branch parameter"
+        f"the device's Via sent-protocol is {sent_protocol!r}; §8.1.1.7 wants "
+        f"SIP/2.0/<transport>{note}")
+
+    _, params = split_params(own)
+    branch = params.get("branch", "")
+    assert branch, f"the device's Via carries no branch parameter{note}"
     assert branch.startswith("z9hG4bK"), (
         f"the branch is {branch!r}. §8.1.1.7 requires the magic cookie "
-        f"z9hG4bK, which is what marks the branch as globally unique")
+        f"z9hG4bK, which is what marks the branch as globally unique{note}")
     assert len(branch) > len("z9hG4bK"), (
-        "the branch is the magic cookie and nothing else, so it identifies "
-        "no transaction")
+        f"the branch is the magic cookie and nothing else, so it identifies "
+        f"no transaction{note}")
 
 
 @register("SIP_CC_OE_CR_V_003", roles={"originating"}, mandatory=True,

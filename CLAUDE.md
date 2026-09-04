@@ -149,14 +149,29 @@ That is a genuine not-applicable. Where a race could go either way, check
 afterwards which way it went (arrival order usually says) and skip when the
 answer is "we do not know".
 
-### 10. Advertise the right address
+### 10. A refresh is a renewal, not a message
+
+The registrant purposes turn on "did it register again", and there are three
+ways to answer that wrongly. A 401 and its retry are **one** registration. A
+REGISTER with no Contact is a *query* for the current bindings (§10.2.1), and
+one with `expires=0` is a removal — both answered 200, neither a renewal. And
+counting "one more than we have now" accepts the *first* registration as a
+refresh whenever the caller asks before any has landed.
+
+So `Registrar` keeps three lists — `registers` (everything), `accepted`
+(answered 200) and `registrations` (a binding actually created or renewed) —
+and `wait_for_registration(n, timeout)` counts absolutely. Refresh purposes
+wait for registration 1, then registration 2. `tests/test_registrar.py` holds
+each of those distinctions down.
+
+### 11. Advertise the right address
 
 `--local-ip` is not guessed. On a host with a public interface and a tunnel,
 the default route's address is often the public one; the device then sends its
 media somewhere it cannot arrive from, and the symptom — a connected call with
 no media — imitates the very bug under test.
 
-### 11. Watch the path MTU
+### 12. Watch the path MTU
 
 A full-codec Linphone INVITE is about 1410 bytes of SDP, which is over 1420
 with an IP header, and a tunnelled lab path drops it without a word. The call

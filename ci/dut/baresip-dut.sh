@@ -31,8 +31,14 @@ mkdir -p "$DIR"
 # `sip_listen 0.0.0.0:port` still ends up bound to the default route's address
 # rather than to everything, so a test aimed at 127.0.0.1 gets no answer at
 # all and reads as a device that refuses calls.
+#
+# It is given as an *address* and not as the name "lo". baresip 1.0.0 resolves
+# a name through its own interface walk, which on a GitHub runner reports
+# "net: lo: could not get IPv4 address (No such device)" and then fails to
+# start at all — while the same name works under Docker with --network host.
+# An address needs no lookup and behaves the same everywhere.
 cat > "$DIR/config" <<CONF
-net_interface           ${IFACE:-lo}
+net_interface           ${IFACE:-127.0.0.1}
 sip_listen              ${BIND:-127.0.0.1}:$SIP_PORT
 audio_player            aubridge,dut
 audio_source            aubridge,dut
