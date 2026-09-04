@@ -39,7 +39,7 @@ regressed.
 | `LOCAL-SDP-HOLD-IS-HONOURED` | `a=sendonly` ignored; audio kept flowing into a held call |
 | `SIP_CC_TE_CE_V_001` | (Never broken, but the common cause when everything else fails) |
 
-### Three findings the tool made on its own
+### Four findings the tool made on its own
 
 All against current `master`, none previously reported.
 
@@ -52,7 +52,42 @@ All against current `master`, none previously reported.
 The first two share a cause — the device requires usable audio SDP in any
 INVITE it accepts, and logs `inbound INVITE without usable audio SDP — 488`.
 
-### A fourth finding, retracted
+### A fourth finding, from the registrant family
+
+`SIP_RG_RT_V_012` [Recommended] — **the device refreshes on its own schedule,
+not on the one the registrar granted.**
+
+RFC 3261 §10.2.4 makes the expiry in the 200 OK authoritative: the registrant
+must refresh within *that* window, whatever it asked for. Registrars routinely
+grant less than requested, to keep bindings fresh behind NAT.
+
+Measured, against a majestic configured with `registerExpires: 120`:
+
+| registrar granted | allowed window | device refreshed after | verdict |
+| --- | --- | --- | --- |
+| 45 s | 90 s | 60 s | passes |
+| 20 s | 40 s | 60 s | **fails** |
+
+The device refreshed at 60 s in both runs — it did not react to the grant at
+all. `src/sip/uac.c` confirms it: the refresh timer is armed from
+`u->cfg.register_expires_s`, the value in the camera's own config, and the 200
+OK's `Expires` header is never parsed. The log line prints the configured
+value as though it were the granted one.
+
+The consequence is a camera that goes unreachable between refreshes whenever a
+registrar grants less than it asked for — with the stock `registerExpires:
+3600` against a registrar granting 60 s, the binding lapses within a minute
+and stays lapsed for the best part of an hour.
+
+Advisory rather than mandatory: the corpus marks the purpose Recommended, and
+the failure mode is unreachability rather than a broken call.
+
+The second row of that table is also the negative control for the test itself.
+A conformance check that has only ever passed proves nothing, so the interval
+assertion was deliberately given a window the device could not meet, and it
+failed with the numbers in it.
+
+### A fifth finding, retracted
 
 `SIP_CC_TE_SM_I_001` was reported here as a defect and was not one. The first
 version of that test sent two re-INVITEs back to back inside an established
