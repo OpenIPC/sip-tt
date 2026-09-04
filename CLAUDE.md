@@ -164,14 +164,29 @@ and `wait_for_registration(n, timeout)` counts absolutely. Refresh purposes
 wait for registration 1, then registration 2. `tests/test_registrar.py` holds
 each of those distinctions down.
 
-### 11. Advertise the right address
+### 11. Finish the offer/answer, do not stop at the offer
+
+An INVITE may carry no offer, and then RFC 3261 §13.2.1 puts the offer in the
+device's 2xx and the answer in the **ACK** — the only request in SIP whose body
+answers a response. `Call.ack(body=...)` sends it and `Call.answer_to()` builds
+it, under the numbers the offer bound, because a tool that renumbered its own
+answers would agree with every device that does.
+
+Asserting that the 2xx carries an offer is the easy half and the visible one.
+A device can offer and then never read the ACK at all, which produces an
+established call with its media aimed nowhere — silent in exactly the way the
+payload-numbering bug was. `LOCAL-SDP-DEFERRED-ANSWER-IS-HONOURED` is the other
+half, and it needs a DUT with real media: a host build with no SDK cannot send
+anything, so that purpose is verified against baresip.
+
+### 12. Advertise the right address
 
 `--local-ip` is not guessed. On a host with a public interface and a tunnel,
 the default route's address is often the public one; the device then sends its
 media somewhere it cannot arrive from, and the symptom — a connected call with
 no media — imitates the very bug under test.
 
-### 12. Watch the path MTU
+### 13. Watch the path MTU
 
 A full-codec Linphone INVITE is about 1410 bytes of SDP, which is over 1420
 with an IP header, and a tunnelled lab path drops it without a word. The call

@@ -155,3 +155,47 @@ def test_a_2xx_that_forms_a_dialog_always_carries_contact(pair):
     assert got.headers.get("contact"), (
         "the 200 OK that formed the dialog carried no Contact, so the caller "
         "has nothing to address its ACK and BYE to (RFC 3261 §12.1.1)")
+
+
+def test_an_answer_uses_the_numbers_the_offer_bound(pair):
+    """RFC 3264 §6.1 binds the answerer to the offer's numbering.
+
+    The rule this whole tool exists to police, so the answers it builds itself
+    had better follow it — a tool that renumbered would agree with every
+    device that does.
+    """
+    tester, _ = pair
+    call = tester.new_call("sip:x@y", ("127.0.0.1", 1))
+    offered = sdp.build(address="10.0.0.5", media=[
+        sdp.Media("audio", 5004, [sdp.Format(8)], sdp.Direction.SENDRECV),
+        sdp.Media("video", 5006, [sdp.Format(99, "H264", 90000)],
+                  sdp.Direction.SENDONLY)])
+    answer = sdp.parse(call.answer_to(offered))
+    assert answer.audio.formats[0].pt == 8
+    assert answer.video.formats[0].pt == 99
+    assert answer.direction_of(answer.video) == sdp.Direction.RECVONLY, (
+        "the mirror of sendonly is recvonly")
+
+
+def test_a_refused_medium_stays_refused_in_our_answer(pair):
+    """Port zero is a refusal, and the answer keeps the m-line in place."""
+    tester, _ = pair
+    call = tester.new_call("sip:x@y", ("127.0.0.1", 1))
+    offered = sdp.build(address="10.0.0.5", media=[
+        sdp.Media("audio", 5004, [sdp.Format(0)]),
+        sdp.Media("video", 0, [sdp.Format(99, "H264", 90000)])])
+    answer = sdp.parse(call.answer_to(offered))
+    assert len(answer.media) == 2, "an answer has one m-line per offered one"
+    assert answer.video.active is False
+
+
+def test_an_ack_can_carry_the_answer(pair):
+    """§13.2.1 — the only request in SIP whose body answers a response."""
+    tester, dut = pair
+    _answering_device(dut)
+    call = tester.place_call("sip:1001@127.0.0.1", ("127.0.0.1", dut.port),
+                             body=sdp.g711_offer("127.0.0.1", 7078))
+    ack = call.ack(body="v=0\r\n")
+    assert ack.body == "v=0\r\n"
+    assert "Content-Length: 5" in ack.render()
+    call.bye(timeout=3)
