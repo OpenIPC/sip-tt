@@ -155,3 +155,110 @@ def test_a_2xx_that_forms_a_dialog_always_carries_contact(pair):
     assert got.headers.get("contact"), (
         "the 200 OK that formed the dialog carried no Contact, so the caller "
         "has nothing to address its ACK and BYE to (RFC 3261 §12.1.1)")
+
+
+def test_an_answer_uses_the_numbers_the_offer_bound(pair):
+    """RFC 3264 §6.1 binds the answerer to the offer's numbering.
+
+    The rule this whole tool exists to police, so the answers it builds itself
+    had better follow it — a tool that renumbered would agree with every
+    device that does.
+    """
+    tester, _ = pair
+    call = tester.new_call("sip:x@y", ("127.0.0.1", 1))
+    call.open_media()
+    try:
+        offered = sdp.build(address="10.0.0.5", media=[
+            sdp.Media("audio", 5004, [sdp.Format(8)], sdp.Direction.SENDRECV),
+            sdp.Media("video", 5006, [sdp.Format(99, "H264", 90000)],
+                      sdp.Direction.SENDONLY)])
+        answer = sdp.parse(call.answer_to(offered))
+        assert answer.audio.formats[0].pt == 8
+        assert answer.video.formats[0].pt == 99
+        assert answer.direction_of(answer.video) == sdp.Direction.RECVONLY, (
+            "the mirror of sendonly is recvonly")
+    finally:
+        call.close_media()
+
+
+def test_a_refused_medium_stays_refused_in_our_answer(pair):
+    """Port zero is a refusal, and the answer keeps the m-line in place."""
+    tester, _ = pair
+    call = tester.new_call("sip:x@y", ("127.0.0.1", 1))
+    call.open_media()
+    try:
+        offered = sdp.build(address="10.0.0.5", media=[
+            sdp.Media("audio", 5004, [sdp.Format(0)]),
+            sdp.Media("video", 0, [sdp.Format(99, "H264", 90000)])])
+        answer = sdp.parse(call.answer_to(offered))
+        assert len(answer.media) == 2, "an answer has one m-line per offered one"
+        assert answer.video.active is False
+    finally:
+        call.close_media()
+
+
+def test_an_ack_can_carry_the_answer(pair):
+    """§13.2.1 — the only request in SIP whose body answers a response."""
+    tester, dut = pair
+    _answering_device(dut)
+    call = tester.place_call("sip:1001@127.0.0.1", ("127.0.0.1", dut.port),
+                             body=sdp.g711_offer("127.0.0.1", 7078))
+    ack = call.ack(body="v=0\r\n")
+    assert ack.body == "v=0\r\n"
+    assert "Content-Length: 5" in ack.render()
+    call.bye(timeout=3)
+
+
+def test_an_answer_names_the_calls_own_bound_ports(pair):
+    """An answer pointing at an unopened port is indistinguishable, from the
+    device's side, from one it read and ignored."""
+    tester, _ = pair
+    call = tester.new_call("sip:x@y", ("127.0.0.1", 1))
+    call.open_media()
+    try:
+        offered = sdp.build(address="10.0.0.5", media=[
+            sdp.Media("audio", 5004, [sdp.Format(0)]),
+            sdp.Media("video", 5006, [sdp.Format(99, "H264", 90000)])])
+        answer = sdp.parse(call.answer_to(offered))
+        assert answer.audio.port == call.audio.port
+        assert answer.video.port == call.video.port
+    finally:
+        call.close_media()
+
+
+def test_a_medium_we_cannot_service_is_refused(pair):
+    """We own an audio and a video socket and nothing else.
+
+    Accepting an `application` or `text` stream and then sending nothing is
+    the very defect this tool hunts, so the answer refuses it with port zero
+    and keeps the m-line in place.
+    """
+    tester, _ = pair
+    call = tester.new_call("sip:x@y", ("127.0.0.1", 1))
+    call.open_media()
+    try:
+        offered = sdp.build(address="10.0.0.5", media=[
+            sdp.Media("audio", 5004, [sdp.Format(0)]),
+            sdp.Media("application", 5008, [sdp.Format(100, "foo", 90000)])])
+        answer = sdp.parse(call.answer_to(offered))
+        assert len(answer.media) == 2, "positional pairing is kept"
+        assert answer.audio.active
+        assert answer.get("application").port == 0
+    finally:
+        call.close_media()
+
+
+def test_an_answer_without_a_socket_refuses_rather_than_guesses(pair):
+    """With nothing bound there is no honest port to name.
+
+    Naming a placeholder would send the device's media to a closed port, which
+    from its side is indistinguishable from an answer it read and ignored —
+    and would make this tool report its own omission as the device's defect.
+    """
+    tester, _ = pair
+    call = tester.new_call("sip:x@y", ("127.0.0.1", 1))
+    offered = sdp.build(address="10.0.0.5",
+                        media=[sdp.Media("audio", 5004, [sdp.Format(0)])])
+    answer = sdp.parse(call.answer_to(offered))
+    assert answer.audio.port == 0
+    assert answer.audio.active is False

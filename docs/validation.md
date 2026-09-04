@@ -153,6 +153,12 @@ purposes, which that DUT profile does not claim.
 
 Two notes worth keeping:
 
+* baresip is what verifies `LOCAL-SDP-DEFERRED-ANSWER-IS-HONOURED`. That
+  purpose asserts media actually arrives where the ACK's answer named, and a
+  host build of majestic has no SDK and so nothing to send — it can prove the
+  device *read* the answer only on hardware. baresip has a synthetic audio
+  source, so the purpose passes there, on an implementation that shares no
+  code with the one it was written for.
 * baresip fails `LOCAL-MEDIA-RTP-TIMESTAMP-BASE-IS-PER-SESSION` in exactly the
   way majestic does. Two independent implementations sharing one media clock
   across consecutive calls is good evidence that the advisory registration is

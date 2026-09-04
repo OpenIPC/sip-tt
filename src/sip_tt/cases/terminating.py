@@ -15,6 +15,7 @@ import pytest
 
 from ..registry import register
 from ..runtime import sdp as _sdp
+from ..runtime.endpoint import Call
 from ._common import establish, require_target, sdp_of
 
 
@@ -68,7 +69,22 @@ def invite_without_body_gets_an_offer(endpoint, profile):
         f"the session has no media")
     offer = sdp_of(resp)
     assert offer.media, "the 2xx body contained no m= line"
-    call.ack()
+
+    # Finish the exchange the way §13.2.1 defines it, rather than stopping at
+    # "an offer exists": the answer goes in the ACK, and a device that never
+    # reads it has a call with media pointed nowhere. Answering also proves
+    # the offer was one we could actually answer.
+    call.ack(body=call.answer_to(resp.body))
+
+    stray = endpoint.wait_for(
+        lambda m: m.is_request and m.method == "BYE"
+        and m.call_id == call.call_id, timeout=3.0)
+    assert stray is None, (
+        "the device sent BYE within 3s of the ACK carrying our answer. What "
+        "is measured is the hangup and its timing; the reason is the device's "
+        "and is not on the wire. An answer it could not use — or did not read "
+        "— is the reading consistent with it, and the device's own log for "
+        "these seconds should say which")
     call.bye()
 
 
@@ -132,6 +148,7 @@ def reinvite_without_sdp_is_accepted(endpoint, profile):
         "the 200 OK to a bodyless re-INVITE carried no session description, "
         "so neither side has made an offer and the session's media is "
         "undefined")
+    # `reinvite` answers the re-offer in its own ACK — see Call.reinvite.
     call.bye()
 
 
@@ -378,3 +395,90 @@ def hold_is_honoured(endpoint, profile):
                 f"the media path did not follow it")
     finally:
         call.bye()
+
+
+@register("LOCAL-SDP-DEFERRED-ANSWER-IS-HONOURED", roles={"terminating"},
+          mandatory=True, requires={"media"})
+def deferred_answer_is_honoured(endpoint, profile):
+    """An answer given in the ACK has to actually aim the device's media.
+
+    The companion to SIP_CC_TE_CE_V_006, and the half that purpose cannot
+    reach. That one ends when the 2xx carries an offer — which is the visible
+    part, and the easy part. The rest of RFC 3261 §13.2.1 is that the answer
+    arrives in the ACK, and a device may parse it, ignore it, or never look at
+    the ACK's body at all. All three produce an established call; only the
+    first produces one with media.
+
+    It is worth its own purpose because the failure is silent in exactly the
+    way the payload-numbering bug was: signalling completes, both ends believe
+    there is a call, and nothing arrives. And it is the path a PBX takes when
+    it bridges two legs, so it is not an exotic one.
+    """
+    require_target(profile)
+
+    # Open the sockets first, so the answer names ports we are really on. An
+    # answer naming a closed port tests our own plumbing, not the device.
+    probe = Call(endpoint=endpoint, call_id="", local_uri="", remote_uri="",
+                 local_tag="")
+    probe.open_media()
+    try:
+        call = endpoint.place_call(profile.uri, profile.target, body="",
+                                   timeout=10.0)
+        resp = call.last_response
+        if resp is None or not (200 <= resp.status < 300):
+            pytest.fail(
+                f"a bodyless INVITE was answered "
+                f"{resp.status if resp else 'not at all'}, so there was no "
+                f"offer of the device's to answer (see SIP_CC_TE_CE_V_006)")
+        if not resp.body.strip():
+            pytest.fail(
+                "the 2xx carried no offer, so there is nothing to answer and "
+                "this purpose cannot be exercised (see SIP_CC_TE_CE_V_006)")
+
+        call.audio, call.video = probe.audio, probe.video
+        answer = call.answer_to(
+            resp.body, address=profile.local_ip or endpoint.advertise_ip,
+            audio_port=call.audio.port, video_port=call.video.port)
+        call.ack(body=answer)
+
+        endpoint.auto_answer_simple()
+        endpoint.drain(4.0)
+
+        offered = _sdp.parse(resp.body)
+        problems = []
+        testable = 0
+        for kind, ep in (("audio", call.audio), ("video", call.video)):
+            m = offered.get(kind)
+            if m is None or not m.active:
+                continue
+            if not offered.direction_of(m).sends:
+                continue    # the device said it would not send this
+            testable += 1
+            if not ep.stats.packets:
+                problems.append(
+                    f"{kind}: the device offered to send on its own "
+                    f"{m.port}, we answered {ep.port} in the ACK, and 4s "
+                    f"later nothing has arrived there")
+
+        if testable == 0:
+            # Every m-line was absent, refused or non-sending, so there was
+            # never any media to watch for. Passing here would certify the
+            # answer was honoured on the strength of having observed nothing.
+            described = ", ".join(
+                f"{m.kind} port={m.port} {offered.direction_of(m).value}"
+                for m in offered.media) or "no m-lines at all"
+            pytest.fail(
+                f"the device's offer contains nothing it undertakes to send "
+                f"({described}), so no media could be watched for and this "
+                f"purpose was not exercised. Not a pass: nothing was observed")
+
+        assert not problems, (
+            "; ".join(problems) + ". What is measured is that no media "
+            "reached the ports our answer named, on a call both ends consider "
+            "established. An answer that was not read, or was read and not "
+            "honoured, is the reading consistent with it (RFC 3261 §13.2.1); "
+            "so is a device that negotiated media it has no source for, which "
+            "its own log should distinguish")
+        call.bye()
+    finally:
+        probe.close_media()

@@ -128,18 +128,59 @@ class Call:
     def send(self, m: Message, *, track: bool = True) -> ClientTransaction | None:
         return self.endpoint.send(m, self.dest, track=track)
 
-    def ack(self, *, for_response: Message | None = None) -> Message:
+    def ack(self, *, for_response: Message | None = None,
+            body: str = "") -> Message:
         """ACK a 2xx. Its own transaction, but the INVITE's CSeq number.
 
         A 2xx is ACKed end-to-end and separately from the INVITE transaction
         (§17.1.1.3); a non-2xx is ACKed hop-by-hop with the *same* branch, so
         those go through `ack_failure`.
+
+        `body` carries the answer when the INVITE deferred the offer: RFC 3261
+        §13.2.1 puts the offer in the device's 2xx and the answer here, and
+        this is the only request in SIP whose body is an answer to a response.
         """
         resp = for_response or self.answer
         cseq = resp.cseq_number if resp else self.local_cseq
-        m = self.request("ACK", cseq=cseq)
+        m = self.request("ACK", cseq=cseq, body=body)
         self.send(m, track=False)
         return m
+
+    def answer_to(self, offered: str, *, address: str = "",
+                  audio_port: int = 0, video_port: int = 0) -> str:
+        """Build an answer to `offered`, under the numbers it bound.
+
+        RFC 3264 §6.1 leaves the answerer no choice about the numbers, and
+        that is the rule this whole tool exists to police — so the answers it
+        builds itself had better follow it too. Each medium takes the offer's
+        first format, and one it left at port zero stays refused.
+
+        Ports default to the call's own bound media sockets, so an answer
+        names something we are really listening on. A medium of a kind we hold
+        no socket for is refused rather than accepted.
+        """
+        from . import sdp as _s
+        offer = _s.parse(offered)
+        ip = address or self.endpoint.advertise_ip
+        ports = {"audio": audio_port or (self.audio.port if self.audio else 0),
+                 "video": video_port or (self.video.port if self.video else 0)}
+        media = []
+        for m in offer.media:
+            # A medium we cannot service is refused with port zero, and its
+            # m-line stays in place so the two lists keep their positions
+            # (RFC 3264 §6). We own an audio and a video socket and nothing
+            # else, so an offer of `application` or `text` gets a refusal
+            # rather than an acceptance we could not honour — answering one
+            # and then sending nothing is the very defect this tool hunts.
+            port = ports.get(m.kind, 0) if m.active else 0
+            if not port:
+                media.append(_s.Media(m.kind, 0, list(m.formats)))
+                continue
+            fmt = m.formats[0] if m.formats else _s.Format(0)
+            media.append(_s.Media(
+                m.kind, port, [_s.Format(fmt.pt, fmt.name, fmt.clock)],
+                offer.direction_of(m).mirror()))
+        return _s.build(address=ip, media=media)
 
     def ack_failure(self, resp: Message) -> Message:
         """ACK a non-2xx final response: same branch as the INVITE it ends."""
@@ -194,7 +235,19 @@ class Call:
                 self.answer = r
                 if r.body:
                     self.remote_sdp = _sdp.parse(r.body)
-                self.ack(for_response=r)
+                # A re-INVITE we sent with no body asks the peer to re-offer
+                # (RFC 3261 §14), and then the answer belongs in this ACK. An
+                # empty one leaves the peer holding an offer nobody answered,
+                # with its media pointed nowhere.
+                #
+                # answer_to() takes the call's own bound ports by default, so
+                # this names sockets we are really listening on rather than
+                # placeholders — an answer pointing at an unopened port is
+                # indistinguishable, from the device's side, from one it read
+                # and ignored.
+                answer = (self.answer_to(r.body)
+                          if not body.strip() and r.body.strip() else "")
+                self.ack(for_response=r, body=answer)
         return r
 
     # -- media --------------------------------------------------------------
