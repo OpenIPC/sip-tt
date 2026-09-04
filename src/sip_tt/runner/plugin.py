@@ -23,8 +23,10 @@ def pytest_addoption(parser):
     g = parser.getgroup("sip-tt")
     g.addoption("--target", default="", help="DUT signalling address host[:port]")
     g.addoption("--profile-file", default="", help="JSON device profile")
-    g.addoption("--sip-user", default="", help="username the DUT knows us by")
-    g.addoption("--sip-password", default="")
+    g.addoption("--sip-user", default="",
+                help="the DUT's SIP user — the user part of the URI we call")
+    g.addoption("--sip-password", default="",
+                help="credential to answer a challenge from the DUT with")
     g.addoption("--sip-domain", default="")
     g.addoption("--local-ip", default="",
                 help="address the DUT must route back to; not guessed, "
@@ -161,8 +163,34 @@ def pytest_runtest_logreport(report):
     rec["status"] = status
     rec["duration_s"] = round(report.duration, 3)
     if report.longrepr is not None and status in ("failed", "skipped", "xfailed"):
-        rec["longrepr"] = str(report.longrepr)[:4000]
+        # A skip's longrepr is a (path, lineno, reason) tuple, not a
+        # traceback, and str() on it buries the reason in a repr.
+        if isinstance(report.longrepr, tuple) and len(report.longrepr) == 3:
+            rec["message"] = str(report.longrepr[2])
+            _results.append(rec)
+            return
+        text = str(report.longrepr)
+        # The assertion message is the point of the record, and pytest puts it
+        # at the *end* of the traceback after a fixture dump that can run to
+        # thousands of characters. Truncating from the front therefore keeps
+        # the least useful half and throws the finding away.
+        rec["message"] = _assertion_text(text)
+        rec["longrepr"] = text if len(text) <= 4000 else "..." + text[-4000:]
     _results.append(rec)
+
+
+def _assertion_text(longrepr: str) -> str:
+    """The assertion message pytest marks with a leading 'E'."""
+    lines = [ln.lstrip()[1:].strip()
+             for ln in longrepr.splitlines() if ln.lstrip().startswith("E ")]
+    if not lines:
+        # A skip or an explicit fail outside an assert: pytest renders those
+        # as a trailing "Failed: ..." / "Skipped: ..." line instead.
+        for ln in reversed(longrepr.splitlines()):
+            if ln.strip().startswith(("Failed:", "Skipped:")):
+                return ln.strip()
+        return ""
+    return " ".join(lines)
 
 
 def pytest_sessionfinish(session, exitstatus):

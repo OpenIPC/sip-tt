@@ -267,6 +267,30 @@ class Endpoint:
     def uri(self) -> str:
         return f"sip:{self.username}@{self.domain or self.advertise_ip}"
 
+    def teardown_calls(self) -> None:
+        """Hang up anything still standing, and forget every dialog.
+
+        Called after each test, because a device that allows one call at a
+        time answers 486 to the next one — so a single test that fails before
+        its BYE turns every later test red for a reason that has nothing to do
+        with the purpose it was checking. Leaving that to each test's own
+        try/finally is exactly the discipline that fails under an assertion.
+        """
+        for call in list(self.calls.values()):
+            if call.confirmed and not call.terminated:
+                try:
+                    call.bye(timeout=2.0)
+                except Exception:
+                    pass
+            try:
+                call.close_media()
+            except Exception:
+                pass
+        self.calls.clear()
+        self.transactions.clear()
+        self.received.clear()
+        self.auto_responders.clear()
+
     def close(self) -> None:
         for m in list(self._media):
             self.unwatch_media(m)

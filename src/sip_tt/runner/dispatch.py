@@ -64,6 +64,18 @@ def device(profile):
     return dict(profile.fingerprint)
 
 
+@pytest.fixture(autouse=True)
+def _leave_no_call_standing(endpoint):
+    """Guarantee the device is idle again, whatever the test did.
+
+    Structural rather than a convention, because the failure mode is silent
+    and cascading: a leaked call leg makes the *next* purpose fail with 486,
+    and the report then blames a device behaviour that was never tested.
+    """
+    yield
+    endpoint.teardown_calls()
+
+
 @pytest.fixture
 def spec(request):
     """The catalogue entry for the purpose being run."""
