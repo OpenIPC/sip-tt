@@ -68,31 +68,9 @@ jobs:
           sudo tail -5 /tmp/baresip.log
 
       - name: Wait for the DUT to answer
-        # A device that is not listening yet produces a wall of failures that
-        # all mean "we were early". Prove it answers before blaming it for
-        # anything.
         run: |
-          for i in $(seq 1 20); do
-            if timeout 5 python3 - <<'PY'; then exit 0; fi
-          import socket, sys
-          s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-          s.settimeout(2)
-          s.sendto(b"OPTIONS sip:dut@127.0.0.1 SIP/2.0\r\n"
-                   b"Via: SIP/2.0/UDP 127.0.0.1:5099;branch=z9hG4bKping\r\n"
-                   b"From: <sip:ci@127.0.0.1>;tag=1\r\nTo: <sip:dut@127.0.0.1>\r\n"
-                   b"Call-ID: ci-ping\r\nCSeq: 1 OPTIONS\r\n"
-                   b"Content-Length: 0\r\n\r\n", ("127.0.0.1", 5080))
-          try:
-              data, _ = s.recvfrom(4096)
-          except socket.timeout:
-              sys.exit(1)
-          sys.exit(0 if data.startswith(b"SIP/2.0") else 1)
-          PY
-            sleep 1
-          done
-          echo "DUT never answered an OPTIONS ping"
-          sudo cat /tmp/baresip.log
-          exit 1
+          python3 ci/dut/ping-dut.py 127.0.0.1 5080 30 || {
+            echo "--- baresip log ---"; sudo cat /tmp/baresip.log; exit 1; }
 
       - name: Run the suite
         run: |
