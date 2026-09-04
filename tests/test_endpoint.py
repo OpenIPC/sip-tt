@@ -22,6 +22,15 @@ def pair():
     b.close()
 
 
+def _tester_port(pair):
+    return pair[0].port
+
+
+def _tester_recv(pair, timeout=2.0):
+    """Read one message on the tester's socket."""
+    return pair[0].pump(timeout, until=lambda m: True)
+
+
 def _answering_device(dut, answer_body=None, status=200):
     """Run a minimal UAS in a thread: 100, 180, then a final response."""
     def run():
@@ -124,3 +133,25 @@ def test_a_to_tag_is_added_once_and_only_once(pair):
     resp = dut.respond(req, 200, "OK")
     assert resp.headers.get("to").count("tag=") == 1
     assert "tag=already" in resp.headers.get("to")
+
+
+def test_a_2xx_that_forms_a_dialog_always_carries_contact(pair):
+    """RFC 3261 §12.1.1 — Contact is where the ACK and BYE are addressed.
+
+    respond() adds one when there is a body, which is a different rule; a
+    bodyless answer would otherwise form a dialog nobody can address.
+    """
+    from sip_tt.runtime.message import parse
+    _, dut = pair
+    inv = parse("INVITE sip:1001@127.0.0.1 SIP/2.0\r\n"
+                "Via: SIP/2.0/UDP c;branch=z9hG4bKx\r\n"
+                "From: <sip:a@b>;tag=1\r\nTo: <sip:1001@c>\r\n"
+                "Call-ID: contact-test\r\nCSeq: 1 INVITE\r\n\r\n")
+    inv.source = ("127.0.0.1", _tester_port(pair))
+    dut.accept_call(inv, "")
+    got = _tester_recv(pair)
+    assert got is not None, "the 200 OK never arrived"
+    assert got.status == 200
+    assert got.headers.get("contact"), (
+        "the 200 OK that formed the dialog carried no Contact, so the caller "
+        "has nothing to address its ACK and BYE to (RFC 3261 §12.1.1)")

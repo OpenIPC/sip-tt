@@ -615,7 +615,13 @@ class Endpoint:
         if invite.body:
             call.remote_sdp = _sdp.parse(invite.body)
         self.calls[call.call_id] = call
-        self.respond(invite, 200, "OK", body=body, to_tag=call.local_tag)
+        # contact=True and not merely "there is a body": RFC 3261 §12.1.1
+        # makes Contact mandatory in a 2xx that establishes a dialog, and it
+        # is what the caller addresses its ACK and BYE to. respond() adds one
+        # for a body as a convenience, which is not the same rule and leaves a
+        # bodyless answer forming a dialog nobody can address.
+        self.respond(invite, 200, "OK", body=body, to_tag=call.local_tag,
+                     contact=True)
         call.confirmed = True
         return call
 
