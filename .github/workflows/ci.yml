@@ -41,3 +41,92 @@ jobs:
           assert any(n.endswith("sip_tt/catalog.json") for n in names), \
               f"catalog.json missing from the wheel: {names[:20]}"
           print(f"wheel ok: {len(names)} entries")
+
+  integration:
+    name: integration (baresip DUT)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install
+        run: pip install -e .
+
+      - name: Install and start the device under test
+        # baresip is a real SIP user agent — it negotiates properly and sends
+        # real RTP — and it is built for headless operation, so it needs no
+        # sound card, display or X server. See ci/dut/baresip-dut.sh for why
+        # it is baresip and not linphonec.
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq baresip
+          sudo mkdir -p /root/.baresip
+          sudo -E SIP_PORT=5080 HOME=/root ci/dut/baresip-dut.sh
+          sudo tail -5 /tmp/baresip.log
+
+      - name: Wait for the DUT to answer
+        # A device that is not listening yet produces a wall of failures that
+        # all mean "we were early". Prove it answers before blaming it for
+        # anything.
+        run: |
+          for i in $(seq 1 20); do
+            if timeout 5 python3 - <<'PY'; then exit 0; fi
+          import socket, sys
+          s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+          s.settimeout(2)
+          s.sendto(b"OPTIONS sip:dut@127.0.0.1 SIP/2.0\r\n"
+                   b"Via: SIP/2.0/UDP 127.0.0.1:5099;branch=z9hG4bKping\r\n"
+                   b"From: <sip:ci@127.0.0.1>;tag=1\r\nTo: <sip:dut@127.0.0.1>\r\n"
+                   b"Call-ID: ci-ping\r\nCSeq: 1 OPTIONS\r\n"
+                   b"Content-Length: 0\r\n\r\n", ("127.0.0.1", 5080))
+          try:
+              data, _ = s.recvfrom(4096)
+          except socket.timeout:
+              sys.exit(1)
+          sys.exit(0 if data.startswith(b"SIP/2.0") else 1)
+          PY
+            sleep 1
+          done
+          echo "DUT never answered an OPTIONS ping"
+          sudo cat /tmp/baresip.log
+          exit 1
+
+      - name: Run the suite
+        run: |
+          # --skip-tag advisory leaves out the purposes that measure a
+          # SHOULD; they are reported for information and gating a build on
+          # them is noise. The run names what it left out rather than
+          # dropping it silently.
+          sip-tt run --target 127.0.0.1:5080 --user dut \
+                    --local-ip 127.0.0.1 --local-port 5064 \
+                    --roles terminating --with-media --skip-tag advisory \
+                    --junit-xml junit.xml --json-report results.json
+
+      - name: Summarise
+        if: always()
+        run: |
+          python3 - <<'PY'
+          import json, pathlib
+          p = pathlib.Path("results.json")
+          if not p.exists():
+              print("no results.json — the run did not get far enough")
+              raise SystemExit(0)
+          d = json.loads(p.read_text())
+          print(json.dumps(d["summary"], indent=2))
+          for r in sorted(d["results"], key=lambda r: r["id"]):
+              if r["status"] in ("failed", "skipped"):
+                  print(f"{r['status']:8s} {r['id']}: {r.get('message','')[:200]}")
+          PY
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: integration-results
+          path: |
+            junit.xml
+            results.json
+            /tmp/baresip.log
+          if-no-files-found: warn

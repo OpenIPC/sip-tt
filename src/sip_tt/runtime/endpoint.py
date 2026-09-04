@@ -255,6 +255,12 @@ class Endpoint:
         # for something else. Without these, sampling media for ten seconds
         # means ignoring the BYE that arrives during it.
         self.auto_responders: list[Callable[[Message], bool]] = []
+        # Responders that outlive a single purpose — the registrar, mainly.
+        # teardown_calls() resets to this list rather than emptying, because a
+        # session-scoped registrar that gets detached after the first test
+        # makes every later registrant purpose time out waiting for a REGISTER
+        # that was answered by nobody.
+        self._responder_baseline: list[Callable[[Message], bool]] = []
         self._media: list[MediaEndpoint] = []
 
     # -- plumbing -----------------------------------------------------------
@@ -289,7 +295,7 @@ class Endpoint:
         self.calls.clear()
         self.transactions.clear()
         self.received.clear()
-        self.auto_responders.clear()
+        self.auto_responders[:] = list(self._responder_baseline)
 
     def close(self) -> None:
         for m in list(self._media):
@@ -302,6 +308,10 @@ class Endpoint:
         self.sock.close()
         if self._events_file:
             self._events_file.close()
+
+    def keep_responders(self) -> None:
+        """Treat the responders attached so far as session-scoped."""
+        self._responder_baseline = list(self.auto_responders)
 
     def watch_media(self, m: MediaEndpoint) -> None:
         rtp, rtcp = m.fileno_pair()

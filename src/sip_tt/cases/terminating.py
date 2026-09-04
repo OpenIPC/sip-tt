@@ -178,38 +178,105 @@ def unacked_reinvite_is_ended(endpoint, profile):
 @register("SIP_CC_TE_SM_I_001", roles={"terminating"}, mandatory=True,
           tags={"invalid"})
 def reinvite_during_proceeding_is_refused(endpoint, profile):
-    """A re-INVITE while our INVITE transaction is still Proceeding gets 500.
+    """A second INVITE arriving before the first is finally answered gets 500.
 
-    RFC 3261 §14.2. The device has an INVITE it has not finally answered, so a
-    second one inside the same dialog cannot be reasoned about; the required
-    answer is 500 with a Retry-After between 0 and 10 seconds. In practice
-    many devices answer 491 Request Pending, which is what §14.2 says for the
-    *other* ordering; the assertion accepts either, and reports which.
+    RFC 3261 §14.2, and the precondition is the whole difficulty: the device's
+    INVITE server transaction has to actually *be* in the Proceeding state —
+    a provisional sent, no final yet. Only then is a second INVITE
+    unanswerable and the required reply 500 with a Retry-After between 0 and
+    10 seconds.
+
+    An earlier version of this test sent two re-INVITEs back to back inside an
+    established dialog and asserted on the answer to the second. That is not
+    the same thing, and on a fast path it is not even close: the device
+    answers the first in microseconds, so by the time the second arrives there
+    is no outstanding transaction and 200 OK is the correct reply. It reported
+    both majestic and baresip as non-conformant, and both were right. A test
+    that cannot create its own precondition must say so rather than guess.
+
+    So this drives an *initial* INVITE and waits for a provisional. A device
+    that answers immediately — every auto-answering camera and softphone —
+    never enters Proceeding, and the purpose does not apply to it in that
+    configuration. That is reported as a skip naming the measured time, not as
+    a pass and not as a failure.
     """
-    call = establish(endpoint, profile)
+    require_target(profile)
     ip = profile.local_ip or endpoint.advertise_ip
-
-    first = call.request("INVITE", body=_sdp.g711_offer(ip, 41020))
+    call = endpoint.new_call(profile.uri, profile.target)
+    first = call.request("INVITE", body=_sdp.g711_offer(ip, 41020),
+                         uri=profile.uri)
+    call.invite = first
+    started = time.monotonic()
     call.send(first)
-    second = call.request("INVITE", body=_sdp.g711_offer(ip, 41022))
-    call.send(second)
 
-    resp = endpoint.wait_for(
-        lambda x: (x.is_response and x.call_id == call.call_id
-                   and x.cseq_number == second.cseq_number and x.status >= 200),
-        timeout=10.0)
-    assert resp is not None, "no final response to the second re-INVITE"
-    assert resp.status in (500, 491), (
-        f"a re-INVITE sent while an earlier one was unanswered was given "
-        f"{resp.status} {resp.reason}; RFC 3261 §14.2 asks for 500 with a "
-        f"Retry-After, or 491 Request Pending")
-    if resp.status == 500:
-        retry = resp.headers.get("retry-after")
-        assert retry, ("the 500 carried no Retry-After, so the caller has no "
-                       "idea when to try again (RFC 3261 §14.2)")
-        assert 0 <= int(retry.split(";")[0].strip()) <= 10, (
-            f"Retry-After is {retry}; §14.2 asks for a value between 0 and 10")
-    call.bye()
+    reply = endpoint.pump(5.0, until=lambda x: (
+        x.is_response and x.call_id == call.call_id
+        and x.cseq_number == first.cseq_number))
+    if reply is None:
+        pytest.fail("no response at all to an INVITE within 5s")
+    if reply.status >= 200:
+        took = (time.monotonic() - started) * 1000
+        if 200 <= reply.status < 300:
+            call.ack()
+            call.bye()
+        else:
+            call.ack_failure(reply)
+        pytest.skip(
+            f"the device answered {reply.status} in {took:.0f} ms without "
+            f"sending a provisional, so its INVITE server transaction is "
+            f"never in the Proceeding state and this purpose has no "
+            f"precondition to test. Expected of anything that auto-answers")
+
+    # Proceeding: a provisional, no final. Now the second INVITE is the one
+    # §14.2 is about.
+    second = call.request("INVITE", body=_sdp.g711_offer(ip, 41022),
+                          uri=profile.uri)
+    call.send(second)
+    resp = endpoint.pump(10.0, until=lambda x: (
+        x.is_response and x.call_id == call.call_id
+        and x.cseq_number == second.cseq_number and x.status >= 200))
+    assert resp is not None, (
+        "no final response to a second INVITE sent while the first was still "
+        "in Proceeding")
+
+    # The device may have left Proceeding between our two requests — it was
+    # about to answer the first anyway, and on loopback that window is
+    # microseconds wide. Then a 200 to the second is simply correct, and
+    # calling it a violation would be the same mistake as before, one race
+    # further down. The arrival order says which happened.
+    order = [m for m in endpoint.received
+             if m.is_response and m.call_id == call.call_id]
+    finals_for_first = [i for i, m in enumerate(order)
+                        if m.cseq_number == first.cseq_number and m.status >= 200]
+    try:
+        idx_resp = order.index(resp)
+    except ValueError:
+        idx_resp = len(order)
+    if finals_for_first and finals_for_first[0] < idx_resp:
+        first_final = order[finals_for_first[0]]
+        call.ack(for_response=first_final) if 200 <= first_final.status < 300 \
+            else call.ack_failure(first_final)
+        call.bye(timeout=3.0)
+        pytest.skip(
+            f"the device answered the first INVITE {first_final.status} "
+            f"before answering the second, so it had already left the "
+            f"Proceeding state and 200 to the second is correct. The race is "
+            f"inherent on a fast path; retry on a device that rings, or "
+            f"through a PBX that adds latency")
+    try:
+        assert resp.status in (500, 491), (
+            f"a second INVITE sent while the first was still unanswered "
+            f"(a {reply.status} had been sent, no final) was given "
+            f"{resp.status} {resp.reason}; RFC 3261 §14.2 asks for 500 with a "
+            f"Retry-After, or 491 Request Pending")
+        if resp.status == 500:
+            retry = resp.headers.get("retry-after")
+            assert retry, ("the 500 carried no Retry-After, so the caller has "
+                           "no idea when to try again (§14.2)")
+            assert 0 <= int(retry.split(";")[0].strip()) <= 10, (
+                f"Retry-After is {retry}; §14.2 asks for 0 to 10 seconds")
+    finally:
+        call.cancel(timeout=3.0)
 
 
 # ---------------------------------------------------------------------------

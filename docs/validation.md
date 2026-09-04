@@ -39,7 +39,7 @@ regressed.
 | `LOCAL-SDP-HOLD-IS-HONOURED` | `a=sendonly` ignored; audio kept flowing into a held call |
 | `SIP_CC_TE_CE_V_001` | (Never broken, but the common cause when everything else fails) |
 
-### Four findings the tool made on its own
+### Three findings the tool made on its own
 
 All against current `master`, none previously reported.
 
@@ -47,13 +47,37 @@ All against current `master`, none previously reported.
 | --- | --- | --- |
 | `SIP_CC_TE_CE_V_006` | Mandatory | An INVITE with no message body is refused **488**. RFC 3261 §13.2.1 allows a bodyless INVITE and requires the answerer to make the offer in its 2xx |
 | `SIP_CC_TE_SM_V_002` | Mandatory | A bodyless **re**-INVITE is refused **488**. §14 makes it a request to re-offer |
-| `SIP_CC_TE_SM_I_001` | Mandatory | A re-INVITE sent while an earlier one is still unanswered is answered **200 OK**. §14.2 asks for 500 with a `Retry-After` between 0 and 10 s, or 491 Request Pending |
 | `SIP_CC_TE_SM_V_003` | Recommended | 45 s after a 200 OK that was never ACKed, no BYE. §14.1 requires the dialog to be terminated rather than the call leg held |
 
 The first two share a cause — the device requires usable audio SDP in any
 INVITE it accepts, and logs `inbound INVITE without usable audio SDP — 488`.
-The third means two re-INVITEs in flight both get 200 OK, which leaves the
-two ends disagreeing about which offer is in force.
+
+### A fourth finding, retracted
+
+`SIP_CC_TE_SM_I_001` was reported here as a defect and was not one. The first
+version of that test sent two re-INVITEs back to back inside an established
+dialog and asserted that the second must be refused 500 or 491 per RFC 3261
+§14.2. It reported majestic as non-conformant, and then reported baresip as
+non-conformant too — two independent stacks failing the same mandatory purpose
+is a reason to distrust the test, not the stacks.
+
+The purpose is conditional on the device's INVITE server transaction being in
+the **Proceeding** state: a provisional sent, no final yet. On a fast path the
+device answers the first re-INVITE in microseconds, so by the time the second
+arrives there is no outstanding transaction and 200 OK is exactly right. The
+test was asserting a precondition it had not created.
+
+It now drives an initial INVITE, waits for a provisional, and only then sends
+the second — and it checks the arrival order afterwards, because the device
+may still leave Proceeding in the microseconds between. Where the precondition
+cannot be created it skips, naming the measurement: majestic answers 200 in
+0 ms with no provisional, so it never enters Proceeding and the purpose does
+not apply to it while it auto-answers.
+
+The lesson is the one in CLAUDE.md §8, learnt the hard way rather than
+inherited: a test that cannot establish its own precondition must say so, not
+guess. Two false failures against two different implementations is what
+overstating a finding looks like from the outside.
 
 ### One advisory finding, and why it is only advisory
 
@@ -73,6 +97,34 @@ audio and video trivially comparable. What it costs is that consecutive calls
 are correlated and the offset between them is the real elapsed time. So the
 purpose is registered non-mandatory, and its assertion says which of the two
 things it saw. This distinction is the point of CLAUDE.md §8.
+
+## A second implementation
+
+Running only against the device the tool was written for proves very little,
+so CI runs the same suite against **baresip**, a wholly independent stack.
+It is also the reason the `SIP_CC_TE_SM_I_001` retraction above was caught:
+a purpose that fails on two unrelated implementations is usually the test.
+
+`10 passed, 15 skipped` on the terminating role, with the advisory purposes
+left out by `--skip-tag advisory` and named in the output. Every skip is a
+genuine not-applicable — fifteen of them are the originating and registrant
+purposes, which that DUT profile does not claim.
+
+Two notes worth keeping:
+
+* baresip fails `LOCAL-MEDIA-RTP-TIMESTAMP-BASE-IS-PER-SESSION` in exactly the
+  way majestic does. Two independent implementations sharing one media clock
+  across consecutive calls is good evidence that the advisory registration is
+  the right one, and that a mandatory one would have been wrong.
+* It is baresip and not linphonec because liblinphone answers **503 Service
+  unavailable** to every inbound INVITE when its core has not reached the On
+  state, which in a container it does not. The log line is "Linphone core
+  global state is not on", buried under a wall of ALSA errors that look like
+  the cause and are not — and from the outside it is indistinguishable from a
+  device that refuses calls. baresip is built for headless operation and needs
+  a paired `aubridge` device (`audio_player aubridge,dut` and `audio_source
+  aubridge,dut`); an unpaired one answers 200 and then fails media setup with
+  "audio_decoder_set error: No such device".
 
 ## Reproducing without hardware
 

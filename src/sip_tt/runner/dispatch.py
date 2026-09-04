@@ -76,6 +76,24 @@ def _leave_no_call_standing(endpoint):
     endpoint.teardown_calls()
 
 
+@pytest.fixture(scope="session")
+def registrar(endpoint, profile, request):
+    """A registrar for the device to register with, when this run provides one.
+
+    Session-scoped and marked as a persistent responder, because a registrant
+    refreshes on its own schedule: a registrar that vanished between purposes
+    would leave every REGISTER after the first one unanswered.
+    """
+    if not request.config.getoption("--with-registrar", default=False):
+        return None
+    from ..runtime.registrar import Registrar
+    reg = Registrar(endpoint, realm=profile.domain or "sip-tt",
+                    password=profile.password,
+                    grant_expires=request.config.getoption("--grant-expires"))
+    endpoint.keep_responders()
+    return reg
+
+
 @pytest.fixture
 def spec(request):
     """The catalogue entry for the purpose being run."""
@@ -133,6 +151,8 @@ def test_sip_purpose(test_id, profile, endpoint, device, spec, request):
                         ("request", request)):
         if name in sig.parameters:
             kwargs[name] = value
+    if "registrar" in sig.parameters:
+        kwargs["registrar"] = request.getfixturevalue("registrar")
 
     xfail_reason = match_xfail(impl, device)
     if xfail_reason is None:
