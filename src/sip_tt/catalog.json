@@ -1,0 +1,6099 @@
+{
+ "document": "ETSI TS 102 027-2",
+ "note": "Identifiers, applicability conditions and RFC citations only. The purpose text is ETSI's and is not redistributed; run `sip-tt corpus refresh` to read it locally.",
+ "purposes": [
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CE",
+   "id": "SIP_CC_OE_CE_TI_001",
+   "klass": "TI",
+   "number": 1,
+   "ref": "RFC 3261 [1] annex A and section 17.1.1.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CE",
+   "id": "SIP_CC_OE_CE_TI_002",
+   "klass": "TI",
+   "number": 2,
+   "ref": "RFC 3261 [1] annex A and section 17.1.1.1.",
+   "status": "Recommended"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CE",
+   "id": "SIP_CC_OE_CE_TI_003",
+   "klass": "TI",
+   "number": 3,
+   "ref": "RFC 3261 [1] annex A and section 17.1.1.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CE",
+   "id": "SIP_CC_OE_CE_TI_004",
+   "klass": "TI",
+   "number": 4,
+   "ref": "RFC 3261 [1] annex A and section 17.1.1.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CE",
+   "id": "SIP_CC_OE_CE_TI_005",
+   "klass": "TI",
+   "number": 5,
+   "ref": "RFC 3261 [1] annex A and section 17.1.1.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CE",
+   "id": "SIP_CC_OE_CE_TI_006",
+   "klass": "TI",
+   "number": 6,
+   "ref": "RFC 3261 [1] annex A and section 17.1.1.1.",
+   "status": "Recommended"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CE",
+   "id": "SIP_CC_OE_CE_TI_007",
+   "klass": "TI",
+   "number": 7,
+   "ref": "RFC 3261 [1] annex A and section 17.1.1.1.",
+   "status": "Recommended"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CE",
+   "id": "SIP_CC_OE_CE_TI_008",
+   "klass": "TI",
+   "number": 8,
+   "ref": "RFC 3261 [1] annex A and section 17.1.1.1.",
+   "status": "PICS: A.38/6"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CE",
+   "id": "SIP_CC_OE_CE_TI_009",
+   "klass": "TI",
+   "number": 9,
+   "ref": "RFC 3261 [1] annex A and section 17.1.1.1.",
+   "status": "PICS: A.38/6"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CE",
+   "id": "SIP_CC_OE_CE_TI_010",
+   "klass": "TI",
+   "number": 10,
+   "ref": "RFC 3261 [1] annex A and section 17.1.1.1.",
+   "status": "PICS: A.38/6"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CE",
+   "id": "SIP_CC_OE_CE_TI_011",
+   "klass": "TI",
+   "number": 11,
+   "ref": "RFC 3261 [1] annex A and section 13.2.2.4.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CE",
+   "id": "SIP_CC_OE_CE_TI_012",
+   "klass": "TI",
+   "number": 12,
+   "ref": "RFC 3261 [1] annex A and section 13.2.2.4.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CE",
+   "id": "SIP_CC_OE_CE_V_001",
+   "klass": "V",
+   "number": 1,
+   "ref": "RFC 3261 [1] section 8.1.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CE",
+   "id": "SIP_CC_OE_CE_V_002",
+   "klass": "V",
+   "number": 2,
+   "ref": "RFC 3261 [1] section 8.1.1.",
+   "status": "Recommended"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CE",
+   "id": "SIP_CC_OE_CE_V_003",
+   "klass": "V",
+   "number": 3,
+   "ref": "RFC 3261 [1] section 8.1.1.2.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CE",
+   "id": "SIP_CC_OE_CE_V_004",
+   "klass": "V",
+   "number": 4,
+   "ref": "RFC 3261 [1] section 8.1.1.3.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CE",
+   "id": "SIP_CC_OE_CE_V_005",
+   "klass": "V",
+   "number": 5,
+   "ref": "RFC 3261 [1] section 8.1.1.5.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CE",
+   "id": "SIP_CC_OE_CE_V_006",
+   "klass": "V",
+   "number": 6,
+   "ref": "RFC 3261 [1] section 8.1.1.6.",
+   "status": "Recommended"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CE",
+   "id": "SIP_CC_OE_CE_V_007",
+   "klass": "V",
+   "number": 7,
+   "ref": "RFC 3261 [1] section 8.1.1.7.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CE",
+   "id": "SIP_CC_OE_CE_V_008",
+   "klass": "V",
+   "number": 8,
+   "ref": "RFC 3261 [1] section 13.2.1.",
+   "status": "PICS: A.22/2.5"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CE",
+   "id": "SIP_CC_OE_CE_V_009",
+   "klass": "V",
+   "number": 9,
+   "ref": "RFC 3261 [1] sections 8, 8.1.3.2 and 13.2.2.1, figure 5.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CE",
+   "id": "SIP_CC_OE_CE_V_010",
+   "klass": "V",
+   "number": 10,
+   "ref": "RFC 3261 [1] sections 8.1.3.2 and 13.2.2.1, figure 5.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CE",
+   "id": "SIP_CC_OE_CE_V_011",
+   "klass": "V",
+   "number": 11,
+   "ref": "RFC 3261 [1] sections 8.1.3.2 and 13.2.2.1, figure 5.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CE",
+   "id": "SIP_CC_OE_CE_V_012",
+   "klass": "V",
+   "number": 12,
+   "ref": "RFC 3261 [1] sections 8.1.3.2 and 13.2.2.1, figure 5.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CE",
+   "id": "SIP_CC_OE_CE_V_013",
+   "klass": "V",
+   "number": 13,
+   "ref": "RFC 3261 [1] sections 12.2.1.1, 13.2.2.4, figure 5 and 17.1.1.3.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CE",
+   "id": "SIP_CC_OE_CE_V_014",
+   "klass": "V",
+   "number": 14,
+   "ref": "RFC 3261 [1] sections 12.2.1.1, 13.2.2.4, figure 5 and 17.1.1.3.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CE",
+   "id": "SIP_CC_OE_CE_V_015",
+   "klass": "V",
+   "number": 15,
+   "ref": "RFC 3261 [1] section 8.1.3.3, figure 5.",
+   "status": "Recommended"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CE",
+   "id": "SIP_CC_OE_CE_V_016",
+   "klass": "V",
+   "number": 16,
+   "ref": "RFC 3261 [1] sections 12.2.1.1, 13.2.2.4, figure 5 and 17.1.1.3.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CE",
+   "id": "SIP_CC_OE_CE_V_017",
+   "klass": "V",
+   "number": 17,
+   "ref": "RFC 3261 [1] sections 12.2.1.1, 13.2.2.4, figure 5 and 17.1.1.3.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CE",
+   "id": "SIP_CC_OE_CE_V_018",
+   "klass": "V",
+   "number": 18,
+   "ref": "RFC 3261 [1] sections 12.2.1.1, 13.2.2.4, figure 5 and 17.1.1.3.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CE",
+   "id": "SIP_CC_OE_CE_V_019",
+   "klass": "V",
+   "number": 19,
+   "ref": "RFC 3261 [1] sections 12.2.1.1, 13.2.2.4, figure 5 and 17.1.1.2.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CE",
+   "id": "SIP_CC_OE_CE_V_020",
+   "klass": "V",
+   "number": 20,
+   "ref": "RFC 3261 [1] sections 12.2.1.1, figure 5 and 17.1.1.3.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CE",
+   "id": "SIP_CC_OE_CE_V_021",
+   "klass": "V",
+   "number": 21,
+   "ref": "RFC 3261 [1] section 12.2.1.1 and 13.2.2.4, figure 5.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CE",
+   "id": "SIP_CC_OE_CE_V_022",
+   "klass": "V",
+   "number": 22,
+   "ref": "RFC 3261 [1] sections 12.2.1.1, and 13.2.2.4, figure 5.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CE",
+   "id": "SIP_CC_OE_CE_V_023",
+   "klass": "V",
+   "number": 23,
+   "ref": "RFC 3261 [1] sections 12.2.1.1, and 13.2.2.4, figure 5.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CE",
+   "id": "SIP_CC_OE_CE_V_024",
+   "klass": "V",
+   "number": 24,
+   "ref": "RFC 3261 [1] sections 13.2.2.2, figure 5, 17.1.1.2 and 17.1.1.3.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CE",
+   "id": "SIP_CC_OE_CE_V_025",
+   "klass": "V",
+   "number": 25,
+   "ref": "RFC 3261 [1] sections 13.2.2.2, figure 5, 17.1.1.2 and 17.1.1.3.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CE",
+   "id": "SIP_CC_OE_CE_V_026",
+   "klass": "V",
+   "number": 26,
+   "ref": "RFC 3261 [1] sections 13.2.2.2, figure 5 and 17.1.1.3.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CE",
+   "id": "SIP_CC_OE_CE_V_027",
+   "klass": "V",
+   "number": 27,
+   "ref": "RFC 3261 [1] sections 13.2.2.2, figure 5, 17.1.1.2 and 17.1.1.3.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CE",
+   "id": "SIP_CC_OE_CE_V_028",
+   "klass": "V",
+   "number": 28,
+   "ref": "RFC 3261 [1] sections 12.2.1.1, 13.2.2.2, figure 5, 17.1.1.2 and 17.1.1.3.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CE",
+   "id": "SIP_CC_OE_CE_V_029",
+   "klass": "V",
+   "number": 29,
+   "ref": "RFC 3261 [1] sections 8.1.3.4, 21.3.4, 13.2.2.2, figure 5, 17.1.1.2 [1], and 17.1.1.3.",
+   "status": "PICS: A.16/1.3"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CE",
+   "id": "SIP_CC_OE_CE_V_030",
+   "klass": "V",
+   "number": 30,
+   "ref": "RFC 3261 [1] section 8.1.3.4, figure 5.",
+   "status": "PICS: A.16/1.3"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CE",
+   "id": "SIP_CC_OE_CE_V_031",
+   "klass": "V",
+   "number": 31,
+   "ref": "RFC 3261 [1] section 8.1.3.4, figure 5.",
+   "status": "PICS: A.16/1.3"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CE",
+   "id": "SIP_CC_OE_CE_V_032",
+   "klass": "V",
+   "number": 32,
+   "ref": "RFC 3261 [1] sections 13.2.2.3, figure 5, 17.1.1.2 and 17.1.1.3.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CE",
+   "id": "SIP_CC_OE_CE_V_033",
+   "klass": "V",
+   "number": 33,
+   "ref": "RFC 3261 [1] sections 13.2.2.3, figure 5, 17.1.1.2 and 17.1.1.3.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CE",
+   "id": "SIP_CC_OE_CE_V_034",
+   "klass": "V",
+   "number": 34,
+   "ref": "RFC 3261 [1] sections 13.2.2.3, figure 5, 17.1.1.2 and 17.1.1.3.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CE",
+   "id": "SIP_CC_OE_CE_V_035",
+   "klass": "V",
+   "number": 35,
+   "ref": "RFC 3261 [1] section 13.2.2.3, figure 5, 17.1.1.2 and 17.1.1.3.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CE",
+   "id": "SIP_CC_OE_CE_V_036",
+   "klass": "V",
+   "number": 36,
+   "ref": "RFC 3261 [1] sections 13.2.2.3 figure 5, 17.1.1.2 and 17.1.1.3.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CE",
+   "id": "SIP_CC_OE_CE_V_037",
+   "klass": "V",
+   "number": 37,
+   "ref": "RFC 3261 [1] sections 13.2.2.3, figure 5, 17.1.1.2 and 17.1.1.3.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CE",
+   "id": "SIP_CC_OE_CE_V_038",
+   "klass": "V",
+   "number": 38,
+   "ref": "RFC 3261 [1] sections 13.2.2.3, figure 5, 17.1.1.2 and 17.1.1.3.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CE",
+   "id": "SIP_CC_OE_CE_V_039",
+   "klass": "V",
+   "number": 39,
+   "ref": "RFC 3261 [1] sections 13.2.2.3, figure 5, 17.1.1.2 and 17.1.1.3.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CE",
+   "id": "SIP_CC_OE_CE_V_040",
+   "klass": "V",
+   "number": 40,
+   "ref": "RFC 3261 [1] sections 13.2.2.3, figure 5, 17.1.1.2 and 17.1.1.3.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CE",
+   "id": "SIP_CC_OE_CE_V_041",
+   "klass": "V",
+   "number": 41,
+   "ref": "RFC 3261 [1] sections 17, 13.2.2.3, figure 5, 17.1.1.2 and 17.1.1.3.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CE",
+   "id": "SIP_CC_OE_CE_V_042",
+   "klass": "V",
+   "number": 42,
+   "ref": "RFC 3261 [1] sections 8.1.3.2, 13.2.2.3, figure 5, 17.1.1.2 and 17.1.1.3.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CE",
+   "id": "SIP_CC_OE_CE_V_043",
+   "klass": "V",
+   "number": 43,
+   "ref": "RFC 3261 [1] sections 21.3.3, 12.2.1, 13.2.2.2, figure 5, 17.1.1.2 and 17.1.1.3.",
+   "status": "PICS: A.16/1.3"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CE",
+   "id": "SIP_CC_OE_CE_V_044",
+   "klass": "V",
+   "number": 44,
+   "ref": "RFC 3261 [1] section 13.2.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CE",
+   "id": "SIP_CC_OE_CE_V_045",
+   "klass": "V",
+   "number": 45,
+   "ref": "RFC 3261 [1] sections 20.14 and 13.2.1.",
+   "status": "PICS: A.22/2.13"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CE",
+   "id": "SIP_CC_OE_CE_V_046",
+   "klass": "V",
+   "number": 46,
+   "ref": "RFC 3261 [1] sections 20.15 and 13.2.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CE",
+   "id": "SIP_CC_OE_CE_V_047",
+   "klass": "V",
+   "number": 47,
+   "ref": "RFC 3261 [1] sections 7.4 and 13.2.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CE",
+   "id": "SIP_CC_OE_CE_V_048",
+   "klass": "V",
+   "number": 48,
+   "ref": "RFC 3261 [1] section 13.2.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CE",
+   "id": "SIP_CC_OE_CE_V_049",
+   "klass": "V",
+   "number": 49,
+   "ref": "RFC 3261 [1] sections 20.14 and 13.2.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CE",
+   "id": "SIP_CC_OE_CE_V_050",
+   "klass": "V",
+   "number": 50,
+   "ref": "RFC 3261 [1] sections 8.1.3.5 and 22.2.",
+   "status": "PICS: A.31/1"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CE",
+   "id": "SIP_CC_OE_CE_V_051",
+   "klass": "V",
+   "number": 51,
+   "ref": "RFC 3261 [1] sections 8.1.3.5 and 22.2.",
+   "status": "PICS: A.31/1"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CE",
+   "id": "SIP_CC_OE_CE_V_052",
+   "klass": "V",
+   "number": 52,
+   "ref": "RFC 3261 [1] sections 8.1.3.5 and 22.2.",
+   "status": "PICS: A.31/1"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CE",
+   "id": "SIP_CC_OE_CE_V_053",
+   "klass": "V",
+   "number": 53,
+   "ref": "RFC 3261 [1] sections 8.1.3.5 and 22.2.",
+   "status": "PICS: A.31/1"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CR",
+   "id": "SIP_CC_OE_CR_I_001",
+   "klass": "I",
+   "number": 1,
+   "ref": "RFC 3261 [1] sections 9 and 16.10.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CR",
+   "id": "SIP_CC_OE_CR_TI_001",
+   "klass": "TI",
+   "number": 1,
+   "ref": "RFC 3261 [1] annex A and section 17.1.2.2.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CR",
+   "id": "SIP_CC_OE_CR_TI_002",
+   "klass": "TI",
+   "number": 2,
+   "ref": "RFC 3261 [1] annex A and section 17.1.3.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CR",
+   "id": "SIP_CC_OE_CR_TI_003",
+   "klass": "TI",
+   "number": 3,
+   "ref": "RFC 3261 [1] annex A and section 17.1.3.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CR",
+   "id": "SIP_CC_OE_CR_TI_004",
+   "klass": "TI",
+   "number": 4,
+   "ref": "RFC 3261 [1] annex A and section 17.1.3.",
+   "status": "PICS: A.38/8"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CR",
+   "id": "SIP_CC_OE_CR_TI_005",
+   "klass": "TI",
+   "number": 5,
+   "ref": "RFC 3261 [1] annex A and section 17.1.3.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CR",
+   "id": "SIP_CC_OE_CR_TI_006",
+   "klass": "TI",
+   "number": 6,
+   "ref": "RFC 3261 [1] annex A and section 17.1.3.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CR",
+   "id": "SIP_CC_OE_CR_TI_007",
+   "klass": "TI",
+   "number": 7,
+   "ref": "RFC 3261 [1] annex A and section 17.1.3.",
+   "status": "PICS: A.38/8"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CR",
+   "id": "SIP_CC_OE_CR_TI_008",
+   "klass": "TI",
+   "number": 8,
+   "ref": "RFC 3261 [1] annex A and sections 17.1.3.and 9.1.",
+   "status": "PICS: A.38/8"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CR",
+   "id": "SIP_CC_OE_CR_V_001",
+   "klass": "V",
+   "number": 1,
+   "ref": "RFC 3261 [1] sections 12.2.1.1 and 15.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CR",
+   "id": "SIP_CC_OE_CR_V_002",
+   "klass": "V",
+   "number": 2,
+   "ref": "RFC 3261 [1] sections 12.2.1.1 and 15.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CR",
+   "id": "SIP_CC_OE_CR_V_003",
+   "klass": "V",
+   "number": 3,
+   "ref": "RFC 3261 [1] sections 12.2.1.1 and 15.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CR",
+   "id": "SIP_CC_OE_CR_V_004",
+   "klass": "V",
+   "number": 4,
+   "ref": "RFC 3261 [1] section 12.2.1.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CR",
+   "id": "SIP_CC_OE_CR_V_005",
+   "klass": "V",
+   "number": 5,
+   "ref": "RFC 3261 [1] sections 12.2.1.1 and 15.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CR",
+   "id": "SIP_CC_OE_CR_V_006",
+   "klass": "V",
+   "number": 6,
+   "ref": "RFC 3261 [1] sections 12.2.1.1 and 15.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CR",
+   "id": "SIP_CC_OE_CR_V_007",
+   "klass": "V",
+   "number": 7,
+   "ref": "RFC 3261 [1] sections 12.2.1.1 and 15.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CR",
+   "id": "SIP_CC_OE_CR_V_008",
+   "klass": "V",
+   "number": 8,
+   "ref": "RFC 3261 [1] sections 12.2.1.1 and 15.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CR",
+   "id": "SIP_CC_OE_CR_V_009",
+   "klass": "V",
+   "number": 9,
+   "ref": "RFC 3261 [1] sections 12.2.1.1 and 15.1.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CR",
+   "id": "SIP_CC_OE_CR_V_010",
+   "klass": "V",
+   "number": 10,
+   "ref": "RFC 3261 [1] sections 15 and 9.1, figure 5.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CR",
+   "id": "SIP_CC_OE_CR_V_011",
+   "klass": "V",
+   "number": 11,
+   "ref": "RFC 3261 [1] sections 15 and 9.1, figure 5.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CR",
+   "id": "SIP_CC_OE_CR_V_012",
+   "klass": "V",
+   "number": 12,
+   "ref": "RFC 3261 [1] sections 15 and 9.1, figure 5.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CR",
+   "id": "SIP_CC_OE_CR_V_013",
+   "klass": "V",
+   "number": 13,
+   "ref": "RFC 3261 [1] sections 15 and 9.1, figure 5.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CR",
+   "id": "SIP_CC_OE_CR_V_014",
+   "klass": "V",
+   "number": 14,
+   "ref": "RFC 3261 [1] sections 15 and 9.1, figure 5.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "CR",
+   "id": "SIP_CC_OE_CR_V_015",
+   "klass": "V",
+   "number": 15,
+   "ref": "RFC 3261 [1] sections 15 and 9.1, figure 5.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "SM",
+   "id": "SIP_CC_OE_SM_V_001",
+   "klass": "V",
+   "number": 1,
+   "ref": "RFC 3261 [1] section 14.2.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "OE",
+   "function": "SM",
+   "id": "SIP_CC_OE_SM_V_002",
+   "klass": "V",
+   "number": 2,
+   "ref": "RFC 3261 [1] section 14.2.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RQ",
+   "id": "SIP_CC_PR_MP_RQ_I_001",
+   "klass": "I",
+   "number": 1,
+   "ref": "RFC 3261 [1] section 16.6, item 2.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RQ",
+   "id": "SIP_CC_PR_MP_RQ_I_002",
+   "klass": "I",
+   "number": 2,
+   "ref": "RFC 3261 [1] section 16.6, item 2.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RQ",
+   "id": "SIP_CC_PR_MP_RQ_I_003",
+   "klass": "I",
+   "number": 3,
+   "ref": "RFC 3261 [1] section 16.6, item 2.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RQ",
+   "id": "SIP_CC_PR_MP_RQ_I_004",
+   "klass": "I",
+   "number": 4,
+   "ref": "RFC 3261 [1] section 16.6, item 2.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RQ",
+   "id": "SIP_CC_PR_MP_RQ_V_001",
+   "klass": "V",
+   "number": 1,
+   "ref": "RFC 3261 [1] section 16.3 item 2.",
+   "status": "PICS: A.79/4.14 Status/Sending"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RQ",
+   "id": "SIP_CC_PR_MP_RQ_V_002",
+   "klass": "V",
+   "number": 2,
+   "ref": "RFC 3261 [1] section 16.3 item 3.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RQ",
+   "id": "SIP_CC_PR_MP_RQ_V_003",
+   "klass": "V",
+   "number": 3,
+   "ref": "RFC 3261 [1] section 16.3 item 5.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RQ",
+   "id": "SIP_CC_PR_MP_RQ_V_004",
+   "klass": "V",
+   "number": 4,
+   "ref": "RFC 3261 [1] section 16.4.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RQ",
+   "id": "SIP_CC_PR_MP_RQ_V_005",
+   "klass": "V",
+   "number": 5,
+   "ref": "RFC 3261 [1] section 16.4.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RQ",
+   "id": "SIP_CC_PR_MP_RQ_V_006",
+   "klass": "V",
+   "number": 6,
+   "ref": "RFC 3261 [1] section 16.5.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RQ",
+   "id": "SIP_CC_PR_MP_RQ_V_007",
+   "klass": "V",
+   "number": 7,
+   "ref": "RFC 3261 [1] section 16.5.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RQ",
+   "id": "SIP_CC_PR_MP_RQ_V_008",
+   "klass": "V",
+   "number": 8,
+   "ref": "RFC 3261 [1] section 16.5.",
+   "status": "PICS: A.79/4.22 Status/Sending"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RQ",
+   "id": "SIP_CC_PR_MP_RQ_V_009",
+   "klass": "V",
+   "number": 9,
+   "ref": "RFC 3261 [1] section 16.5.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RQ",
+   "id": "SIP_CC_PR_MP_RQ_V_010",
+   "klass": "V",
+   "number": 10,
+   "ref": "",
+   "status": "Void"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RQ",
+   "id": "SIP_CC_PR_MP_RQ_V_011",
+   "klass": "V",
+   "number": 11,
+   "ref": "RFC 3261 [1] section 16.6 item 3.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RQ",
+   "id": "SIP_CC_PR_MP_RQ_V_012",
+   "klass": "V",
+   "number": 12,
+   "ref": "RFC 3261 [1] section 16.6 item 3.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RQ",
+   "id": "SIP_CC_PR_MP_RQ_V_013",
+   "klass": "V",
+   "number": 13,
+   "ref": "RFC 3261 [1] section 16.6 item 3.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RQ",
+   "id": "SIP_CC_PR_MP_RQ_V_014",
+   "klass": "V",
+   "number": 14,
+   "ref": "RFC 3261 [1] section 16.6 item 3.",
+   "status": "Recommended"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RQ",
+   "id": "SIP_CC_PR_MP_RQ_V_015",
+   "klass": "V",
+   "number": 15,
+   "ref": "RFC 3261 [1] section 16.6 item 6.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RQ",
+   "id": "SIP_CC_PR_MP_RQ_V_016",
+   "klass": "V",
+   "number": 16,
+   "ref": "RFC 3261 [1] sections 16.6 item 7.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RQ",
+   "id": "SIP_CC_PR_MP_RQ_V_017",
+   "klass": "V",
+   "number": 17,
+   "ref": "RFC 3261 [1] section 16.6 item 7.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RQ",
+   "id": "SIP_CC_PR_MP_RQ_V_018",
+   "klass": "V",
+   "number": 18,
+   "ref": "RFC 3261 [1] sections 16.6, item 8 and 8.1.1.7.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RQ",
+   "id": "SIP_CC_PR_MP_RQ_V_019",
+   "klass": "V",
+   "number": 19,
+   "ref": "RFC 3261 [1] section 16.4.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RQ",
+   "id": "SIP_CC_PR_MP_RQ_V_020",
+   "klass": "V",
+   "number": 20,
+   "ref": "RFC 3261 [1] section 16.4.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RQ",
+   "id": "SIP_CC_PR_MP_RQ_V_021",
+   "klass": "V",
+   "number": 21,
+   "ref": "RFC 3261 [1] section 16.5.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RQ",
+   "id": "SIP_CC_PR_MP_RQ_V_022",
+   "klass": "V",
+   "number": 22,
+   "ref": "RFC 3261 [1] section 16.5.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RQ",
+   "id": "SIP_CC_PR_MP_RQ_V_023",
+   "klass": "V",
+   "number": 23,
+   "ref": "RFC 3261 [1] section 16.6 item 3.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RQ",
+   "id": "SIP_CC_PR_MP_RQ_V_024",
+   "klass": "V",
+   "number": 24,
+   "ref": "RFC 3261 [1] section 16.6 item 3.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RQ",
+   "id": "SIP_CC_PR_MP_RQ_V_025",
+   "klass": "V",
+   "number": 25,
+   "ref": "RFC 3261 [1] section 16.6 item 3.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RQ",
+   "id": "SIP_CC_PR_MP_RQ_V_026",
+   "klass": "V",
+   "number": 26,
+   "ref": "RFC 3261 [1] section 16.6 item 3.",
+   "status": "Recommended"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RQ",
+   "id": "SIP_CC_PR_MP_RQ_V_027",
+   "klass": "V",
+   "number": 27,
+   "ref": "RFC 3261 [1] section 16.6 item 6 and 7.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RQ",
+   "id": "SIP_CC_PR_MP_RQ_V_028",
+   "klass": "V",
+   "number": 28,
+   "ref": "",
+   "status": "Void"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RQ",
+   "id": "SIP_CC_PR_MP_RQ_V_029",
+   "klass": "V",
+   "number": 29,
+   "ref": "RFC 3261 [1] section 16.6 item 7.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RQ",
+   "id": "SIP_CC_PR_MP_RQ_V_030",
+   "klass": "V",
+   "number": 30,
+   "ref": "RFC 3261 [1] section 16.6 item 8, and 8.1.1.7.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RQ",
+   "id": "SIP_CC_PR_MP_RQ_V_031",
+   "klass": "V",
+   "number": 31,
+   "ref": "RFC 3261 [1] section 16.3, item 2 and 16.10.",
+   "status": "PICS: A.82/4.12 Status/Sending"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RQ",
+   "id": "SIP_CC_PR_MP_RQ_V_032",
+   "klass": "V",
+   "number": 32,
+   "ref": "RFC 3261 [1] sections 16.3, item 3 and 16.10.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RQ",
+   "id": "SIP_CC_PR_MP_RQ_V_033",
+   "klass": "V",
+   "number": 33,
+   "ref": "RFC 3261 [1] sections 16.3 item 5, and 16.10.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RQ",
+   "id": "SIP_CC_PR_MP_RQ_V_034",
+   "klass": "V",
+   "number": 34,
+   "ref": "RFC 3261 [1] sections 16.4 and 16.10.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RQ",
+   "id": "SIP_CC_PR_MP_RQ_V_035",
+   "klass": "V",
+   "number": 35,
+   "ref": "RFC 3261 [1] sections 16.4 and 16.10.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RQ",
+   "id": "SIP_CC_PR_MP_RQ_V_036",
+   "klass": "V",
+   "number": 36,
+   "ref": "RFC 3261 [1] sections 16.5 and 16.10.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RQ",
+   "id": "SIP_CC_PR_MP_RQ_V_037",
+   "klass": "V",
+   "number": 37,
+   "ref": "RFC 3261 [1] sections 16.5 and 16.10.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RQ",
+   "id": "SIP_CC_PR_MP_RQ_V_038",
+   "klass": "V",
+   "number": 38,
+   "ref": "RFC 3261 [1] sections 16.5 and 16.10.",
+   "status": "PICS: A.82/4.19 Status/Sending"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RQ",
+   "id": "SIP_CC_PR_MP_RQ_V_039",
+   "klass": "V",
+   "number": 39,
+   "ref": "RFC 3261 [1] sections 16.5 and 16.10.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RQ",
+   "id": "SIP_CC_PR_MP_RQ_V_040",
+   "klass": "V",
+   "number": 40,
+   "ref": "RFC 3261 [1] sections 16.5 and 16.10.",
+   "status": "PICS: A.82/4.14 Status/Sending"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RQ",
+   "id": "SIP_CC_PR_MP_RQ_V_041",
+   "klass": "V",
+   "number": 41,
+   "ref": "RFC 3261 [1] sections 16.6, item 3 and 16.10.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RQ",
+   "id": "SIP_CC_PR_MP_RQ_V_042",
+   "klass": "V",
+   "number": 42,
+   "ref": "RFC 3261 [1] sections 16.6, item 3 and 16.10.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RQ",
+   "id": "SIP_CC_PR_MP_RQ_V_043",
+   "klass": "V",
+   "number": 43,
+   "ref": "RFC 3261 [1] sections 16.6, item 3 and 16.10.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RQ",
+   "id": "SIP_CC_PR_MP_RQ_V_044",
+   "klass": "V",
+   "number": 44,
+   "ref": "RFC 3261 [1] section 16.6, item 3 and 16.10.",
+   "status": "Recommended"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RQ",
+   "id": "SIP_CC_PR_MP_RQ_V_045",
+   "klass": "V",
+   "number": 45,
+   "ref": "RFC 3261 [1] sections 16.6, item 6 and 7 and 16.10.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RQ",
+   "id": "SIP_CC_PR_MP_RQ_V_046",
+   "klass": "V",
+   "number": 46,
+   "ref": "RFC 3261 [1] sections 16.6, item 7 and 16.10.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RQ",
+   "id": "SIP_CC_PR_MP_RQ_V_047",
+   "klass": "V",
+   "number": 47,
+   "ref": "RFC 3261 [1] sections 16.6, item 7 and 16.10.",
+   "status": "Recommended"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RQ",
+   "id": "SIP_CC_PR_MP_RQ_V_048",
+   "klass": "V",
+   "number": 48,
+   "ref": "RFC 3261 [1] sections 16.6, item 8, 8.1.1.7 and 16.10.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RQ",
+   "id": "SIP_CC_PR_MP_RQ_V_049",
+   "klass": "V",
+   "number": 49,
+   "ref": "RFC 3261 [1] section 16.3 item 2.",
+   "status": "PICS: A.81/4.14 Status/Sending"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RQ",
+   "id": "SIP_CC_PR_MP_RQ_V_050",
+   "klass": "V",
+   "number": 50,
+   "ref": "RFC 3261 [1] section 16.3 item 3.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RQ",
+   "id": "SIP_CC_PR_MP_RQ_V_051",
+   "klass": "V",
+   "number": 51,
+   "ref": "RFC 3261 [1] section 16.3 item 5.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RQ",
+   "id": "SIP_CC_PR_MP_RQ_V_052",
+   "klass": "V",
+   "number": 52,
+   "ref": "RFC 3261 [1] section 16.4.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RQ",
+   "id": "SIP_CC_PR_MP_RQ_V_053",
+   "klass": "V",
+   "number": 53,
+   "ref": "RFC 3261 [1] section 16.4.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RQ",
+   "id": "SIP_CC_PR_MP_RQ_V_054",
+   "klass": "V",
+   "number": 54,
+   "ref": "RFC 3261 [1] section 16.5.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RQ",
+   "id": "SIP_CC_PR_MP_RQ_V_055",
+   "klass": "V",
+   "number": 55,
+   "ref": "RFC 3261 [1] section 16.5.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RQ",
+   "id": "SIP_CC_PR_MP_RQ_V_056",
+   "klass": "V",
+   "number": 56,
+   "ref": "RFC 3261 [1] section 16.5.",
+   "status": "PICS: A.81/4.22 Status/Sending"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RQ",
+   "id": "SIP_CC_PR_MP_RQ_V_057",
+   "klass": "V",
+   "number": 57,
+   "ref": "RFC 3261 [1] section 16.5.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RQ",
+   "id": "SIP_CC_PR_MP_RQ_V_058",
+   "klass": "V",
+   "number": 58,
+   "ref": "RFC 3261 [1] section 16.5.",
+   "status": "PICS: A.81/4.17 Status/Sending"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RQ",
+   "id": "SIP_CC_PR_MP_RQ_V_059",
+   "klass": "V",
+   "number": 59,
+   "ref": "RFC 3261 [1] section 16.6 item 3.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RQ",
+   "id": "SIP_CC_PR_MP_RQ_V_060",
+   "klass": "V",
+   "number": 60,
+   "ref": "RFC 3261 [1] section 16.6 item 3.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RQ",
+   "id": "SIP_CC_PR_MP_RQ_V_061",
+   "klass": "V",
+   "number": 61,
+   "ref": "RFC 3261 [1] section 16.6 item 3.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RQ",
+   "id": "SIP_CC_PR_MP_RQ_V_062",
+   "klass": "V",
+   "number": 62,
+   "ref": "RFC 3261 [1] section 16.6 item 3.",
+   "status": "Recommended"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RQ",
+   "id": "SIP_CC_PR_MP_RQ_V_063",
+   "klass": "V",
+   "number": 63,
+   "ref": "RFC 3261 [1] section 16.6, item 6 and 7.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RQ",
+   "id": "SIP_CC_PR_MP_RQ_V_064",
+   "klass": "V",
+   "number": 64,
+   "ref": "RFC 3261 [1] section 16.6, item 7.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RQ",
+   "id": "SIP_CC_PR_MP_RQ_V_065",
+   "klass": "V",
+   "number": 65,
+   "ref": "RFC 3261 [1] section 16.6, item 7.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RQ",
+   "id": "SIP_CC_PR_MP_RQ_V_066",
+   "klass": "V",
+   "number": 66,
+   "ref": "RFC 3261 [1] sections 16.6, item 8 and 8.1.1.7.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RQ",
+   "id": "SIP_CC_PR_MP_RQ_V_067",
+   "klass": "V",
+   "number": 67,
+   "ref": "RFC 3261 [1] section 16.6, item 7 and 10 and section 16.5.",
+   "status": "PICS: A.77/1.4"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RS",
+   "id": "SIP_CC_PR_MP_RS_V_001",
+   "klass": "V",
+   "number": 1,
+   "ref": "RFC 3261 [1] sections 16.7 and 16.11.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RS",
+   "id": "SIP_CC_PR_MP_RS_V_002",
+   "klass": "V",
+   "number": 2,
+   "ref": "RFC 3261 [1] sections 16.11 and 18.1.2.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RS",
+   "id": "SIP_CC_PR_MP_RS_V_003",
+   "klass": "V",
+   "number": 3,
+   "ref": "",
+   "status": "Void"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RS",
+   "id": "SIP_CC_PR_MP_RS_V_004",
+   "klass": "V",
+   "number": 4,
+   "ref": "RFC 3261 [1] sections 16.7, item 3 and 16.11.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RS",
+   "id": "SIP_CC_PR_MP_RS_V_005",
+   "klass": "V",
+   "number": 5,
+   "ref": "RFC 3261 [1] sections 16.7 and 16.11.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RS",
+   "id": "SIP_CC_PR_MP_RS_V_006",
+   "klass": "V",
+   "number": 6,
+   "ref": "RFC 3261 [1] sections 16.7 and 16.11.",
+   "status": "PICS: A.77/1.1 OR A.77/2.1 OR A.77/3.1 OR A.77/4.1"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RS",
+   "id": "SIP_CC_PR_MP_RS_V_007",
+   "klass": "V",
+   "number": 7,
+   "ref": "RFC 3261 [1] sections 16.7 and 16.11.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RS",
+   "id": "SIP_CC_PR_MP_RS_V_008",
+   "klass": "V",
+   "number": 8,
+   "ref": "RFC 3261 [1] sections 16.7 and 16.11.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RS",
+   "id": "SIP_CC_PR_MP_RS_V_009",
+   "klass": "V",
+   "number": 9,
+   "ref": "RFC 3261 [1] sections 16.7 and 16.11.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RS",
+   "id": "SIP_CC_PR_MP_RS_V_010",
+   "klass": "V",
+   "number": 10,
+   "ref": "RFC 3261 [1] sections 16.7 and 16.11.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RS",
+   "id": "SIP_CC_PR_MP_RS_V_011",
+   "klass": "V",
+   "number": 11,
+   "ref": "RFC 3261 [1] sections 16.7 and 16.11.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RS",
+   "id": "SIP_CC_PR_MP_RS_V_012",
+   "klass": "V",
+   "number": 12,
+   "ref": "RFC 3261 [1] section 16.7 item 5.",
+   "status": "PICS: A.77/1.2"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RS",
+   "id": "SIP_CC_PR_MP_RS_V_013",
+   "klass": "V",
+   "number": 13,
+   "ref": "RFC 3261 [1] section 16.7 item 5.",
+   "status": "PICS: A.77/1.2"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RS",
+   "id": "SIP_CC_PR_MP_RS_V_014",
+   "klass": "V",
+   "number": 14,
+   "ref": "RFC 3261 [1] section 16.7 item 5.",
+   "status": "PICS: A.77/1.2"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RS",
+   "id": "SIP_CC_PR_MP_RS_V_015",
+   "klass": "V",
+   "number": 15,
+   "ref": "RFC 3261 [1] section 16.7 item 5.",
+   "status": "PICS: A.77/1.2"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RS",
+   "id": "SIP_CC_PR_MP_RS_V_016",
+   "klass": "V",
+   "number": 16,
+   "ref": "RFC 3261 [1] section 16.7, item 5 and 6.",
+   "status": "Recommended AND PICS: A.77/1.2"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RS",
+   "id": "SIP_CC_PR_MP_RS_V_017",
+   "klass": "V",
+   "number": 17,
+   "ref": "RFC 3261 [1] section 16.7, item 5.",
+   "status": "PICS: A.77/1.2"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RS",
+   "id": "SIP_CC_PR_MP_RS_V_018",
+   "klass": "V",
+   "number": 18,
+   "ref": "RFC 3261 [1] section 16.7, item 6.",
+   "status": "PICS: A.77/1.2 AND A.77/1.4"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RS",
+   "id": "SIP_CC_PR_MP_RS_V_019",
+   "klass": "V",
+   "number": 19,
+   "ref": "RFC 3261 [1] section 16.7, item 6.",
+   "status": "PICS: A.77/1.2 AND A.77/1.4"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RS",
+   "id": "SIP_CC_PR_MP_RS_V_020",
+   "klass": "V",
+   "number": 20,
+   "ref": "RFC 3261 [1] section 16.7, item 6.",
+   "status": "Recommended AND PICS: A.77/1.2 AND A.77/1.4"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RS",
+   "id": "SIP_CC_PR_MP_RS_V_021",
+   "klass": "V",
+   "number": 21,
+   "ref": "RFC 3261 [1] section 16.7, item 6.",
+   "status": "Recommended AND PICS: A.77/1.2 AND A.77/1.4"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RS",
+   "id": "SIP_CC_PR_MP_RS_V_022",
+   "klass": "V",
+   "number": 22,
+   "ref": "RFC 3261 [1] section 16.7, item 6.",
+   "status": "PICS: A.77/1.2 AND A.77/1.4"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RS",
+   "id": "SIP_CC_PR_MP_RS_V_023",
+   "klass": "V",
+   "number": 23,
+   "ref": "RFC 3261 [1] section 16.7, item 6.",
+   "status": "PICS: A.77/1.2 AND A.77/1.4"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RS",
+   "id": "SIP_CC_PR_MP_RS_V_024",
+   "klass": "V",
+   "number": 24,
+   "ref": "RFC 3261 [1] section 16.7, item 6.",
+   "status": "Recommended AND PICS: A.77/1.2 AND A.77/1.4"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RS",
+   "id": "SIP_CC_PR_MP_RS_V_025",
+   "klass": "V",
+   "number": 25,
+   "ref": "RFC 3261 [1] section 16.7, item 6.",
+   "status": "PICS: A.77/1.2 AND A.77/1.4"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RS",
+   "id": "SIP_CC_PR_MP_RS_V_026",
+   "klass": "V",
+   "number": 26,
+   "ref": "RFC 3261 [1] section 16.7, item 6.",
+   "status": "Recommended AND PICS: A.77/1.2 AND A.77/1.4"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RS",
+   "id": "SIP_CC_PR_MP_RS_V_027",
+   "klass": "V",
+   "number": 27,
+   "ref": "RFC 3261 [1] section 16.7, item 6.",
+   "status": "Recommended AND PICS: A.77/1.2 AND A.77/1.4"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RS",
+   "id": "SIP_CC_PR_MP_RS_V_028",
+   "klass": "V",
+   "number": 28,
+   "ref": "RFC 3261 [1] section 16.7, item 6.",
+   "status": "Recommended AND PICS: A.77/1.2 AND A.77/1.4"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RS",
+   "id": "SIP_CC_PR_MP_RS_V_029",
+   "klass": "V",
+   "number": 29,
+   "ref": "RFC 3261 [1] section 16.7, item 6.",
+   "status": "Recommended AND PICS: A.77/1.2 AND A.77/1.4"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RS",
+   "id": "SIP_CC_PR_MP_RS_V_030",
+   "klass": "V",
+   "number": 30,
+   "ref": "RFC 3261 [1] section 16.7, item 6.",
+   "status": "Recommended AND PICS: A.77/1.2 AND A.77/1.4"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RS",
+   "id": "SIP_CC_PR_MP_RS_V_031",
+   "klass": "V",
+   "number": 31,
+   "ref": "RFC 3261 [1] section 16.7, item 6.",
+   "status": "Recommended AND PICS: A.77/1.2 AND A.77/1.4"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RS",
+   "id": "SIP_CC_PR_MP_RS_V_032",
+   "klass": "V",
+   "number": 32,
+   "ref": "RFC 3261 [1] section 16.7, item 6.",
+   "status": "PICS: A.77/1.2 AND A.77/1.4"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RS",
+   "id": "SIP_CC_PR_MP_RS_V_033",
+   "klass": "V",
+   "number": 33,
+   "ref": "RFC 3261 [1] section 16.3, item 7.",
+   "status": "PICS: A.77/1.2 AND A.77/1.4"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RS",
+   "id": "SIP_CC_PR_MP_RS_V_034",
+   "klass": "V",
+   "number": 34,
+   "ref": "RFC 3261 [1] section 16.3, item 7.",
+   "status": "PICS: A.77/1.2 AND A.77/1.4"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RS",
+   "id": "SIP_CC_PR_MP_RS_V_035",
+   "klass": "V",
+   "number": 35,
+   "ref": "RFC 3261 [1] section 16.7, item 6.",
+   "status": "PICS: A.77/1.2 AND A.77/1.4"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RS",
+   "id": "SIP_CC_PR_MP_RS_V_036",
+   "klass": "V",
+   "number": 36,
+   "ref": "RFC 3261 [1] section 16.7, item 6.",
+   "status": "Recommended AND PICS: A.77/1.2 AND A.77/1.4"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RS",
+   "id": "SIP_CC_PR_MP_RS_V_037",
+   "klass": "V",
+   "number": 37,
+   "ref": "RFC 3261 [1] section 16.7, item 6.",
+   "status": "Recommended AND PICS: A.77/1.2 AND A.77/1.4"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RS",
+   "id": "SIP_CC_PR_MP_RS_V_038",
+   "klass": "V",
+   "number": 38,
+   "ref": "RFC 3261 [1] section 16.7, item 6.",
+   "status": "Recommended AND PICS: A.77/1.2 AND A.77/1.4"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RS",
+   "id": "SIP_CC_PR_MP_RS_V_039",
+   "klass": "V",
+   "number": 39,
+   "ref": "RFC 3261 [1] section 16.7, item 6.",
+   "status": "Recommended AND PICS: A.77/1.2 AND A.77/1.4"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RS",
+   "id": "SIP_CC_PR_MP_RS_V_040",
+   "klass": "V",
+   "number": 40,
+   "ref": "RFC 3261 [1] section 16.7, item 6.",
+   "status": "PICS: A.77/1.2 AND A.77/1.4"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RS",
+   "id": "SIP_CC_PR_MP_RS_V_041",
+   "klass": "V",
+   "number": 41,
+   "ref": "RFC 3261 [1] section 16.7, item 6.",
+   "status": "PICS: A.77/1.2 AND A.77/1.4ork"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RS",
+   "id": "SIP_CC_PR_MP_RS_V_042",
+   "klass": "V",
+   "number": 42,
+   "ref": "RFC 3261 [1] section 16.7, item 6.",
+   "status": "PICS: A.77/1.2 AND A.77/1.4"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RS",
+   "id": "SIP_CC_PR_MP_RS_V_043",
+   "klass": "V",
+   "number": 43,
+   "ref": "RFC 3261 [1] section 16.7, item 6.",
+   "status": "PICS: A.77/1.2 AND A.77/1.4"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RS",
+   "id": "SIP_CC_PR_MP_RS_V_044",
+   "klass": "V",
+   "number": 44,
+   "ref": "RFC 3261 [1] section 16.7, item 6.",
+   "status": "PICS: A.77/1.2 AND A.77/1.4"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RS",
+   "id": "SIP_CC_PR_MP_RS_V_045",
+   "klass": "V",
+   "number": 45,
+   "ref": "RFC 3261 [1] section 16.7, item 6.",
+   "status": "PICS: A.77/1.2 AND A.77/1.4"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RS",
+   "id": "SIP_CC_PR_MP_RS_V_046",
+   "klass": "V",
+   "number": 46,
+   "ref": "RFC 3261 [1] section 16.7, item 10.",
+   "status": "PICS: A.77/1.2 AND A.77/1.4"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RS",
+   "id": "SIP_CC_PR_MP_RS_V_047",
+   "klass": "V",
+   "number": 47,
+   "ref": "RFC 3261 [1] section 16.7, item 6.",
+   "status": "PICS: A.77/1.2 AND A.77/1.4"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RS",
+   "id": "SIP_CC_PR_MP_RS_V_048",
+   "klass": "V",
+   "number": 48,
+   "ref": "RFC 3261 [1] section 16.7, item 6.",
+   "status": "PICS: A.77/1.2 AND A.77/1.4"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RS",
+   "id": "SIP_CC_PR_MP_RS_V_049",
+   "klass": "V",
+   "number": 49,
+   "ref": "RFC 3261 [1] section 16.7, item 6.",
+   "status": "PICS: A.77/1.2 AND A.77/1.4"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RS",
+   "id": "SIP_CC_PR_MP_RS_V_050",
+   "klass": "V",
+   "number": 50,
+   "ref": "RFC 3261 [1] section 16.7, item 10.",
+   "status": "PICS: A.77/1.2 AND A.77/1.4"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RS",
+   "id": "SIP_CC_PR_MP_RS_V_051",
+   "klass": "V",
+   "number": 51,
+   "ref": "RFC 3261 [1] section 16.7, item 10.",
+   "status": "PICS: A.77/1.2 AND A.77/1.4"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RS",
+   "id": "SIP_CC_PR_MP_RS_V_052",
+   "klass": "V",
+   "number": 52,
+   "ref": "RFC 3261 [1] section 16.7, item 10.",
+   "status": "PICS: A.77/1.2 AND A.77/1.4"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "MP_RS",
+   "id": "SIP_CC_PR_MP_RS_V_053",
+   "klass": "V",
+   "number": 53,
+   "ref": "RFC 3261 [1] sections 16.7, item 10, and 16.7, item 5.",
+   "status": "PICS: A.77/1.2 AND A.77/1.4"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "TR_CL",
+   "id": "SIP_CC_PR_TR_CL_TI_001",
+   "klass": "TI",
+   "number": 1,
+   "ref": "RFC 3261 [1] annex A and section 17.1.1.1.",
+   "status": "PICS: A.77/1.2"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "TR_CL",
+   "id": "SIP_CC_PR_TR_CL_TI_002",
+   "klass": "TI",
+   "number": 2,
+   "ref": "RFC 3261 [1] annex A and section 17.1.1.1.",
+   "status": "Recommended AND PICS: A.77/1.2"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "TR_CL",
+   "id": "SIP_CC_PR_TR_CL_TI_003",
+   "klass": "TI",
+   "number": 3,
+   "ref": "RFC 3261 [1] annex A and section 17.1.1.1.",
+   "status": "PICS: A.77/1.2"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "TR_CL",
+   "id": "SIP_CC_PR_TR_CL_TI_004",
+   "klass": "TI",
+   "number": 4,
+   "ref": "RFC 3261 [1] annex A and section 17.1.1.1.",
+   "status": "PICS: A.77/1.2"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "TR_CL",
+   "id": "SIP_CC_PR_TR_CL_TI_005",
+   "klass": "TI",
+   "number": 5,
+   "ref": "RFC 3261 [1] annex A and section 17.1.1.1.",
+   "status": "Recommended AND PICS: A.77/1.2"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "TR_CL",
+   "id": "SIP_CC_PR_TR_CL_TI_006",
+   "klass": "TI",
+   "number": 6,
+   "ref": "",
+   "status": "Void"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "TR_CL",
+   "id": "SIP_CC_PR_TR_CL_TI_007",
+   "klass": "TI",
+   "number": 7,
+   "ref": "RFC 3261 [1] annex A and section 17.1.1.1.",
+   "status": "Recommended AND PICS: A.77/1.2"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "TR_CL",
+   "id": "SIP_CC_PR_TR_CL_TI_008",
+   "klass": "TI",
+   "number": 8,
+   "ref": "RFC 3261 [1] annex A and section 17.1.1.1.",
+   "status": "Recommended AND PICS: A.77/1.2"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "TR_CL",
+   "id": "SIP_CC_PR_TR_CL_TI_009",
+   "klass": "TI",
+   "number": 9,
+   "ref": "RFC 3261 [1] annex A and section 17.1.1.1.",
+   "status": "Recommended AND PICS: A.77/1.2"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "TR_CL",
+   "id": "SIP_CC_PR_TR_CL_TI_010",
+   "klass": "TI",
+   "number": 10,
+   "ref": "RFC 3261 [1] annex A and section 17.1.1.1.",
+   "status": "Recommended AND PICS: A.77/1.2"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "TR_CL",
+   "id": "SIP_CC_PR_TR_CL_TI_011",
+   "klass": "TI",
+   "number": 11,
+   "ref": "",
+   "status": "Void"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "TR_CL",
+   "id": "SIP_CC_PR_TR_CL_TI_012",
+   "klass": "TI",
+   "number": 12,
+   "ref": "RFC 3261 [1] annex A and section 17.1.2.2.",
+   "status": "PICS: A.77/3.2"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "TR_CL",
+   "id": "SIP_CC_PR_TR_CL_TI_013",
+   "klass": "TI",
+   "number": 13,
+   "ref": "RFC 3261 [1] annex A and section 17.1.2.2.",
+   "status": "PICS: A.77/3.2"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "TR_CL",
+   "id": "SIP_CC_PR_TR_CL_TI_014",
+   "klass": "TI",
+   "number": 14,
+   "ref": "RFC 3261 [1] annex A and section 17.1.2.2.",
+   "status": "PICS: A.77/3.2"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "TR_CL",
+   "id": "SIP_CC_PR_TR_CL_TI_015",
+   "klass": "TI",
+   "number": 15,
+   "ref": "RFC 3261 [1] annex A and section 17.1.2.2.",
+   "status": "PICS: A.77/3.2"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "TR_CL",
+   "id": "SIP_CC_PR_TR_CL_TI_016",
+   "klass": "TI",
+   "number": 16,
+   "ref": "RFC 3261 [1] annex A and section 17.1.2.2.",
+   "status": "PICS: A.77/3.2"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "TR_CL",
+   "id": "SIP_CC_PR_TR_CL_TI_017",
+   "klass": "TI",
+   "number": 17,
+   "ref": "RFC 3261 [1] annex A and section 17.1.2.2.",
+   "status": "PICS: A.77/3.2"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "TR_CL",
+   "id": "SIP_CC_PR_TR_CL_TI_018",
+   "klass": "TI",
+   "number": 18,
+   "ref": "RFC 3261 [1] annex A and section 17.1.2.2.",
+   "status": "PICS: A.77/3.2"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "TR_CL",
+   "id": "SIP_CC_PR_TR_CL_TI_019",
+   "klass": "TI",
+   "number": 19,
+   "ref": "RFC 3261 [1] annex A, and sections 17.1.2.2 and 9.1.",
+   "status": "PICS: A.77/3.2 AND A.99/9"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "TR_CL",
+   "id": "SIP_CC_PR_TR_CL_V_001",
+   "klass": "V",
+   "number": 1,
+   "ref": "RFC 3261 [1] sections 16.10 and 9.1.",
+   "status": "PICS: A.77/1.2"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "TR_CL",
+   "id": "SIP_CC_PR_TR_CL_V_002",
+   "klass": "V",
+   "number": 2,
+   "ref": "RFC 3261 [1] sections 16.10 and 9.1.",
+   "status": "PICS: A.77/1.2"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "TR_CL",
+   "id": "SIP_CC_PR_TR_CL_V_003",
+   "klass": "V",
+   "number": 3,
+   "ref": "RFC 3261 [1] sections 16.10 and 9.1.",
+   "status": "PICS: A.77/1.2"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "TR_CL",
+   "id": "SIP_CC_PR_TR_CL_V_004",
+   "klass": "V",
+   "number": 4,
+   "ref": "RFC 3261 [1] sections 16.10 and 9.1.",
+   "status": "PICS: A.77/1.2"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "TR_CL",
+   "id": "SIP_CC_PR_TR_CL_V_005",
+   "klass": "V",
+   "number": 5,
+   "ref": "RFC 3261 [1] sections 16.10 and 9.1.",
+   "status": "PICS: A.77/1.2"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "TR_CL",
+   "id": "SIP_CC_PR_TR_CL_V_006",
+   "klass": "V",
+   "number": 6,
+   "ref": "RFC 3261 [1] sections 16.7 and 17.1.1.3.",
+   "status": "PICS: A.77/1.2"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "TR_CL",
+   "id": "SIP_CC_PR_TR_CL_V_007",
+   "klass": "V",
+   "number": 7,
+   "ref": "RFC 3261 [1] sections 16.7 and 17.1.1.3.",
+   "status": "PICS: A.77/1.2"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "TR_CL",
+   "id": "SIP_CC_PR_TR_CL_V_008",
+   "klass": "V",
+   "number": 8,
+   "ref": "RFC 3261 [1] sections 16.7 and 17.1.1.3.",
+   "status": "PICS: A.77/1.2"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "TR_CL",
+   "id": "SIP_CC_PR_TR_CL_V_009",
+   "klass": "V",
+   "number": 9,
+   "ref": "RFC 3261 [1] sections 16.7 and 17.1.1.3.",
+   "status": "PICS: A.77/1.2"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "TR_CL",
+   "id": "SIP_CC_PR_TR_CL_V_010",
+   "klass": "V",
+   "number": 10,
+   "ref": "RFC 3261 [1] section 17.1.1.2, figure 5.",
+   "status": "PICS: A.77/1.2"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "TR_CL",
+   "id": "SIP_CC_PR_TR_CL_V_011",
+   "klass": "V",
+   "number": 11,
+   "ref": "RFC 3261 [1] section 17.1.1.2, figure 5.",
+   "status": "PICS: A.77/1.2"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "TR_CL",
+   "id": "SIP_CC_PR_TR_CL_V_012",
+   "klass": "V",
+   "number": 12,
+   "ref": "RFC 3261 [1] section 22.2.",
+   "status": "PICS: A.92/1"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "TR_CL",
+   "id": "SIP_CC_PR_TR_CL_V_013",
+   "klass": "V",
+   "number": 13,
+   "ref": "RFC 3261 [1] section 22.2.",
+   "status": "PICS: A.92/1"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "TR_CL",
+   "id": "SIP_CC_PR_TR_CL_V_014",
+   "klass": "V",
+   "number": 14,
+   "ref": "RFC 3261 [1] section 22.2.",
+   "status": "PICS: A.92/1"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "TR_SE",
+   "id": "SIP_CC_PR_TR_SE_TI_001",
+   "klass": "TI",
+   "number": 1,
+   "ref": "RFC 3261 [1] annex A and section 17.2.1.",
+   "status": "PICS: A.77/1.2"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "TR_SE",
+   "id": "SIP_CC_PR_TR_SE_TI_002",
+   "klass": "TI",
+   "number": 2,
+   "ref": "RFC 3261 [1] annex A and section 17.2.1.",
+   "status": "PICS: A.77/1.2"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "TR_SE",
+   "id": "SIP_CC_PR_TR_SE_TI_003",
+   "klass": "TI",
+   "number": 3,
+   "ref": "RFC 3261 [1] annex A and section 17.2.1.",
+   "status": "PICS: A.77/1.2"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "TR_SE",
+   "id": "SIP_CC_PR_TR_SE_TI_004",
+   "klass": "TI",
+   "number": 4,
+   "ref": "RFC 3261 [1] annex A and section 17.2.1.",
+   "status": "PICS: A.77/1.2"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "TR_SE",
+   "id": "SIP_CC_PR_TR_SE_TI_005",
+   "klass": "TI",
+   "number": 5,
+   "ref": "RFC 3261 [1] annex A and section 17.2.1.",
+   "status": "PICS: A.77/1.2"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "TR_SE",
+   "id": "SIP_CC_PR_TR_SE_TI_006",
+   "klass": "TI",
+   "number": 6,
+   "ref": "RFC 3261 [1] annex A and section 17.2.1.",
+   "status": "PICS: A.77/1.2"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "TR_SE",
+   "id": "SIP_CC_PR_TR_SE_TI_007",
+   "klass": "TI",
+   "number": 7,
+   "ref": "RFC 3261 [1] annex A and section 17.2.1.",
+   "status": "Mandator PICS: A.77/1.2"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "TR_SE",
+   "id": "SIP_CC_PR_TR_SE_TI_008",
+   "klass": "TI",
+   "number": 8,
+   "ref": "RFC 3261 [1] annex A and section 17.2.1.",
+   "status": "PICS: A.77/1.2"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "TR_SE",
+   "id": "SIP_CC_PR_TR_SE_TI_009",
+   "klass": "TI",
+   "number": 9,
+   "ref": "RFC 3261 [1] annex A and section 17.2.2.",
+   "status": "PICS: A.77/3.2"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "TR_SE",
+   "id": "SIP_CC_PR_TR_SE_V_001",
+   "klass": "V",
+   "number": 1,
+   "ref": "RFC 3261 [1] section 16.2.",
+   "status": "PICS: A.77/1.2"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "TR_SE",
+   "id": "SIP_CC_PR_TR_SE_V_002",
+   "klass": "V",
+   "number": 2,
+   "ref": "RFC 3261 [1] sections 16.2 and 8.2.6.2.",
+   "status": "PICS: A.77/1.2"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "TR_SE",
+   "id": "SIP_CC_PR_TR_SE_V_003",
+   "klass": "V",
+   "number": 3,
+   "ref": "RFC 3261 [1] sections 16.2, 8.2.6.2, and 17.2.1.",
+   "status": "PICS: A.77/1.2"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "TR_SE",
+   "id": "SIP_CC_PR_TR_SE_V_004",
+   "klass": "V",
+   "number": 4,
+   "ref": "RFC 3261 [1] sections 16.2, 8.2.6.2, and 17.2.1.",
+   "status": "PICS: A.77/1.2"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "TR_SE",
+   "id": "SIP_CC_PR_TR_SE_V_005",
+   "klass": "V",
+   "number": 5,
+   "ref": "RFC 3261 [1] sections 16.2 and 8.2.6.1.",
+   "status": "PICS: A.77/1.2"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "TR_SE",
+   "id": "SIP_CC_PR_TR_SE_V_006",
+   "klass": "V",
+   "number": 6,
+   "ref": "RFC 3261 [1] sections 17.2.1 and 17.2.3.",
+   "status": "PICS: A.77/1.2"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "TR_SE",
+   "id": "SIP_CC_PR_TR_SE_V_007",
+   "klass": "V",
+   "number": 7,
+   "ref": "RFC 3261 [1] sections 17.2.1 and 17.2.3.",
+   "status": "PICS: A.77/1.2"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "TR_SE",
+   "id": "SIP_CC_PR_TR_SE_V_008",
+   "klass": "V",
+   "number": 8,
+   "ref": "RFC 3261 [1] sections 17.2.1 and 17.2.3.",
+   "status": "PICS: A.77/1.2"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "TR_SE",
+   "id": "SIP_CC_PR_TR_SE_V_009",
+   "klass": "V",
+   "number": 9,
+   "ref": "RFC 3261 [1] sections 17.2.1 and 17.2.3.",
+   "status": "Recommended AND PICS: A.77/1.2"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "TR_SE",
+   "id": "SIP_CC_PR_TR_SE_V_010",
+   "klass": "V",
+   "number": 10,
+   "ref": "RFC 3261 [1] sections 17.2.1 and 17.2.3.",
+   "status": "Recommended AND PICS: A.77/1.2"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "TR_SE",
+   "id": "SIP_CC_PR_TR_SE_V_011",
+   "klass": "V",
+   "number": 11,
+   "ref": "RFC 3261 [1] sections 17.2.1 and 17.2.3.",
+   "status": "Recommended AND PICS: A.77/1.2"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "TR_SE",
+   "id": "SIP_CC_PR_TR_SE_V_012",
+   "klass": "V",
+   "number": 12,
+   "ref": "RFC 3261 [1] sections 17.2.2 and 17.2.3.",
+   "status": "PICS: A.77/3.2"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "TR_SE",
+   "id": "SIP_CC_PR_TR_SE_V_013",
+   "klass": "V",
+   "number": 13,
+   "ref": "RFC 3261 [1] sections 17.2.2 and 17.2.3.",
+   "status": "PICS: A.77/3.2"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "TR_SE",
+   "id": "SIP_CC_PR_TR_SE_V_014",
+   "klass": "V",
+   "number": 14,
+   "ref": "RFC 3261 [1] sections 17.2.2 and 17.2.3.",
+   "status": "PICS: A.77/3.2"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "TR_SE",
+   "id": "SIP_CC_PR_TR_SE_V_015",
+   "klass": "V",
+   "number": 15,
+   "ref": "RFC 3261 [1] sections 17.2.2 and 17.2.3.",
+   "status": "Recommended AND PICS: A.77/3.2"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "TR_SE",
+   "id": "SIP_CC_PR_TR_SE_V_016",
+   "klass": "V",
+   "number": 16,
+   "ref": "RFC 3261 [1] sections 17.2.2 and 17.2.3.",
+   "status": "Recommended AND PICS: A.77/3.2"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "TR_SE",
+   "id": "SIP_CC_PR_TR_SE_V_017",
+   "klass": "V",
+   "number": 17,
+   "ref": "RFC 3261 [1] sections 17.2.2 and 17.2.3.",
+   "status": "Recommended AND PICS: A.77/3.2"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "TR_SE",
+   "id": "SIP_CC_PR_TR_SE_V_018",
+   "klass": "V",
+   "number": 18,
+   "ref": "RFC 3261 [1] sections 16.10 and 9.2.",
+   "status": "PICS: A.77/1.2"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "TR_SE",
+   "id": "SIP_CC_PR_TR_SE_V_019",
+   "klass": "V",
+   "number": 19,
+   "ref": "RFC 3261 [1] section 9.2.",
+   "status": "PICS: A.77/1.2 AND A.79/4.24 Status/Sending"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "TR_SE",
+   "id": "SIP_CC_PR_TR_SE_V_020",
+   "klass": "V",
+   "number": 20,
+   "ref": "RFC 3261 [1] sections 16.10 and 9.2.",
+   "status": "PICS: A.77/1.2"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "TR_SE",
+   "id": "SIP_CC_PR_TR_SE_V_021",
+   "klass": "V",
+   "number": 21,
+   "ref": "RFC 3261 [1] section 9.2.",
+   "status": "PICS: A.77/1.2 AND A.79/4.24 Status/Sending"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "TR_SE",
+   "id": "SIP_CC_PR_TR_SE_V_022",
+   "klass": "V",
+   "number": 22,
+   "ref": "RFC 3261 [1] sections 16.10 and 9.2.",
+   "status": "PICS: A.77/1.2"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "TR_SE",
+   "id": "SIP_CC_PR_TR_SE_V_023",
+   "klass": "V",
+   "number": 23,
+   "ref": "RFC 3261 [1] section 9.2.",
+   "status": "PICS: A.77/1.2 AND A.79/4.24 Status/Sending"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "TR_SE",
+   "id": "SIP_CC_PR_TR_SE_V_024",
+   "klass": "V",
+   "number": 24,
+   "ref": "RFC 3261 [1] sections 17.2.1 and 17.2.3.",
+   "status": "PICS: A.77/1.2"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "TR_SE",
+   "id": "SIP_CC_PR_TR_SE_V_025",
+   "klass": "V",
+   "number": 25,
+   "ref": "RFC 3261 [1] sections 17.2.1 and 17.2.3.",
+   "status": "PICS: A.77/1.2"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "TR_SE",
+   "id": "SIP_CC_PR_TR_SE_V_026",
+   "klass": "V",
+   "number": 26,
+   "ref": "RFC 3261 [1] section 17.2.1.",
+   "status": "PICS: A.77/1.2"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "TR_SE",
+   "id": "SIP_CC_PR_TR_SE_V_027",
+   "klass": "V",
+   "number": 27,
+   "ref": "RFC 3261 [1] sections 17.2.3.1 and 13.3.1.4, figure 7.",
+   "status": "PICS: A.77/1.2"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "TR_SE",
+   "id": "SIP_CC_PR_TR_SE_V_028",
+   "klass": "V",
+   "number": 28,
+   "ref": "RFC 3261 [1] sections 17.2.3.1 and 13.3.1.4, figure 7.",
+   "status": "PICS: A.77/1.2"
+  },
+  {
+   "area": "CC",
+   "entity": "PR",
+   "function": "TR_SE",
+   "id": "SIP_CC_PR_TR_SE_V_029",
+   "klass": "V",
+   "number": 29,
+   "ref": "RFC 3261 [1] section 15.1.2.",
+   "status": "PICS: A.77/1.2 AND A.79/4.18 Status/Sending"
+  },
+  {
+   "area": "CC",
+   "entity": "RD",
+   "function": "CE",
+   "id": "SIP_CC_RD_CE_V_001",
+   "klass": "V",
+   "number": 1,
+   "ref": "RFC 3261 [1] sections 8.3 and 8.2.6.2.",
+   "status": "PICS: A.114/1"
+  },
+  {
+   "area": "CC",
+   "entity": "RD",
+   "function": "CE",
+   "id": "SIP_CC_RD_CE_V_002",
+   "klass": "V",
+   "number": 2,
+   "ref": "RFC 3261 [1] sections 8.3 and 8.2.6.2.",
+   "status": "PICS: A.114/1"
+  },
+  {
+   "area": "CC",
+   "entity": "RD",
+   "function": "CE",
+   "id": "SIP_CC_RD_CE_V_003",
+   "klass": "V",
+   "number": 3,
+   "ref": "RFC 3261 [1] section 8.3.",
+   "status": "PICS: A.114/1"
+  },
+  {
+   "area": "CC",
+   "entity": "RD",
+   "function": "CE",
+   "id": "SIP_CC_RD_CE_V_004",
+   "klass": "V",
+   "number": 4,
+   "ref": "RFC 3261 [1] section 8.3.",
+   "status": "PICS: A.114/1"
+  },
+  {
+   "area": "CC",
+   "entity": "RD",
+   "function": "CE",
+   "id": "SIP_CC_RD_CE_V_005",
+   "klass": "V",
+   "number": 5,
+   "ref": "RFC 3261 [1] section 8.3.",
+   "status": "PICS: A.114/1"
+  },
+  {
+   "area": "CC",
+   "entity": "RD",
+   "function": "CE",
+   "id": "SIP_CC_RD_CE_V_006",
+   "klass": "V",
+   "number": 6,
+   "ref": "RFC 3261 [1] sections 8.3 and 21.4.18.",
+   "status": "PICS: A.114/1"
+  },
+  {
+   "area": "CC",
+   "entity": "RD",
+   "function": "CE",
+   "id": "SIP_CC_RD_CE_V_007",
+   "klass": "V",
+   "number": 7,
+   "ref": "RFC 3261 [1] sections 8.3 and 21.4.5.",
+   "status": "PICS: A.114/1 AND A.115/4.5"
+  },
+  {
+   "area": "CC",
+   "entity": "RD",
+   "function": "CE",
+   "id": "SIP_CC_RD_CE_V_008",
+   "klass": "V",
+   "number": 8,
+   "ref": "RFC 3261 [1] sections 10.3, item 3 and 22.2.",
+   "status": "PICS: A.121/1"
+  },
+  {
+   "area": "CC",
+   "entity": "RD",
+   "function": "CE",
+   "id": "SIP_CC_RD_CE_V_009",
+   "klass": "V",
+   "number": 9,
+   "ref": "RFC 3261 [1] section 22.2.",
+   "status": "PICS: A.121/1"
+  },
+  {
+   "area": "CC",
+   "entity": "RD",
+   "function": "CE",
+   "id": "SIP_CC_RD_CE_V_010",
+   "klass": "V",
+   "number": 10,
+   "ref": "RFC 3261 [1] section 22.2.",
+   "status": "PICS: A.121/1"
+  },
+  {
+   "area": "CC",
+   "entity": "RD",
+   "function": "CR",
+   "id": "SIP_CC_RD_CR_V_001",
+   "klass": "V",
+   "number": 1,
+   "ref": "RFC 3261 [1] section 8.3.",
+   "status": "PICS: A.114/1"
+  },
+  {
+   "area": "CC",
+   "entity": "RD",
+   "function": "CR",
+   "id": "SIP_CC_RD_CR_V_002",
+   "klass": "V",
+   "number": 2,
+   "ref": "RFC 3261 [1] sections 8.3 and 21.4.19.",
+   "status": "PICS: A.114/1 AND A.117/4.9"
+  },
+  {
+   "area": "CC",
+   "entity": "RD",
+   "function": "CR",
+   "id": "SIP_CC_RD_CR_V_003",
+   "klass": "V",
+   "number": 3,
+   "ref": "RFC 3261 [1] sections 8.3 and 8.2.6.2.",
+   "status": "PICS: A.114/2"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "CE",
+   "id": "SIP_CC_TE_CE_I_001",
+   "klass": "I",
+   "number": 1,
+   "ref": "RFC 3261 [1] sections 17.2.3 and 8.2.2.3, figure 7.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "CE",
+   "id": "SIP_CC_TE_CE_I_002",
+   "klass": "I",
+   "number": 2,
+   "ref": "RFC 3261 [1] sections 17.2.3 and 8.2.2.3, figure 7.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "CE",
+   "id": "SIP_CC_TE_CE_TI_001",
+   "klass": "TI",
+   "number": 1,
+   "ref": "RFC 3261 [1] annex A and section 17.2.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "CE",
+   "id": "SIP_CC_TE_CE_TI_002",
+   "klass": "TI",
+   "number": 2,
+   "ref": "RFC 3261 [1] annex A and section 17.2.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "CE",
+   "id": "SIP_CC_TE_CE_TI_003",
+   "klass": "TI",
+   "number": 3,
+   "ref": "RFC 3261 [1] annex A and section 17.2.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "CE",
+   "id": "SIP_CC_TE_CE_TI_004",
+   "klass": "TI",
+   "number": 4,
+   "ref": "RFC 3261 [1] annex A and section 17.2.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "CE",
+   "id": "SIP_CC_TE_CE_TI_005",
+   "klass": "TI",
+   "number": 5,
+   "ref": "RFC 3261 [1] annex A and section 17.2.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "CE",
+   "id": "SIP_CC_TE_CE_TI_006",
+   "klass": "TI",
+   "number": 6,
+   "ref": "RFC 3261 [1] annex A and section 17.2.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "CE",
+   "id": "SIP_CC_TE_CE_TI_007",
+   "klass": "TI",
+   "number": 7,
+   "ref": "RFC 3261 [1] annex A and section 17.2.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "CE",
+   "id": "SIP_CC_TE_CE_TI_008",
+   "klass": "TI",
+   "number": 8,
+   "ref": "RFC 3261 [1] annex A and section 17.2.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "CE",
+   "id": "SIP_CC_TE_CE_TI_009",
+   "klass": "TI",
+   "number": 9,
+   "ref": "RFC 3261 [1] annex A and section 13.3.1.4.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "CE",
+   "id": "SIP_CC_TE_CE_TI_010",
+   "klass": "TI",
+   "number": 10,
+   "ref": "RFC 3261 [1] annex A and section 13.3.1.4.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "CE",
+   "id": "SIP_CC_TE_CE_TI_011",
+   "klass": "TI",
+   "number": 11,
+   "ref": "RFC 3261 [1] annex A and section 13.3.1.4.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "CE",
+   "id": "SIP_CC_TE_CE_TI_012",
+   "klass": "TI",
+   "number": 12,
+   "ref": "RFC 3261 [1] annex A and section 13.3.1.4.",
+   "status": "Recommended"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "CE",
+   "id": "SIP_CC_TE_CE_V_001",
+   "klass": "V",
+   "number": 1,
+   "ref": "RFC 3261 [1] sections 8, 8.2, and 13.3.1.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "CE",
+   "id": "SIP_CC_TE_CE_V_002",
+   "klass": "V",
+   "number": 2,
+   "ref": "RFC 3261 [1] section 8.2.2.1.",
+   "status": "PICS: A.18/4.14 Status/Sending"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "CE",
+   "id": "SIP_CC_TE_CE_V_003",
+   "klass": "V",
+   "number": 3,
+   "ref": "RFC 3261 [1] section 8.2.2.1.",
+   "status": "PICS: A.18/4.5 Status/Sending"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "CE",
+   "id": "SIP_CC_TE_CE_V_004",
+   "klass": "V",
+   "number": 4,
+   "ref": "RFC 3261 [1] sections 8 and 8.2.6.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "CE",
+   "id": "SIP_CC_TE_CE_V_005",
+   "klass": "V",
+   "number": 5,
+   "ref": "RFC 3261 [1] section 13.3.1.",
+   "status": "PICS: A.18/4.23 Status/Sending"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "CE",
+   "id": "SIP_CC_TE_CE_V_006",
+   "klass": "V",
+   "number": 6,
+   "ref": "RFC 3261 [1] sections 13.2.1 and 13.3.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "CE",
+   "id": "SIP_CC_TE_CE_V_007",
+   "klass": "V",
+   "number": 7,
+   "ref": "RFC 3261 [1] sections 13.2.1 and 13.3.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "CE",
+   "id": "SIP_CC_TE_CE_V_008",
+   "klass": "V",
+   "number": 8,
+   "ref": "RFC 3261 [1] sections 13.2.1 and 13.3.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "CE",
+   "id": "SIP_CC_TE_CE_V_009",
+   "klass": "V",
+   "number": 9,
+   "ref": "RFC 3261 [1] sections 13.2.1, 13.3.1 and 20.11.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "CE",
+   "id": "SIP_CC_TE_CE_V_010",
+   "klass": "V",
+   "number": 10,
+   "ref": "RFC 3261 [1] sections 8.2.3, 13.2.1, 13.3.1 and 20.11.",
+   "status": "PICS: A.18/4.13 Status/Sending"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "CE",
+   "id": "SIP_CC_TE_CE_V_011",
+   "klass": "V",
+   "number": 11,
+   "ref": "RFC 3261 [1] sections 8.2.3, 21.4.13, 13.2.1, 13.3.1 and 20.11.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "CE",
+   "id": "SIP_CC_TE_CE_V_012",
+   "klass": "V",
+   "number": 12,
+   "ref": "RFC 3261 [1] sections 8.2.3, 21.4.13, 13.2.1, 13.3.1 and 20.11.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "CE",
+   "id": "SIP_CC_TE_CE_V_013",
+   "klass": "V",
+   "number": 13,
+   "ref": "RFC 3261 [1] sections 13.3.1.3 and 21.4.13.",
+   "status": "PICS: A.18/4.24 Status/Sending"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "CE",
+   "id": "SIP_CC_TE_CE_V_014",
+   "klass": "V",
+   "number": 14,
+   "ref": "RFC 3261 [1] section 8.2.6.2.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "CE",
+   "id": "SIP_CC_TE_CE_V_015",
+   "klass": "V",
+   "number": 15,
+   "ref": "RFC 3261 [1] sections 8.2.6.2, 12.2.2 and 13.3.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "CE",
+   "id": "SIP_CC_TE_CE_V_016",
+   "klass": "V",
+   "number": 16,
+   "ref": "RFC 3261 [1] section 8.2.6.2.",
+   "status": "Recommended"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "CE",
+   "id": "SIP_CC_TE_CE_V_017",
+   "klass": "V",
+   "number": 17,
+   "ref": "RFC 3261 [1] section 12.1.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "CE",
+   "id": "SIP_CC_TE_CE_V_018",
+   "klass": "V",
+   "number": 18,
+   "ref": "RFC 3261 [1] section 12.1.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "CE",
+   "id": "SIP_CC_TE_CE_V_019",
+   "klass": "V",
+   "number": 19,
+   "ref": "RFC 3261 [1] section 12.1.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "CE",
+   "id": "SIP_CC_TE_CE_V_020",
+   "klass": "V",
+   "number": 20,
+   "ref": "RFC 3261 [1] section 12.1.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "CE",
+   "id": "SIP_CC_TE_CE_V_021",
+   "klass": "V",
+   "number": 21,
+   "ref": "RFC 3261 [1] section 13.3.1.4.",
+   "status": "Recommended"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "CE",
+   "id": "SIP_CC_TE_CE_V_022",
+   "klass": "V",
+   "number": 22,
+   "ref": "RFC 3261 [1] sections 17.2.1 and 17.2.3.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "CE",
+   "id": "SIP_CC_TE_CE_V_023",
+   "klass": "V",
+   "number": 23,
+   "ref": "RFC 3261 [1] sections 17.2.1 and 17.2.3.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "CE",
+   "id": "SIP_CC_TE_CE_V_024",
+   "klass": "V",
+   "number": 24,
+   "ref": "RFC 3261 [1] sections 17.2.1 and 17.2.3.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "CE",
+   "id": "SIP_CC_TE_CE_V_025",
+   "klass": "V",
+   "number": 25,
+   "ref": "RFC 3261 [1] sections 17.2.1 and 17.2.3.",
+   "status": "Recommended"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "CE",
+   "id": "SIP_CC_TE_CE_V_026",
+   "klass": "V",
+   "number": 26,
+   "ref": "RFC 3261 [1] sections 17.2.1 and 17.2.3.",
+   "status": "Recommended"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "CE",
+   "id": "SIP_CC_TE_CE_V_027",
+   "klass": "V",
+   "number": 27,
+   "ref": "RFC 3261 [1] sections 17.2.1 and 17.2.3.",
+   "status": "Recommended"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "CE",
+   "id": "SIP_CC_TE_CE_V_028",
+   "klass": "V",
+   "number": 28,
+   "ref": "RFC 3261 [1] sections 8.2.2.2, 17.2.1 and 17.2.3.",
+   "status": "PICS: A.18/4.19 Status/Sending"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "CE",
+   "id": "SIP_CC_TE_CE_V_029",
+   "klass": "V",
+   "number": 29,
+   "ref": "RFC 3261 [1] sections 8.2.2.2, 17.2.1 and 17.2.3.",
+   "status": "PICS: A.18/4.19 Status/Sending"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "CE",
+   "id": "SIP_CC_TE_CE_V_030",
+   "klass": "V",
+   "number": 30,
+   "ref": "RFC 3261 [1] sections 8.2.2.2, 17.2.1 and 17.2.3.",
+   "status": "PICS: A.18/4.19 Status/Sending"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "CE",
+   "id": "SIP_CC_TE_CE_V_031",
+   "klass": "V",
+   "number": 31,
+   "ref": "RFC 3261 [1] section 8.2.2.3.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "CE",
+   "id": "SIP_CC_TE_CE_V_032",
+   "klass": "V",
+   "number": 32,
+   "ref": "RFC 3261 [1] sections 17.2.3.1 and 13.3.1.4, figure 7.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "CE",
+   "id": "SIP_CC_TE_CE_V_033",
+   "klass": "V",
+   "number": 33,
+   "ref": "RFC 3261 [1] sections 17.2.3.1 and 13.3.1.4, figure 7.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "CE",
+   "id": "SIP_CC_TE_CE_V_034",
+   "klass": "V",
+   "number": 34,
+   "ref": "RFC 3261 [1] section 22.2.",
+   "status": "PICS: A.31/1"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "CE",
+   "id": "SIP_CC_TE_CE_V_035",
+   "klass": "V",
+   "number": 35,
+   "ref": "RFC 3261 [1] section 22.2.",
+   "status": "PICS: A.31/1"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "CE",
+   "id": "SIP_CC_TE_CE_V_036",
+   "klass": "V",
+   "number": 36,
+   "ref": "RFC 3261 [1] section 22.2.",
+   "status": "PICS: A.31/1"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "CR",
+   "id": "SIP_CC_TE_CR_I_001",
+   "klass": "I",
+   "number": 1,
+   "ref": "RFC 3261 [1] section 12.2.2.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "CR",
+   "id": "SIP_CC_TE_CR_I_002",
+   "klass": "I",
+   "number": 2,
+   "ref": "RFC 3261 [1] section 8.2.2.3.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "CR",
+   "id": "SIP_CC_TE_CR_I_003",
+   "klass": "I",
+   "number": 3,
+   "ref": "RFC 3261 [1] section 8.2.2.3.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "CR",
+   "id": "SIP_CC_TE_CR_I_004",
+   "klass": "I",
+   "number": 4,
+   "ref": "RFC 3261 [1] sections 9.2 and 15.1.2.",
+   "status": "PICS: A.21/4.11 Status/Sending"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "CR",
+   "id": "SIP_CC_TE_CR_I_005",
+   "klass": "I",
+   "number": 5,
+   "ref": "RFC 3261 [1] section 15.1.2.",
+   "status": "PICS: A.20/4.11 Status/Sending"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "CR",
+   "id": "SIP_CC_TE_CR_TI_001",
+   "klass": "TI",
+   "number": 1,
+   "ref": "RFC 3261 [1] annex A and section 17.2.2.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "CR",
+   "id": "SIP_CC_TE_CR_V_001",
+   "klass": "V",
+   "number": 1,
+   "ref": "RFC 3261 [1] section 15.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "CR",
+   "id": "SIP_CC_TE_CR_V_002",
+   "klass": "V",
+   "number": 2,
+   "ref": "RFC 3261 [1] sections 15 and 12.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "CR",
+   "id": "SIP_CC_TE_CR_V_003",
+   "klass": "V",
+   "number": 3,
+   "ref": "RFC 3261 [1] sections 15 and 12.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "CR",
+   "id": "SIP_CC_TE_CR_V_004",
+   "klass": "V",
+   "number": 4,
+   "ref": "RFC 3261 [1] sections 8.2.2 and 15.1.2.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "CR",
+   "id": "SIP_CC_TE_CR_V_005",
+   "klass": "V",
+   "number": 5,
+   "ref": "RFC 3261 [1] sections 8.2.2 and 15.1.2.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "CR",
+   "id": "SIP_CC_TE_CR_V_006",
+   "klass": "V",
+   "number": 6,
+   "ref": "RFC 3261 [1] sections 8.2.6.2 and 15.1.2.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "CR",
+   "id": "SIP_CC_TE_CR_V_007",
+   "klass": "V",
+   "number": 7,
+   "ref": "RFC 3261 [1] section 15.1.2.",
+   "status": "PICS: A.20/4.11 Status/Sending"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "CR",
+   "id": "SIP_CC_TE_CR_V_008",
+   "klass": "V",
+   "number": 8,
+   "ref": "RFC 3261 [1] section 15.1.2.",
+   "status": "PICS: A.20/4.11 Status/Sending"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "CR",
+   "id": "SIP_CC_TE_CR_V_009",
+   "klass": "V",
+   "number": 9,
+   "ref": "RFC 3261 [1] section 12.2.2.",
+   "status": "Recommended"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "CR",
+   "id": "SIP_CC_TE_CR_V_010",
+   "klass": "V",
+   "number": 10,
+   "ref": "RFC 3261 [1] section 12.2.1.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "CR",
+   "id": "SIP_CC_TE_CR_V_011",
+   "klass": "V",
+   "number": 11,
+   "ref": "RFC 3261 [1] section 12.2.1.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "CR",
+   "id": "SIP_CC_TE_CR_V_012",
+   "klass": "V",
+   "number": 12,
+   "ref": "RFC 3261 [1] section 12.2.1.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "CR",
+   "id": "SIP_CC_TE_CR_V_013",
+   "klass": "V",
+   "number": 13,
+   "ref": "RFC 3261 [1] section 12.2.1.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "CR",
+   "id": "SIP_CC_TE_CR_V_014",
+   "klass": "V",
+   "number": 14,
+   "ref": "RFC 3261 [1] section 12.2.1.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "CR",
+   "id": "SIP_CC_TE_CR_V_015",
+   "klass": "V",
+   "number": 15,
+   "ref": "RFC 3261 [1] section 9.2.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "CR",
+   "id": "SIP_CC_TE_CR_V_016",
+   "klass": "V",
+   "number": 16,
+   "ref": "RFC 3261 [1] section 9.2.",
+   "status": "PICS: A.18/4.23 Status/Sending"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "CR",
+   "id": "SIP_CC_TE_CR_V_017",
+   "klass": "V",
+   "number": 17,
+   "ref": "RFC 3261 [1] section 9.2.",
+   "status": "PICS: A.21/4.11 Status/Sending"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "CR",
+   "id": "SIP_CC_TE_CR_V_018",
+   "klass": "V",
+   "number": 18,
+   "ref": "RFC 3261 [1] sections 9.2 and 17.2.3.",
+   "status": "PICS: A.21/4.11 Status/Sending"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "CR",
+   "id": "SIP_CC_TE_CR_V_019",
+   "klass": "V",
+   "number": 19,
+   "ref": "RFC 3261 [1] sections 9.2 and 17.2.3.",
+   "status": "PICS: A.21/4.11 Status/Sending"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "CR",
+   "id": "SIP_CC_TE_CR_V_020",
+   "klass": "V",
+   "number": 20,
+   "ref": "RFC 3261 [1] sections 17.2.3, 17.2.2, 12.2.1.1 and 15.1.2.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "CR",
+   "id": "SIP_CC_TE_CR_V_021",
+   "klass": "V",
+   "number": 21,
+   "ref": "RFC 3261 [1] sections 17.2.3, 17.2.2 and 15.1.2.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "CR",
+   "id": "SIP_CC_TE_CR_V_022",
+   "klass": "V",
+   "number": 22,
+   "ref": "",
+   "status": "Void"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "SM",
+   "id": "SIP_CC_TE_SM_I_001",
+   "klass": "I",
+   "number": 1,
+   "ref": "RFC 3261 [1] section 14.2 paragraph 2.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "SM",
+   "id": "SIP_CC_TE_SM_V_001",
+   "klass": "V",
+   "number": 1,
+   "ref": "RFC 3261 [1] section 14.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "SM",
+   "id": "SIP_CC_TE_SM_V_002",
+   "klass": "V",
+   "number": 2,
+   "ref": "RFC 3261 [1] section 14.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "CC",
+   "entity": "TE",
+   "function": "SM",
+   "id": "SIP_CC_TE_SM_V_003",
+   "klass": "V",
+   "number": 3,
+   "ref": "RFC 3261 [1] section 14.",
+   "status": "Recommended"
+  },
+  {
+   "area": "MG",
+   "entity": "OE",
+   "function": "",
+   "id": "SIP_MG_OE_I_001",
+   "klass": "I",
+   "number": 1,
+   "ref": "RFC 3261 [1] section 19.1.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "OE",
+   "function": "",
+   "id": "SIP_MG_OE_I_002",
+   "klass": "I",
+   "number": 2,
+   "ref": "RFC 3261 [1] section 19.1.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "OE",
+   "function": "",
+   "id": "SIP_MG_OE_I_003",
+   "klass": "I",
+   "number": 3,
+   "ref": "RFC 3261 [1] section 19.1.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "OE",
+   "function": "",
+   "id": "SIP_MG_OE_I_004",
+   "klass": "I",
+   "number": 4,
+   "ref": "RFC 3261 [1] section 19.1.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "OE",
+   "function": "",
+   "id": "SIP_MG_OE_I_005",
+   "klass": "I",
+   "number": 5,
+   "ref": "RFC 3261 [1] section 19.1.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "OE",
+   "function": "",
+   "id": "SIP_MG_OE_I_006",
+   "klass": "I",
+   "number": 6,
+   "ref": "RFC 3261 [1] section 19.1.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "OE",
+   "function": "",
+   "id": "SIP_MG_OE_I_007",
+   "klass": "I",
+   "number": 7,
+   "ref": "RFC 3261 [1] section 19.1.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "OE",
+   "function": "",
+   "id": "SIP_MG_OE_I_008",
+   "klass": "I",
+   "number": 8,
+   "ref": "RFC 3261 [1] sections 7.3.2 and 20, table 2.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "OE",
+   "function": "",
+   "id": "SIP_MG_OE_I_009",
+   "klass": "I",
+   "number": 9,
+   "ref": "RFC 3261 [1] section 18.3.",
+   "status": "Recommended"
+  },
+  {
+   "area": "MG",
+   "entity": "OE",
+   "function": "",
+   "id": "SIP_MG_OE_I_010",
+   "klass": "I",
+   "number": 10,
+   "ref": "RFC 3261 [1] section 18.3.",
+   "status": "Recommended"
+  },
+  {
+   "area": "MG",
+   "entity": "OE",
+   "function": "",
+   "id": "SIP_MG_OE_V_001",
+   "klass": "V",
+   "number": 1,
+   "ref": "RFC 3261 [1] section 19.1.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "OE",
+   "function": "",
+   "id": "SIP_MG_OE_V_002",
+   "klass": "V",
+   "number": 2,
+   "ref": "RFC 3261 [1] section 19.1.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "OE",
+   "function": "",
+   "id": "SIP_MG_OE_V_003",
+   "klass": "V",
+   "number": 3,
+   "ref": "RFC 3261 [1] section 7.2.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "OE",
+   "function": "",
+   "id": "SIP_MG_OE_V_004",
+   "klass": "V",
+   "number": 4,
+   "ref": "RFC 3261 [1] section 7.2.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "OE",
+   "function": "",
+   "id": "SIP_MG_OE_V_005",
+   "klass": "V",
+   "number": 5,
+   "ref": "RFC 3261 [1] section 7.3.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "OE",
+   "function": "",
+   "id": "SIP_MG_OE_V_006",
+   "klass": "V",
+   "number": 6,
+   "ref": "RFC 3261 [1] section 7.3.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "OE",
+   "function": "",
+   "id": "SIP_MG_OE_V_007",
+   "klass": "V",
+   "number": 7,
+   "ref": "RFC 3261 [1] section 7.3.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "OE",
+   "function": "",
+   "id": "SIP_MG_OE_V_008",
+   "klass": "V",
+   "number": 8,
+   "ref": "RFC 3261 [1] section 19.1.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "OE",
+   "function": "",
+   "id": "SIP_MG_OE_V_009",
+   "klass": "V",
+   "number": 9,
+   "ref": "RFC 3261 [1] section 19.1.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "OE",
+   "function": "",
+   "id": "SIP_MG_OE_V_010",
+   "klass": "V",
+   "number": 10,
+   "ref": "RFC 3261 [1] section 19.1.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "OE",
+   "function": "",
+   "id": "SIP_MG_OE_V_011",
+   "klass": "V",
+   "number": 11,
+   "ref": "RFC 3261 [1] section 8.2.2.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "OE",
+   "function": "",
+   "id": "SIP_MG_OE_V_012",
+   "klass": "V",
+   "number": 12,
+   "ref": "RFC 3261 [1] section 7.3.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "OE",
+   "function": "",
+   "id": "SIP_MG_OE_V_013",
+   "klass": "V",
+   "number": 13,
+   "ref": "RFC 3261 [1] section 7.3.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "OE",
+   "function": "",
+   "id": "SIP_MG_OE_V_014",
+   "klass": "V",
+   "number": 14,
+   "ref": "RFC 3261 [1] section 7.3.3.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "OE",
+   "function": "",
+   "id": "SIP_MG_OE_V_015",
+   "klass": "V",
+   "number": 15,
+   "ref": "RFC 3261 [1] section 18.1.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "PR",
+   "function": "",
+   "id": "SIP_MG_PR_I_001",
+   "klass": "I",
+   "number": 1,
+   "ref": "RFC 3261 [1] section 7.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "PR",
+   "function": "",
+   "id": "SIP_MG_PR_I_002",
+   "klass": "I",
+   "number": 2,
+   "ref": "RFC 3261 [1] section 19.1.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "PR",
+   "function": "",
+   "id": "SIP_MG_PR_I_003",
+   "klass": "I",
+   "number": 3,
+   "ref": "RFC 3261 [1] section 19.1.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "PR",
+   "function": "",
+   "id": "SIP_MG_PR_I_004",
+   "klass": "I",
+   "number": 4,
+   "ref": "RFC 3261 [1] section 19.1.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "PR",
+   "function": "",
+   "id": "SIP_MG_PR_I_005",
+   "klass": "I",
+   "number": 5,
+   "ref": "RFC 3261 [1] section 21.4.1.",
+   "status": "Recommended"
+  },
+  {
+   "area": "MG",
+   "entity": "PR",
+   "function": "",
+   "id": "SIP_MG_PR_I_006",
+   "klass": "I",
+   "number": 6,
+   "ref": "RFC 3261 [1] sections 7.3.2 and 20, table 2.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "PR",
+   "function": "",
+   "id": "SIP_MG_PR_I_007",
+   "klass": "I",
+   "number": 7,
+   "ref": "RFC 3261 [1] section 18.3.",
+   "status": "Recommended"
+  },
+  {
+   "area": "MG",
+   "entity": "PR",
+   "function": "",
+   "id": "SIP_MG_PR_I_008",
+   "klass": "I",
+   "number": 8,
+   "ref": "RFC 3261 [1] section 18.3.",
+   "status": "Recommended"
+  },
+  {
+   "area": "MG",
+   "entity": "PR",
+   "function": "",
+   "id": "SIP_MG_PR_I_009",
+   "klass": "I",
+   "number": 9,
+   "ref": "RFC 3261 [1] section 18.3.",
+   "status": "Recommended"
+  },
+  {
+   "area": "MG",
+   "entity": "PR",
+   "function": "",
+   "id": "SIP_MG_PR_I_010",
+   "klass": "I",
+   "number": 10,
+   "ref": "RFC 3261 [1] section 18.3.",
+   "status": "Recommended"
+  },
+  {
+   "area": "MG",
+   "entity": "PR",
+   "function": "",
+   "id": "SIP_MG_PR_V_001",
+   "klass": "V",
+   "number": 1,
+   "ref": "RFC 3261 [1] section 19.1.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "PR",
+   "function": "",
+   "id": "SIP_MG_PR_V_002",
+   "klass": "V",
+   "number": 2,
+   "ref": "RFC 3261 [1] section 19.1.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "PR",
+   "function": "",
+   "id": "SIP_MG_PR_V_003",
+   "klass": "V",
+   "number": 3,
+   "ref": "RFC 3261 [1] section 19.1.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "PR",
+   "function": "",
+   "id": "SIP_MG_PR_V_004",
+   "klass": "V",
+   "number": 4,
+   "ref": "RFC 3261 [1] section 19.1.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "PR",
+   "function": "",
+   "id": "SIP_MG_PR_V_005",
+   "klass": "V",
+   "number": 5,
+   "ref": "RFC 3261 [1] section 19.1.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "PR",
+   "function": "",
+   "id": "SIP_MG_PR_V_006",
+   "klass": "V",
+   "number": 6,
+   "ref": "RFC 3261 [1] section 8.2.2.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "PR",
+   "function": "",
+   "id": "SIP_MG_PR_V_007",
+   "klass": "V",
+   "number": 7,
+   "ref": "RFC 3261 [1] section 7.3.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "PR",
+   "function": "",
+   "id": "SIP_MG_PR_V_008",
+   "klass": "V",
+   "number": 8,
+   "ref": "RFC 3261 [1] section 7.3.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "PR",
+   "function": "",
+   "id": "SIP_MG_PR_V_009",
+   "klass": "V",
+   "number": 9,
+   "ref": "RFC 3261 [1] sections 7.3.1 and 10.46.4.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "PR",
+   "function": "",
+   "id": "SIP_MG_PR_V_010",
+   "klass": "V",
+   "number": 10,
+   "ref": "RFC 3261 [1] sections 7.3.1 and 10.46.4.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "PR",
+   "function": "",
+   "id": "SIP_MG_PR_V_011",
+   "klass": "V",
+   "number": 11,
+   "ref": "RFC 3261 [1] section 7.3.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "PR",
+   "function": "",
+   "id": "SIP_MG_PR_V_012",
+   "klass": "V",
+   "number": 12,
+   "ref": "RFC 3261 [1] section 7.2.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "PR",
+   "function": "",
+   "id": "SIP_MG_PR_V_013",
+   "klass": "V",
+   "number": 13,
+   "ref": "RFC 3261 [1] section 7.2.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "PR",
+   "function": "",
+   "id": "SIP_MG_PR_V_014",
+   "klass": "V",
+   "number": 14,
+   "ref": "RFC 3261 [1] section 7.3.3.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "PR",
+   "function": "",
+   "id": "SIP_MG_PR_V_015",
+   "klass": "V",
+   "number": 15,
+   "ref": "RFC 3261 [1] section 18.1.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "PR",
+   "function": "",
+   "id": "SIP_MG_PR_V_016",
+   "klass": "V",
+   "number": 16,
+   "ref": "RFC 3261 [1] section 7.5.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "RD",
+   "function": "",
+   "id": "SIP_MG_RD_I_001",
+   "klass": "I",
+   "number": 1,
+   "ref": "RFC 3261 [1] section 7.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "RD",
+   "function": "",
+   "id": "SIP_MG_RD_I_002",
+   "klass": "I",
+   "number": 2,
+   "ref": "RFC 3261 [1] section 19.1.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "RD",
+   "function": "",
+   "id": "SIP_MG_RD_I_003",
+   "klass": "I",
+   "number": 3,
+   "ref": "RFC 3261 [1] section 19.1.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "RD",
+   "function": "",
+   "id": "SIP_MG_RD_I_004",
+   "klass": "I",
+   "number": 4,
+   "ref": "RFC 3261 [1] section 19.1.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "RD",
+   "function": "",
+   "id": "SIP_MG_RD_I_005",
+   "klass": "I",
+   "number": 5,
+   "ref": "RFC 3261 [1] section 21.4.1.",
+   "status": "Recommended"
+  },
+  {
+   "area": "MG",
+   "entity": "RD",
+   "function": "",
+   "id": "SIP_MG_RD_I_006",
+   "klass": "I",
+   "number": 6,
+   "ref": "RFC 3261 [1] sections 7.3.2 and 20, table 2.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "RD",
+   "function": "",
+   "id": "SIP_MG_RD_I_007",
+   "klass": "I",
+   "number": 7,
+   "ref": "RFC 3261 [1] section 18.3.",
+   "status": "Recommended"
+  },
+  {
+   "area": "MG",
+   "entity": "RD",
+   "function": "",
+   "id": "SIP_MG_RD_I_008",
+   "klass": "I",
+   "number": 8,
+   "ref": "RFC 3261 [1] section 18.3.",
+   "status": "Recommended"
+  },
+  {
+   "area": "MG",
+   "entity": "RD",
+   "function": "",
+   "id": "SIP_MG_RD_V_001",
+   "klass": "V",
+   "number": 1,
+   "ref": "RFC 3261 [1] section 19.1.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "RD",
+   "function": "",
+   "id": "SIP_MG_RD_V_002",
+   "klass": "V",
+   "number": 2,
+   "ref": "RFC 3261 [1] section 19.1.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "RD",
+   "function": "",
+   "id": "SIP_MG_RD_V_003",
+   "klass": "V",
+   "number": 3,
+   "ref": "RFC 3261 [1] section 19.1.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "RD",
+   "function": "",
+   "id": "SIP_MG_RD_V_004",
+   "klass": "V",
+   "number": 4,
+   "ref": "RFC 3261 [1] section 19.1.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "RD",
+   "function": "",
+   "id": "SIP_MG_RD_V_005",
+   "klass": "V",
+   "number": 5,
+   "ref": "RFC 3261 [1] section 19.1.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "RD",
+   "function": "",
+   "id": "SIP_MG_RD_V_006",
+   "klass": "V",
+   "number": 6,
+   "ref": "RFC 3261 [1] section 8.2.2.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "RD",
+   "function": "",
+   "id": "SIP_MG_RD_V_007",
+   "klass": "V",
+   "number": 7,
+   "ref": "RFC 3261 [1] section 7.3.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "RD",
+   "function": "",
+   "id": "SIP_MG_RD_V_008",
+   "klass": "V",
+   "number": 8,
+   "ref": "RFC 3261 [1] section 7.3.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "RD",
+   "function": "",
+   "id": "SIP_MG_RD_V_009",
+   "klass": "V",
+   "number": 9,
+   "ref": "RFC 3261 [1] sections 7.3.1 and 10.46.4.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "RD",
+   "function": "",
+   "id": "SIP_MG_RD_V_010",
+   "klass": "V",
+   "number": 10,
+   "ref": "RFC 3261 [1] sections 7.3.1 and 10.46.4.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "RD",
+   "function": "",
+   "id": "SIP_MG_RD_V_011",
+   "klass": "V",
+   "number": 11,
+   "ref": "RFC 3261 [1] section 7.3.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "RD",
+   "function": "",
+   "id": "SIP_MG_RD_V_012",
+   "klass": "V",
+   "number": 12,
+   "ref": "RFC 3261 [1] section 7.3.3.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "RD",
+   "function": "",
+   "id": "SIP_MG_RD_V_013",
+   "klass": "V",
+   "number": 13,
+   "ref": "RFC 3261 [1] section 18.1.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "RD",
+   "function": "",
+   "id": "SIP_MG_RD_V_014",
+   "klass": "V",
+   "number": 14,
+   "ref": "RFC 3261 [1] section 7.5.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "RR",
+   "function": "",
+   "id": "SIP_MG_RR_I_001",
+   "klass": "I",
+   "number": 1,
+   "ref": "RFC 3261 [1] section 7.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "RR",
+   "function": "",
+   "id": "SIP_MG_RR_I_002",
+   "klass": "I",
+   "number": 2,
+   "ref": "RFC 3261 [1] section 19.1.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "RR",
+   "function": "",
+   "id": "SIP_MG_RR_I_003",
+   "klass": "I",
+   "number": 3,
+   "ref": "RFC 3261 [1] section 19.1.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "RR",
+   "function": "",
+   "id": "SIP_MG_RR_I_004",
+   "klass": "I",
+   "number": 4,
+   "ref": "RFC 3261 [1] section 19.1.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "RR",
+   "function": "",
+   "id": "SIP_MG_RR_I_005",
+   "klass": "I",
+   "number": 5,
+   "ref": "RFC 3261 [1] sections 7.3.2 and 20, table 2.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "RR",
+   "function": "",
+   "id": "SIP_MG_RR_I_006",
+   "klass": "I",
+   "number": 6,
+   "ref": "RFC 3261 [1] section 21.4.1.",
+   "status": "Recommended"
+  },
+  {
+   "area": "MG",
+   "entity": "RR",
+   "function": "",
+   "id": "SIP_MG_RR_V_001",
+   "klass": "V",
+   "number": 1,
+   "ref": "RFC 3261 [1] section 19.1.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "RR",
+   "function": "",
+   "id": "SIP_MG_RR_V_002",
+   "klass": "V",
+   "number": 2,
+   "ref": "RFC 3261 [1] section 19.1.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "RR",
+   "function": "",
+   "id": "SIP_MG_RR_V_003",
+   "klass": "V",
+   "number": 3,
+   "ref": "RFC 3261 [1] section 19.1.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "RR",
+   "function": "",
+   "id": "SIP_MG_RR_V_004",
+   "klass": "V",
+   "number": 4,
+   "ref": "RFC 3261 [1] section 19.1.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "RR",
+   "function": "",
+   "id": "SIP_MG_RR_V_005",
+   "klass": "V",
+   "number": 5,
+   "ref": "RFC 3261 [1] section 19.1.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "RR",
+   "function": "",
+   "id": "SIP_MG_RR_V_006",
+   "klass": "V",
+   "number": 6,
+   "ref": "RFC 3261 [1] section 8.2.2.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "RR",
+   "function": "",
+   "id": "SIP_MG_RR_V_007",
+   "klass": "V",
+   "number": 7,
+   "ref": "RFC 3261 [1] section 7.3.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "RR",
+   "function": "",
+   "id": "SIP_MG_RR_V_008",
+   "klass": "V",
+   "number": 8,
+   "ref": "RFC 3261 [1] section 7.3.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "RR",
+   "function": "",
+   "id": "SIP_MG_RR_V_009",
+   "klass": "V",
+   "number": 9,
+   "ref": "RFC 3261 [1] section 7.3.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "RR",
+   "function": "",
+   "id": "SIP_MG_RR_V_010",
+   "klass": "V",
+   "number": 10,
+   "ref": "RFC 3261 [1] section 7.3.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "RR",
+   "function": "",
+   "id": "SIP_MG_RR_V_011",
+   "klass": "V",
+   "number": 11,
+   "ref": "RFC 3261 [1] section 7.3.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "RR",
+   "function": "",
+   "id": "SIP_MG_RR_V_012",
+   "klass": "V",
+   "number": 12,
+   "ref": "RFC 3261 [1] section 7.3.3.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "RR",
+   "function": "",
+   "id": "SIP_MG_RR_V_013",
+   "klass": "V",
+   "number": 13,
+   "ref": "RFC 3261 [1] section 7.5.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "RT",
+   "function": "",
+   "id": "SIP_MG_RT_I_001",
+   "klass": "I",
+   "number": 1,
+   "ref": "RFC 3261 [1] section 19.1.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "RT",
+   "function": "",
+   "id": "SIP_MG_RT_I_002",
+   "klass": "I",
+   "number": 2,
+   "ref": "RFC 3261 [1] section 19.1.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "RT",
+   "function": "",
+   "id": "SIP_MG_RT_I_003",
+   "klass": "I",
+   "number": 3,
+   "ref": "RFC 3261 [1] section 19.1.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "RT",
+   "function": "",
+   "id": "SIP_MG_RT_I_004",
+   "klass": "I",
+   "number": 4,
+   "ref": "RFC 3261 [1] section 19.1.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "RT",
+   "function": "",
+   "id": "SIP_MG_RT_I_005",
+   "klass": "I",
+   "number": 5,
+   "ref": "RFC 3261 [1] section 20, table 2.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "RT",
+   "function": "",
+   "id": "SIP_MG_RT_V_001",
+   "klass": "V",
+   "number": 1,
+   "ref": "RFC 3261 [1] section 19.1.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "RT",
+   "function": "",
+   "id": "SIP_MG_RT_V_002",
+   "klass": "V",
+   "number": 2,
+   "ref": "RFC 3261 [1] section 19.1.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "RT",
+   "function": "",
+   "id": "SIP_MG_RT_V_003",
+   "klass": "V",
+   "number": 3,
+   "ref": "RFC 3261 [1] section 7.2.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "RT",
+   "function": "",
+   "id": "SIP_MG_RT_V_004",
+   "klass": "V",
+   "number": 4,
+   "ref": "RFC 3261 [1] section 7.2.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "RT",
+   "function": "",
+   "id": "SIP_MG_RT_V_005",
+   "klass": "V",
+   "number": 5,
+   "ref": "RFC 3261 [1] section 7.3.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "RT",
+   "function": "",
+   "id": "SIP_MG_RT_V_006",
+   "klass": "V",
+   "number": 6,
+   "ref": "RFC 3261 [1] section 25.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "RT",
+   "function": "",
+   "id": "SIP_MG_RT_V_007",
+   "klass": "V",
+   "number": 7,
+   "ref": "RFC 3261 [1] sections 25.1 and 7.3.3.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "RT",
+   "function": "",
+   "id": "SIP_MG_RT_V_008",
+   "klass": "V",
+   "number": 8,
+   "ref": "RFC 3261 [1] section 7.5.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "TE",
+   "function": "",
+   "id": "SIP_MG_TE_I_001",
+   "klass": "I",
+   "number": 1,
+   "ref": "RFC 3261 [1] section 7.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "TE",
+   "function": "",
+   "id": "SIP_MG_TE_I_002",
+   "klass": "I",
+   "number": 2,
+   "ref": "RFC 3261 [1] section 19.1.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "TE",
+   "function": "",
+   "id": "SIP_MG_TE_I_003",
+   "klass": "I",
+   "number": 3,
+   "ref": "RFC 3261 [1] section 19.1.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "TE",
+   "function": "",
+   "id": "SIP_MG_TE_I_004",
+   "klass": "I",
+   "number": 4,
+   "ref": "RFC 3261 [1] section 19.1.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "TE",
+   "function": "",
+   "id": "SIP_MG_TE_I_005",
+   "klass": "I",
+   "number": 5,
+   "ref": "RFC 3261 [1] section 21.4.1.",
+   "status": "Recommended"
+  },
+  {
+   "area": "MG",
+   "entity": "TE",
+   "function": "",
+   "id": "SIP_MG_TE_I_006",
+   "klass": "I",
+   "number": 6,
+   "ref": "RFC 3261 [1] sections 7.3.2 and 20, table 2.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "TE",
+   "function": "",
+   "id": "SIP_MG_TE_I_007",
+   "klass": "I",
+   "number": 7,
+   "ref": "RFC 3261 [1] section 18.3.",
+   "status": "Recommended"
+  },
+  {
+   "area": "MG",
+   "entity": "TE",
+   "function": "",
+   "id": "SIP_MG_TE_I_008",
+   "klass": "I",
+   "number": 8,
+   "ref": "RFC 3261 [1] section 18.3.",
+   "status": "Recommended"
+  },
+  {
+   "area": "MG",
+   "entity": "TE",
+   "function": "",
+   "id": "SIP_MG_TE_V_001",
+   "klass": "V",
+   "number": 1,
+   "ref": "RFC 3261 [1] section 19.1.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "TE",
+   "function": "",
+   "id": "SIP_MG_TE_V_002",
+   "klass": "V",
+   "number": 2,
+   "ref": "RFC 3261 [1] section 19.1.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "TE",
+   "function": "",
+   "id": "SIP_MG_TE_V_003",
+   "klass": "V",
+   "number": 3,
+   "ref": "RFC 3261 [1] section 19.1.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "TE",
+   "function": "",
+   "id": "SIP_MG_TE_V_004",
+   "klass": "V",
+   "number": 4,
+   "ref": "RFC 3261 [1] section 19.1.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "TE",
+   "function": "",
+   "id": "SIP_MG_TE_V_005",
+   "klass": "V",
+   "number": 5,
+   "ref": "RFC 3261 [1] section 19.1.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "TE",
+   "function": "",
+   "id": "SIP_MG_TE_V_006",
+   "klass": "V",
+   "number": 6,
+   "ref": "RFC 3261 [1] section 8.2.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "TE",
+   "function": "",
+   "id": "SIP_MG_TE_V_007",
+   "klass": "V",
+   "number": 7,
+   "ref": "RFC 3261 [1] section 8.2.2.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "TE",
+   "function": "",
+   "id": "SIP_MG_TE_V_008",
+   "klass": "V",
+   "number": 8,
+   "ref": "RFC 3261 [1] section 7.3.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "TE",
+   "function": "",
+   "id": "SIP_MG_TE_V_009",
+   "klass": "V",
+   "number": 9,
+   "ref": "RFC 3261 [1] section 7.3.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "TE",
+   "function": "",
+   "id": "SIP_MG_TE_V_010",
+   "klass": "V",
+   "number": 10,
+   "ref": "RFC 3261 [1] section 7.3.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "TE",
+   "function": "",
+   "id": "SIP_MG_TE_V_011",
+   "klass": "V",
+   "number": 11,
+   "ref": "RFC 3261 [1] section 7.3.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "TE",
+   "function": "",
+   "id": "SIP_MG_TE_V_012",
+   "klass": "V",
+   "number": 12,
+   "ref": "RFC 3261 [1] section 7.3.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "TE",
+   "function": "",
+   "id": "SIP_MG_TE_V_013",
+   "klass": "V",
+   "number": 13,
+   "ref": "RFC 3261 [1] section 7.3.3.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "TE",
+   "function": "",
+   "id": "SIP_MG_TE_V_014",
+   "klass": "V",
+   "number": 14,
+   "ref": "RFC 3261 [1] section 18.1.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "MG",
+   "entity": "TE",
+   "function": "",
+   "id": "SIP_MG_TE_V_015",
+   "klass": "V",
+   "number": 15,
+   "ref": "RFC 3261 [1] section 7.5.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "QC",
+   "entity": "OE",
+   "function": "",
+   "id": "SIP_QC_OE_TI_001",
+   "klass": "TI",
+   "number": 1,
+   "ref": "RFC 3261 [1] annex A and section 17.1.2.2.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "QC",
+   "entity": "OE",
+   "function": "",
+   "id": "SIP_QC_OE_TI_002",
+   "klass": "TI",
+   "number": 2,
+   "ref": "RFC 3261 [1] annex A and section 17.1.3.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "QC",
+   "entity": "OE",
+   "function": "",
+   "id": "SIP_QC_OE_TI_003",
+   "klass": "TI",
+   "number": 3,
+   "ref": "RFC 3261 [1] annex A and section 17.1.3.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "QC",
+   "entity": "OE",
+   "function": "",
+   "id": "SIP_QC_OE_TI_004",
+   "klass": "TI",
+   "number": 4,
+   "ref": "RFC 3261 [1] annex A and section 17.1.3.",
+   "status": "PICS: A.61/6"
+  },
+  {
+   "area": "QC",
+   "entity": "OE",
+   "function": "",
+   "id": "SIP_QC_OE_TI_005",
+   "klass": "TI",
+   "number": 5,
+   "ref": "RFC 3261 [1] annex A and section 17.1.3.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "QC",
+   "entity": "OE",
+   "function": "",
+   "id": "SIP_QC_OE_TI_006",
+   "klass": "TI",
+   "number": 6,
+   "ref": "RFC 3261 [1] annex A and section 17.1.3.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "QC",
+   "entity": "OE",
+   "function": "",
+   "id": "SIP_QC_OE_TI_007",
+   "klass": "TI",
+   "number": 7,
+   "ref": "RFC 3261 [1] annex A and section 17.1.3.",
+   "status": "PICS: A.61/6"
+  },
+  {
+   "area": "QC",
+   "entity": "OE",
+   "function": "",
+   "id": "SIP_QC_OE_V_001",
+   "klass": "V",
+   "number": 1,
+   "ref": "RFC 3261 [1] sections 11 and 8.1.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "QC",
+   "entity": "OE",
+   "function": "",
+   "id": "SIP_QC_OE_V_002",
+   "klass": "V",
+   "number": 2,
+   "ref": "RFC 3261 [1] sections 11 and 8.1.1.",
+   "status": "Recommended"
+  },
+  {
+   "area": "QC",
+   "entity": "OE",
+   "function": "",
+   "id": "SIP_QC_OE_V_003",
+   "klass": "V",
+   "number": 3,
+   "ref": "RFC 3261 [1] sections 11 and 8.1.1.3.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "QC",
+   "entity": "OE",
+   "function": "",
+   "id": "SIP_QC_OE_V_004",
+   "klass": "V",
+   "number": 4,
+   "ref": "RFC 3261 [1] sections 11 and 8.1.1.5.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "QC",
+   "entity": "OE",
+   "function": "",
+   "id": "SIP_QC_OE_V_005",
+   "klass": "V",
+   "number": 5,
+   "ref": "RFC 3261 [1] sections 11 and 8.1.1.6.",
+   "status": "Recommended"
+  },
+  {
+   "area": "QC",
+   "entity": "OE",
+   "function": "",
+   "id": "SIP_QC_OE_V_007",
+   "klass": "V",
+   "number": 7,
+   "ref": "RFC 3261 [1] sections 11 and 8.1.1.7.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "QC",
+   "entity": "OE",
+   "function": "",
+   "id": "SIP_QC_OE_V_008",
+   "klass": "V",
+   "number": 8,
+   "ref": "RFC 3261 [1] section 11.1.",
+   "status": "PICS: A.52/2.1"
+  },
+  {
+   "area": "QC",
+   "entity": "OE",
+   "function": "",
+   "id": "SIP_QC_OE_V_009",
+   "klass": "V",
+   "number": 9,
+   "ref": "RFC 3261 [1] section 11.2.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "QC",
+   "entity": "OE",
+   "function": "",
+   "id": "SIP_QC_OE_V_010",
+   "klass": "V",
+   "number": 10,
+   "ref": "RFC 3261 [1] section 11.2.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "QC",
+   "entity": "OE",
+   "function": "",
+   "id": "SIP_QC_OE_V_011",
+   "klass": "V",
+   "number": 11,
+   "ref": "RFC 3261 [1] section 11.2.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "QC",
+   "entity": "OE",
+   "function": "",
+   "id": "SIP_QC_OE_V_012",
+   "klass": "V",
+   "number": 12,
+   "ref": "RFC 3261 [1] sections 11 and 22.2.",
+   "status": "PICS: A.54/1"
+  },
+  {
+   "area": "QC",
+   "entity": "OE",
+   "function": "",
+   "id": "SIP_QC_OE_V_013",
+   "klass": "V",
+   "number": 13,
+   "ref": "RFC 3261 [1] sections 11 and 22.2.",
+   "status": "PICS: A.54/1"
+  },
+  {
+   "area": "QC",
+   "entity": "OE",
+   "function": "",
+   "id": "SIP_QC_OE_V_014",
+   "klass": "V",
+   "number": 14,
+   "ref": "RFC 3261 [1] sections 11 and 22.2.",
+   "status": "PICS: A.54/1"
+  },
+  {
+   "area": "QC",
+   "entity": "OE",
+   "function": "",
+   "id": "SIP_QC_OE_V_015",
+   "klass": "V",
+   "number": 15,
+   "ref": "RFC 3261 [1] sections 11 and 22.2.",
+   "status": "PICS: A.54/1"
+  },
+  {
+   "area": "QC",
+   "entity": "PR",
+   "function": "",
+   "id": "SIP_QC_PR_V_001",
+   "klass": "V",
+   "number": 1,
+   "ref": "RFC 3261 [1] section 11.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "QC",
+   "entity": "PR",
+   "function": "",
+   "id": "SIP_QC_PR_V_002",
+   "klass": "V",
+   "number": 2,
+   "ref": "RFC 3261 [1] sections 11.2 and 8.2.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "QC",
+   "entity": "PR",
+   "function": "",
+   "id": "SIP_QC_PR_V_003",
+   "klass": "V",
+   "number": 3,
+   "ref": "RFC 3261 [1] sections 11.2 and 8.2.6.2.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "QC",
+   "entity": "PR",
+   "function": "",
+   "id": "SIP_QC_PR_V_004",
+   "klass": "V",
+   "number": 4,
+   "ref": "RFC 3261 [1] sections 11.2 and 8.2.6.2.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "QC",
+   "entity": "PR",
+   "function": "",
+   "id": "SIP_QC_PR_V_005",
+   "klass": "V",
+   "number": 5,
+   "ref": "RFC 3261 [1] sections 11.2 and 8.2.6.2.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "QC",
+   "entity": "PR",
+   "function": "",
+   "id": "SIP_QC_PR_V_006",
+   "klass": "V",
+   "number": 6,
+   "ref": "RFC 3261 [1] section 11.2.",
+   "status": "Recommended"
+  },
+  {
+   "area": "QC",
+   "entity": "PR",
+   "function": "",
+   "id": "SIP_QC_PR_V_007",
+   "klass": "V",
+   "number": 7,
+   "ref": "RFC 3261 [1] section 11.2.",
+   "status": "Recommended"
+  },
+  {
+   "area": "QC",
+   "entity": "PR",
+   "function": "",
+   "id": "SIP_QC_PR_V_008",
+   "klass": "V",
+   "number": 8,
+   "ref": "RFC 3261 [1] section 11.2.",
+   "status": "Recommended"
+  },
+  {
+   "area": "QC",
+   "entity": "PR",
+   "function": "",
+   "id": "SIP_QC_PR_V_009",
+   "klass": "V",
+   "number": 9,
+   "ref": "RFC 3261 [1] section 11.2.",
+   "status": "PICS: A.77/1.4"
+  },
+  {
+   "area": "QC",
+   "entity": "PR",
+   "function": "",
+   "id": "SIP_QC_PR_V_010",
+   "klass": "V",
+   "number": 10,
+   "ref": "RFC 3261 [1] section 11.2.",
+   "status": "PICS: A.77/1.4"
+  },
+  {
+   "area": "QC",
+   "entity": "PR",
+   "function": "",
+   "id": "SIP_QC_PR_V_011",
+   "klass": "V",
+   "number": 11,
+   "ref": "RFC 3261 [1] section 22.2.",
+   "status": "PICS: A.105/1"
+  },
+  {
+   "area": "QC",
+   "entity": "PR",
+   "function": "",
+   "id": "SIP_QC_PR_V_012",
+   "klass": "V",
+   "number": 12,
+   "ref": "RFC 3261 [1] section 22.2.",
+   "status": "PICS: A.105/1"
+  },
+  {
+   "area": "QC",
+   "entity": "PR",
+   "function": "",
+   "id": "SIP_QC_PR_V_013",
+   "klass": "V",
+   "number": 13,
+   "ref": "RFC 3261 [1] section 22.2.",
+   "status": "PICS: A.105/1"
+  },
+  {
+   "area": "QC",
+   "entity": "TE",
+   "function": "",
+   "id": "SIP_QC_TE_V_001",
+   "klass": "V",
+   "number": 1,
+   "ref": "RFC 3261 [1] sections 11.2 and 8.2.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "QC",
+   "entity": "TE",
+   "function": "",
+   "id": "SIP_QC_TE_V_002",
+   "klass": "V",
+   "number": 2,
+   "ref": "RFC 3261 [1] sections 11.2 and 8.2.6.2.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "QC",
+   "entity": "TE",
+   "function": "",
+   "id": "SIP_QC_TE_V_003",
+   "klass": "V",
+   "number": 3,
+   "ref": "RFC 3261 [1] sections 11.2 and 8.2.6.2.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "QC",
+   "entity": "TE",
+   "function": "",
+   "id": "SIP_QC_TE_V_004",
+   "klass": "V",
+   "number": 4,
+   "ref": "RFC 3261 [1] sections 11.2 and 8.2.6.2.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "QC",
+   "entity": "TE",
+   "function": "",
+   "id": "SIP_QC_TE_V_005",
+   "klass": "V",
+   "number": 5,
+   "ref": "RFC 3261 [1] section 11.2.",
+   "status": "Recommended"
+  },
+  {
+   "area": "QC",
+   "entity": "TE",
+   "function": "",
+   "id": "SIP_QC_TE_V_006",
+   "klass": "V",
+   "number": 6,
+   "ref": "RFC 3261 [1] section 11.2.",
+   "status": "Recommended"
+  },
+  {
+   "area": "QC",
+   "entity": "TE",
+   "function": "",
+   "id": "SIP_QC_TE_V_007",
+   "klass": "V",
+   "number": 7,
+   "ref": "RFC 3261 [1] section 11.2.",
+   "status": "Recommended"
+  },
+  {
+   "area": "QC",
+   "entity": "TE",
+   "function": "",
+   "id": "SIP_QC_TE_V_008",
+   "klass": "V",
+   "number": 8,
+   "ref": "RFC 3261 [1] sections 11and 22.2.",
+   "status": "PICS: A.54/1"
+  },
+  {
+   "area": "QC",
+   "entity": "TE",
+   "function": "",
+   "id": "SIP_QC_TE_V_009",
+   "klass": "V",
+   "number": 9,
+   "ref": "RFC 3261 [1] sections 11and 22.2.",
+   "status": "PICS: A.54/1"
+  },
+  {
+   "area": "QC",
+   "entity": "TE",
+   "function": "",
+   "id": "SIP_QC_TE_V_010",
+   "klass": "V",
+   "number": 10,
+   "ref": "RFC 3261 [1] sections 11and 22.2.",
+   "status": "PICS: A.54/1"
+  },
+  {
+   "area": "RG",
+   "entity": "RR",
+   "function": "",
+   "id": "SIP_RG_RR_I_001",
+   "klass": "I",
+   "number": 1,
+   "ref": "RFC 3261 [1] section 10.3.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "RG",
+   "entity": "RR",
+   "function": "",
+   "id": "SIP_RG_RR_I_002",
+   "klass": "I",
+   "number": 2,
+   "ref": "RFC 3261 [1] sections 10.3 and 19.1.1.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "RG",
+   "entity": "RR",
+   "function": "",
+   "id": "SIP_RG_RR_I_003",
+   "klass": "I",
+   "number": 3,
+   "ref": "RFC 3261 [1] section 10.3.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "RG",
+   "entity": "RR",
+   "function": "",
+   "id": "SIP_RG_RR_I_004",
+   "klass": "I",
+   "number": 4,
+   "ref": "RFC 3261 [1] section 10.3.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "RG",
+   "entity": "RR",
+   "function": "",
+   "id": "SIP_RG_RR_O_001",
+   "klass": "O",
+   "number": 1,
+   "ref": "RFC 3261 [1] section 10.3.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "RG",
+   "entity": "RR",
+   "function": "",
+   "id": "SIP_RG_RR_O_002",
+   "klass": "O",
+   "number": 2,
+   "ref": "RFC 3261 [1] section 10.3.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "RG",
+   "entity": "RR",
+   "function": "",
+   "id": "SIP_RG_RR_O_003",
+   "klass": "O",
+   "number": 3,
+   "ref": "RFC 3261 [1] section 10.3.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "RG",
+   "entity": "RR",
+   "function": "",
+   "id": "SIP_RG_RR_V_001",
+   "klass": "V",
+   "number": 1,
+   "ref": "RFC 3261 [1] section 10.3.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "RG",
+   "entity": "RR",
+   "function": "",
+   "id": "SIP_RG_RR_V_002",
+   "klass": "V",
+   "number": 2,
+   "ref": "RFC 3261 [1] section 10.3.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "RG",
+   "entity": "RR",
+   "function": "",
+   "id": "SIP_RG_RR_V_003",
+   "klass": "V",
+   "number": 3,
+   "ref": "RFC 3261 [1] sections 10.2 and 10.3.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "RG",
+   "entity": "RR",
+   "function": "",
+   "id": "SIP_RG_RR_V_004",
+   "klass": "V",
+   "number": 4,
+   "ref": "RFC 3261 [1] sections 10.2 and 10.3.",
+   "status": "PICS: A.63/6"
+  },
+  {
+   "area": "RG",
+   "entity": "RR",
+   "function": "",
+   "id": "SIP_RG_RR_V_005",
+   "klass": "V",
+   "number": 5,
+   "ref": "RFC 3261 [1] sections 10.2 and 10.3.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "RG",
+   "entity": "RR",
+   "function": "",
+   "id": "SIP_RG_RR_V_006",
+   "klass": "V",
+   "number": 6,
+   "ref": "RFC 3261 [1] sections 10.2 and 10.3.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "RG",
+   "entity": "RR",
+   "function": "",
+   "id": "SIP_RG_RR_V_007",
+   "klass": "V",
+   "number": 7,
+   "ref": "RFC 3261 [1] sections 10.2 and 10.3.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "RG",
+   "entity": "RR",
+   "function": "",
+   "id": "SIP_RG_RR_V_008",
+   "klass": "V",
+   "number": 8,
+   "ref": "RFC 3261 [1] sections 10.2 and 10.3.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "RG",
+   "entity": "RR",
+   "function": "",
+   "id": "SIP_RG_RR_V_009",
+   "klass": "V",
+   "number": 9,
+   "ref": "RFC 3261 [1] sections 10.2 and 20.10.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "RG",
+   "entity": "RR",
+   "function": "",
+   "id": "SIP_RG_RR_V_010",
+   "klass": "V",
+   "number": 10,
+   "ref": "RFC 3261 [1] section 10.3.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "RG",
+   "entity": "RR",
+   "function": "",
+   "id": "SIP_RG_RR_V_011",
+   "klass": "V",
+   "number": 11,
+   "ref": "RFC 3261 [1] section 10.3.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "RG",
+   "entity": "RR",
+   "function": "",
+   "id": "SIP_RG_RR_V_012",
+   "klass": "V",
+   "number": 12,
+   "ref": "RFC 3261 [1] section 10.3.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "RG",
+   "entity": "RR",
+   "function": "",
+   "id": "SIP_RG_RR_V_013",
+   "klass": "V",
+   "number": 13,
+   "ref": "RFC 3261 [1] section 10.3.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "RG",
+   "entity": "RR",
+   "function": "",
+   "id": "SIP_RG_RR_V_014",
+   "klass": "V",
+   "number": 14,
+   "ref": "RFC 3261 [1] section 10.3.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "RG",
+   "entity": "RR",
+   "function": "",
+   "id": "SIP_RG_RR_V_015",
+   "klass": "V",
+   "number": 15,
+   "ref": "RFC 3261 [1] section 10.3.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "RG",
+   "entity": "RR",
+   "function": "",
+   "id": "SIP_RG_RR_V_016",
+   "klass": "V",
+   "number": 16,
+   "ref": "RFC 3261 [1] section 10.3.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "RG",
+   "entity": "RR",
+   "function": "",
+   "id": "SIP_RG_RR_V_017",
+   "klass": "V",
+   "number": 17,
+   "ref": "RFC 3261 [1] section 10.3.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "RG",
+   "entity": "RR",
+   "function": "",
+   "id": "SIP_RG_RR_V_018",
+   "klass": "V",
+   "number": 18,
+   "ref": "RFC 3261 [1] sections 10.3, item 3 and 22.2.",
+   "status": "PICS: A.68/1"
+  },
+  {
+   "area": "RG",
+   "entity": "RR",
+   "function": "",
+   "id": "SIP_RG_RR_V_019",
+   "klass": "V",
+   "number": 19,
+   "ref": "RFC 3261 [1] section 10.3, item 4.",
+   "status": "PICS: A.68/1"
+  },
+  {
+   "area": "RG",
+   "entity": "RR",
+   "function": "",
+   "id": "SIP_RG_RR_V_020",
+   "klass": "V",
+   "number": 20,
+   "ref": "RFC 3261 [1] section 10.2.1.2.",
+   "status": "PICS: A.63/2"
+  },
+  {
+   "area": "RG",
+   "entity": "RR",
+   "function": "",
+   "id": "SIP_RG_RR_V_021",
+   "klass": "V",
+   "number": 21,
+   "ref": "RFC 3261 [1] sections 10.3, item 3 and 22.2.",
+   "status": "PICS: A.68/1"
+  },
+  {
+   "area": "RG",
+   "entity": "RR",
+   "function": "",
+   "id": "SIP_RG_RR_V_022",
+   "klass": "V",
+   "number": 22,
+   "ref": "RFC 3261 [1] sections 10.3, item 3 and 22.2.",
+   "status": "PICS: A.68/1"
+  },
+  {
+   "area": "RG",
+   "entity": "RT",
+   "function": "",
+   "id": "SIP_RG_RT_TI_001",
+   "klass": "TI",
+   "number": 1,
+   "ref": "RFC 3261 [1] annex A and section 17.1.2.2.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "RG",
+   "entity": "RT",
+   "function": "",
+   "id": "SIP_RG_RT_TI_002",
+   "klass": "TI",
+   "number": 2,
+   "ref": "RFC 3261 [1] annex A and section 17.1.3.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "RG",
+   "entity": "RT",
+   "function": "",
+   "id": "SIP_RG_RT_TI_003",
+   "klass": "TI",
+   "number": 3,
+   "ref": "RFC 3261 [1] annex A and section 17.1.3.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "RG",
+   "entity": "RT",
+   "function": "",
+   "id": "SIP_RG_RT_TI_004",
+   "klass": "TI",
+   "number": 4,
+   "ref": "RFC 3261 [1] annex A and section 17.1.3.",
+   "status": "PICS: A.15/5"
+  },
+  {
+   "area": "RG",
+   "entity": "RT",
+   "function": "",
+   "id": "SIP_RG_RT_TI_005",
+   "klass": "TI",
+   "number": 5,
+   "ref": "RFC 3261 [1] annex A and section 17.1.3.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "RG",
+   "entity": "RT",
+   "function": "",
+   "id": "SIP_RG_RT_TI_006",
+   "klass": "TI",
+   "number": 6,
+   "ref": "RFC 3261 [1] annex A and section 17.1.3.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "RG",
+   "entity": "RT",
+   "function": "",
+   "id": "SIP_RG_RT_TI_007",
+   "klass": "TI",
+   "number": 7,
+   "ref": "RFC 3261 [1] annex A and section 17.1.3.",
+   "status": "PICS: A.15/5"
+  },
+  {
+   "area": "RG",
+   "entity": "RT",
+   "function": "",
+   "id": "SIP_RG_RT_V_001",
+   "klass": "V",
+   "number": 1,
+   "ref": "RFC 3261 [1] section 10.2.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "RG",
+   "entity": "RT",
+   "function": "",
+   "id": "SIP_RG_RT_V_002",
+   "klass": "V",
+   "number": 2,
+   "ref": "RFC 3261 [1] section 10.3.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "RG",
+   "entity": "RT",
+   "function": "",
+   "id": "SIP_RG_RT_V_003",
+   "klass": "V",
+   "number": 3,
+   "ref": "RFC 3261 [1] section 10.2.6.",
+   "status": "PICS: A.3/1.1"
+  },
+  {
+   "area": "RG",
+   "entity": "RT",
+   "function": "",
+   "id": "SIP_RG_RT_V_004",
+   "klass": "V",
+   "number": 4,
+   "ref": "RFC 3261 [1] section 10.2.6.",
+   "status": "PICS: A.3/1.2"
+  },
+  {
+   "area": "RG",
+   "entity": "RT",
+   "function": "",
+   "id": "SIP_RG_RT_V_005",
+   "klass": "V",
+   "number": 5,
+   "ref": "RFC 3261 [1] section 10.2.6.",
+   "status": "PICS: A.3/1.3"
+  },
+  {
+   "area": "RG",
+   "entity": "RT",
+   "function": "",
+   "id": "SIP_RG_RT_V_006",
+   "klass": "V",
+   "number": 6,
+   "ref": "",
+   "status": "Void"
+  },
+  {
+   "area": "RG",
+   "entity": "RT",
+   "function": "",
+   "id": "SIP_RG_RT_V_007",
+   "klass": "V",
+   "number": 7,
+   "ref": "RFC 3261 [1] sections 8.1.3.5 and 22.2.",
+   "status": "PICS: A.8/1"
+  },
+  {
+   "area": "RG",
+   "entity": "RT",
+   "function": "",
+   "id": "SIP_RG_RT_V_008",
+   "klass": "V",
+   "number": 8,
+   "ref": "RFC 3261 [1] section 10.2.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "RG",
+   "entity": "RT",
+   "function": "",
+   "id": "SIP_RG_RT_V_009",
+   "klass": "V",
+   "number": 9,
+   "ref": "RFC 3261 [1] section 10.2.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "RG",
+   "entity": "RT",
+   "function": "",
+   "id": "SIP_RG_RT_V_010",
+   "klass": "V",
+   "number": 10,
+   "ref": "RFC 3261 [1] section 10.2.",
+   "status": "Mandatory"
+  },
+  {
+   "area": "RG",
+   "entity": "RT",
+   "function": "",
+   "id": "SIP_RG_RT_V_011",
+   "klass": "V",
+   "number": 11,
+   "ref": "RFC 3261 [1] section 10.2.",
+   "status": "Mandatory AND PICS: A.3/4"
+  },
+  {
+   "area": "RG",
+   "entity": "RT",
+   "function": "",
+   "id": "SIP_RG_RT_V_012",
+   "klass": "V",
+   "number": 12,
+   "ref": "RFC 3261 [1] section 10.2.4.",
+   "status": "Recommended AND PICS: A.3/4"
+  },
+  {
+   "area": "RG",
+   "entity": "RT",
+   "function": "",
+   "id": "SIP_RG_RT_V_013",
+   "klass": "V",
+   "number": 13,
+   "ref": "RFC 3261 [1] section 10.2.2.",
+   "status": "Recommended AND PICS: A.3/3"
+  },
+  {
+   "area": "RG",
+   "entity": "RT",
+   "function": "",
+   "id": "SIP_RG_RT_V_014",
+   "klass": "V",
+   "number": 14,
+   "ref": "RFC 3261 [1] section 10.2.1.",
+   "status": "PICS: A.3/5"
+  },
+  {
+   "area": "RG",
+   "entity": "RT",
+   "function": "",
+   "id": "SIP_RG_RT_V_015",
+   "klass": "V",
+   "number": 15,
+   "ref": "RFC 3261 [1] section 10.2.1.1.",
+   "status": "PICS: A.3/6"
+  },
+  {
+   "area": "RG",
+   "entity": "RT",
+   "function": "",
+   "id": "SIP_RG_RT_V_016",
+   "klass": "V",
+   "number": 16,
+   "ref": "RFC 3261 [1] section 10.2.1.2.",
+   "status": "PICS: A.3/7"
+  },
+  {
+   "area": "RG",
+   "entity": "RT",
+   "function": "",
+   "id": "SIP_RG_RT_V_017",
+   "klass": "V",
+   "number": 17,
+   "ref": "RFC 3261 [1] section 10.2.5.",
+   "status": "PICS: A.3/8"
+  },
+  {
+   "area": "RG",
+   "entity": "RT",
+   "function": "",
+   "id": "SIP_RG_RT_V_018",
+   "klass": "V",
+   "number": 18,
+   "ref": "RFC 3261 [1] sections 8.1.3.5 and 22.2.",
+   "status": "PICS: A.8/1"
+  },
+  {
+   "area": "RG",
+   "entity": "RT",
+   "function": "",
+   "id": "SIP_RG_RT_V_019",
+   "klass": "V",
+   "number": 19,
+   "ref": "RFC 3261 [1] sections 8.1.3.5 and 22.2.",
+   "status": "PICS: A.8/1"
+  },
+  {
+   "area": "RG",
+   "entity": "RT",
+   "function": "",
+   "id": "SIP_RG_RT_V_020",
+   "klass": "V",
+   "number": 20,
+   "ref": "RFC 3261 [1] sections 8.1.3.5 and 22.2.",
+   "status": "PICS: A.8/1"
+  }
+ ],
+ "sha256": "034ecd9cd8183701b4a263e4ae5bbe04b24a975e9ad51f69c3970acd12adce1f",
+ "url": "https://www.etsi.org/deliver/etsi_ts/102000_102099/10202702/04.01.01_60/ts_10202702v040101p.pdf",
+ "version": "V4.1.1 (2006-07)"
+}
