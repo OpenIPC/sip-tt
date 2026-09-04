@@ -154,18 +154,29 @@ class Call:
         that is the rule this whole tool exists to police — so the answers it
         builds itself had better follow it too. Each medium takes the offer's
         first format, and one it left at port zero stays refused.
+
+        Ports default to the call's own bound media sockets, so an answer
+        names something we are really listening on. A medium of a kind we hold
+        no socket for is refused rather than accepted.
         """
         from . import sdp as _s
         offer = _s.parse(offered)
         ip = address or self.endpoint.advertise_ip
+        ports = {"audio": audio_port or (self.audio.port if self.audio else 0),
+                 "video": video_port or (self.video.port if self.video else 0)}
         media = []
         for m in offer.media:
-            if not m.active:
+            # A medium we cannot service is refused with port zero, and its
+            # m-line stays in place so the two lists keep their positions
+            # (RFC 3264 §6). We own an audio and a video socket and nothing
+            # else, so an offer of `application` or `text` gets a refusal
+            # rather than an acceptance we could not honour — answering one
+            # and then sending nothing is the very defect this tool hunts.
+            port = ports.get(m.kind, 0) if m.active else 0
+            if not port:
                 media.append(_s.Media(m.kind, 0, list(m.formats)))
                 continue
             fmt = m.formats[0] if m.formats else _s.Format(0)
-            port = (audio_port if m.kind == "audio" else video_port) or (
-                41000 + 2 * len(media))
             media.append(_s.Media(
                 m.kind, port, [_s.Format(fmt.pt, fmt.name, fmt.clock)],
                 offer.direction_of(m).mirror()))
@@ -228,6 +239,12 @@ class Call:
                 # (RFC 3261 §14), and then the answer belongs in this ACK. An
                 # empty one leaves the peer holding an offer nobody answered,
                 # with its media pointed nowhere.
+                #
+                # answer_to() takes the call's own bound ports by default, so
+                # this names sockets we are really listening on rather than
+                # placeholders — an answer pointing at an unopened port is
+                # indistinguishable, from the device's side, from one it read
+                # and ignored.
                 answer = (self.answer_to(r.body)
                           if not body.strip() and r.body.strip() else "")
                 self.ack(for_response=r, body=answer)

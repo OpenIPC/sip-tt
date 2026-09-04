@@ -80,9 +80,11 @@ def invite_without_body_gets_an_offer(endpoint, profile):
         lambda m: m.is_request and m.method == "BYE"
         and m.call_id == call.call_id, timeout=3.0)
     assert stray is None, (
-        "the device answered our ACK by hanging up. It offered, we answered "
-        "under the numbers it bound, and it ended the call anyway — so the "
-        "answer was rejected or not read")
+        "the device sent BYE within 3s of the ACK carrying our answer. What "
+        "is measured is the hangup and its timing; the reason is the device's "
+        "and is not on the wire. An answer it could not use — or did not read "
+        "— is the reading consistent with it, and the device's own log for "
+        "these seconds should say which")
     call.bye()
 
 
@@ -444,21 +446,39 @@ def deferred_answer_is_honoured(endpoint, profile):
 
         offered = _sdp.parse(resp.body)
         problems = []
+        testable = 0
         for kind, ep in (("audio", call.audio), ("video", call.video)):
             m = offered.get(kind)
             if m is None or not m.active:
                 continue
             if not offered.direction_of(m).sends:
                 continue    # the device said it would not send this
+            testable += 1
             if not ep.stats.packets:
                 problems.append(
                     f"{kind}: the device offered to send on its own "
                     f"{m.port}, we answered {ep.port} in the ACK, and 4s "
                     f"later nothing has arrived there")
+
+        if testable == 0:
+            # Every m-line was absent, refused or non-sending, so there was
+            # never any media to watch for. Passing here would certify the
+            # answer was honoured on the strength of having observed nothing.
+            described = ", ".join(
+                f"{m.kind} port={m.port} {offered.direction_of(m).value}"
+                for m in offered.media) or "no m-lines at all"
+            pytest.fail(
+                f"the device's offer contains nothing it undertakes to send "
+                f"({described}), so no media could be watched for and this "
+                f"purpose was not exercised. Not a pass: nothing was observed")
+
         assert not problems, (
-            "; ".join(problems) + ". The call is established and its media "
-            "is aimed at nowhere — the answer in the ACK was not read "
-            "(RFC 3261 §13.2.1)")
+            "; ".join(problems) + ". What is measured is that no media "
+            "reached the ports our answer named, on a call both ends consider "
+            "established. An answer that was not read, or was read and not "
+            "honoured, is the reading consistent with it (RFC 3261 §13.2.1); "
+            "so is a device that negotiated media it has no source for, which "
+            "its own log should distinguish")
         call.bye()
     finally:
         probe.close_media()
