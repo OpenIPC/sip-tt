@@ -32,12 +32,14 @@ from pathlib import Path
 class Trigger:
     """How to make the device originate a call."""
 
-    kind: str = "none"          # "none" | "http" | "manual"
+    kind: str = "none"          # "none" | "http" | "command" | "manual"
     url: str = ""               # for kind="http"
     method: str = "POST"
     username: str = ""
     password: str = ""
     hangup_url: str = ""
+    command: str = ""           # for kind="command"
+    hangup_command: str = ""
 
     @property
     def available(self) -> bool:

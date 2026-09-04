@@ -37,11 +37,21 @@ def pytest_addoption(parser):
     g.addoption("--id-glob", action="append", default=[],
                 help="only purposes matching this glob (repeatable)")
     g.addoption("--mandatory-only", action="store_true", default=False)
+    g.addoption("--skip-tag", action="append", default=[],
+                help="do not run purposes carrying this tag (repeatable). "
+                     "'advisory' is the one CI usually wants: those purposes "
+                     "measure a SHOULD and are reported for information, so "
+                     "gating a build on them is noise. What was left out is "
+                     "printed, never silently dropped")
     g.addoption("--json-report", default="",
                 help="write results.json here")
     for fixture in ("registrar", "pbx", "media"):
         g.addoption(f"--with-{fixture}", action="store_true", default=False,
                     help=f"this run provides the {fixture} fixture")
+    g.addoption("--grant-expires", type=int, default=60,
+                help="registration lifetime our registrar grants. RFC 3261 "
+                     "§10.2.4 makes this authoritative, so a short one is how "
+                     "a test session sees a refresh without waiting an hour")
 
 
 def build_profile(config) -> Profile:
@@ -74,7 +84,8 @@ def build_profile(config) -> Profile:
 def pytest_collection_modifyitems(config, items):
     globs = config.getoption("--id-glob")
     mandatory_only = config.getoption("--mandatory-only")
-    if not globs and not mandatory_only:
+    skip_tags = set(config.getoption("--skip-tag"))
+    if not globs and not mandatory_only and not skip_tags:
         return
     kept, dropped = [], []
     for item in items:
@@ -83,16 +94,20 @@ def pytest_collection_modifyitems(config, items):
             kept.append(item)
             continue
         if globs and not any(fnmatch.fnmatch(tp_id, g) for g in globs):
-            dropped.append(item)
+            dropped.append(tp_id)
             continue
         if mandatory_only and not REGISTRY[tp_id].mandatory:
-            dropped.append(item)
+            dropped.append(tp_id)
+            continue
+        if skip_tags & REGISTRY[tp_id].tags:
+            dropped.append(tp_id)
             continue
         kept.append(item)
     items[:] = kept
     if dropped:
-        config.stash  # noqa: B018 - touch, keeps linters quiet
-        _meta["filtered_out"] = len(dropped)
+        # Named, not counted. A run that quietly leaves purposes out reads as
+        # coverage it does not have.
+        _meta["not_run"] = sorted(dropped)
 
 
 def _id_of(item) -> str | None:
@@ -213,6 +228,12 @@ def pytest_sessionfinish(session, exitstatus):
 
 
 def pytest_terminal_summary(terminalreporter, exitstatus, config):
+    if _meta.get("not_run"):
+        names = _meta["not_run"]
+        terminalreporter.write_sep(
+            "-", f"{len(names)} purpose(s) not run by this invocation")
+        for n in names:
+            terminalreporter.write_line(f"  - {n}")
     failed = [r for r in _results if r["status"] == "failed"]
     if not failed:
         return

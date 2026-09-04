@@ -64,8 +64,8 @@ four more that nobody had reported:
 | --- | --- | --- |
 | `SIP_CC_TE_CE_V_006` | Mandatory | Refuses a bodyless INVITE with 488; RFC 3261 §13.2.1 requires the answerer to make the offer in its 2xx |
 | `SIP_CC_TE_SM_V_002` | Mandatory | Refuses a bodyless re-INVITE with 488; §14 makes it a request to re-offer |
-| `SIP_CC_TE_SM_I_001` | Mandatory | Answers 200 OK to a re-INVITE sent while an earlier one is unanswered; §14.2 asks for 500 + `Retry-After`, or 491 |
 | `SIP_CC_TE_SM_V_003` | Recommended | Never sends BYE after a 200 OK that was not ACKed (§14.1) |
+| `SIP_RG_RT_V_012` | Recommended | Refreshes its registration on its own configured schedule, ignoring the expiry the registrar granted (§10.2.4) — so it goes unreachable between refreshes whenever a registrar grants less |
 
 `docs/validation.md` has the full record, including how to reproduce the
 signalling findings on a host build with no camera, and the two bugs the first
