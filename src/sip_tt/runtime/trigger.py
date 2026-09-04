@@ -115,10 +115,18 @@ def _authorise(header: str, url: str, trigger) -> str | None:
         ch = Challenge.parse(header)
         if ch is None:
             return None
-        path = urllib.parse.urlsplit(url).path or "/"
+        # The digest covers the *request-target*, which is the path **and its
+        # query** (RFC 7616 §3.4.6) — not the path alone. Dropping the query
+        # is invisible until a trigger URL has one, and majestic's does:
+        # /api/v1/sip/call?target=sip:1001@host. The server hashes what it
+        # received, so the two never match and the retry 401s for ever.
+        parts = urllib.parse.urlsplit(url)
+        target = parts.path or "/"
+        if parts.query:
+            target = f"{target}?{parts.query}"
         return respond(ch, username=trigger.username,
                        password=trigger.password, method=trigger.method,
-                       uri=path)
+                       uri=target)
     if scheme == "basic":
         raw = f"{trigger.username}:{trigger.password}".encode()
         return "Basic " + base64.b64encode(raw).decode()
@@ -126,8 +134,35 @@ def _authorise(header: str, url: str, trigger) -> str | None:
 
 
 def _command(cmd: str, timeout: float) -> str:
-    proc = subprocess.run(shlex.split(cmd), capture_output=True, text=True,
-                          timeout=timeout)
+    """Run the trigger command, turning every way it can fail into TriggerError.
+
+    The caller catches TriggerError and reports "we could not ask the device
+    to place a call", which is the honest verdict. Anything that escapes as a
+    raw FileNotFoundError or TimeoutExpired surfaces as a harness crash
+    instead, and a crash in the middle of a conformance run reads as though
+    the device did something — it did not, we did.
+    """
+    try:
+        argv = shlex.split(cmd)
+    except ValueError as e:
+        raise TriggerError(f"trigger command {cmd!r} does not parse: {e}") from None
+    if not argv:
+        raise TriggerError("trigger command is empty: no command to run")
+    try:
+        proc = subprocess.run(argv, capture_output=True, text=True,
+                              timeout=timeout)
+    except FileNotFoundError:
+        raise TriggerError(
+            f"trigger command {argv[0]!r} not found on PATH") from None
+    except PermissionError:
+        raise TriggerError(
+            f"trigger command {argv[0]!r} is not executable") from None
+    except subprocess.TimeoutExpired:
+        raise TriggerError(
+            f"trigger command {cmd!r} did not finish within "
+            f"{timeout:.0f}s") from None
+    except OSError as e:
+        raise TriggerError(f"trigger command {cmd!r} failed to run: {e}") from None
     if proc.returncode != 0:
         raise TriggerError(
             f"{cmd!r} exited {proc.returncode}: "
