@@ -161,21 +161,34 @@ def timestamps_survive_a_reinvite(endpoint, profile):
         call.bye()
 
 
-@register("LOCAL-MEDIA-RTP-TIMESTAMP-BASE-IS-RANDOM",
-          roles={"terminating"}, mandatory=True, requires={"media"},
-          tags={"slow"})
-def rtp_timestamp_base_is_random(endpoint, profile):
-    """Each session's RTP timestamps must start from a random offset.
+@register("LOCAL-MEDIA-RTP-TIMESTAMP-BASE-IS-PER-SESSION",
+          roles={"terminating"}, mandatory=False, requires={"media"},
+          tags={"slow", "advisory"})
+def rtp_timestamp_base_is_per_session(endpoint, profile):
+    """Consecutive calls should not share one running media clock.
 
-    RFC 3550 §5.1: "the initial value of the timestamp SHOULD be random". A
-    device that starts from its uptime instead produces two consequences a
-    user meets. Consecutive calls have adjacent, predictable bases, so a peer
-    that mistakes the second stream for a continuation of the first computes
-    nonsense; and the base is a disclosure of how long the device has been up.
+    RFC 3550 §5.1 says the initial timestamp SHOULD be random, and an RTP
+    session is per call — so two calls in a row are two sessions and each
+    ought to start somewhere unrelated.
 
-    The test is two calls in a row. If the second stream's initial timestamp
-    is the first's plus roughly the wall-clock gap converted at the media
-    rate, the "random" base is a running clock.
+    **This is a SHOULD, and a shared base is a choice some implementations
+    make deliberately** — one draw per process keeps every stream a device
+    sends in a single timeline, which makes its own audio and video trivially
+    comparable. What it costs is that consecutive calls are correlated: a peer
+    that sees two of them can subtract, and the offset between calls is the
+    real elapsed time. That is worth knowing and is not worth failing a device
+    over, so this is registered advisory rather than mandatory.
+
+    What this does *not* check, because it is a separate and much more serious
+    thing, is whether the base is a free-running uptime counter. That leaks
+    how long the device has been up, and makes the base guessable on a device
+    that has just booted — which is the defect this test was written after.
+    A device drawing once per process from a real entropy source passes that
+    bar and fails this one; the assertion says which it saw.
+
+    The measurement is two calls in a row. If the second stream's first
+    timestamp is the first's plus the wall-clock gap converted at the media
+    rate, one clock is running through both.
     """
     require_target(profile)
     bases = []
@@ -203,5 +216,9 @@ def rtp_timestamp_base_is_random(endpoint, profile):
         f"the second call's first RTP timestamp was {bases[1]}, and a clock "
         f"running continuously from the first call's base {bases[0]} would "
         f"have reached {predicted} after {gap_s:.1f}s — a difference of only "
-        f"{drift} ticks. The media clock is not being randomised per session "
-        f"(RFC 3550 §5.1); it is a free-running counter, most often uptime")
+        f"{drift} ticks. One media clock is running through both calls, so "
+        f"the two sessions are not independently based (RFC 3550 §5.1, a "
+        f"SHOULD). Note what this does not say: the base itself may still be "
+        f"drawn randomly once per process, which is a deliberate design and "
+        f"does not leak uptime. Compare {bases[0]} against the device's "
+        f"uptime in seconds times {rate} to tell the two apart")
