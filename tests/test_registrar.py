@@ -132,3 +132,20 @@ def test_the_granted_expiry_caps_what_was_asked_for(rig):
     _, reg = rig
     reg._on_request(_register(expires=3600))
     assert list(reg.bindings.values())[0].expires == 60
+
+
+def test_registration_arrival_times_are_recorded(rig):
+    """A refresh *interval* is measured between arrivals, not by a wait.
+
+    Run the interval purpose after another has already observed the refresh
+    and its wait returns instantly — passing without measuring anything.
+    """
+    _, reg = rig
+    reg._on_request(_register())
+    reg._on_request(_register(cseq=2))
+    assert len(reg.registration_times) == 2
+    assert reg.registration_times[1] >= reg.registration_times[0]
+    # A query must not add a time either, or the interval is taken to the
+    # wrong message.
+    reg._on_request(_register(contact=None, cseq=3))
+    assert len(reg.registration_times) == 2

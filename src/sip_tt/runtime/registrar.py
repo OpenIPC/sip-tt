@@ -78,6 +78,12 @@ class Registrar:
         # answered 200 and neither is a renewal. Counting `accepted` would let
         # a device that only ever queried pass both refresh purposes.
         self.registrations: list[Message] = []
+        # When each of those arrived. A purpose about a refresh *interval*
+        # has to measure the gap between two registrations, not how long its
+        # own wait happened to block: run it after another purpose has
+        # already seen the refresh and the wait returns instantly, passing
+        # without measuring anything.
+        self.registration_times: list[float] = []
         self.bindings: dict[str, Binding] = {}
         self.challenged: dict[str, str] = {}     # Call-ID -> nonce
         self.rejected: list[Message] = []
@@ -175,6 +181,7 @@ class Registrar:
         self.accepted.append(msg)
         if bound:
             self.registrations.append(msg)
+            self.registration_times.append(time.time())
         self.endpoint.respond(msg, 200, "OK",
                               extra=self._binding_headers(aor))
         return True

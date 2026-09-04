@@ -16,6 +16,8 @@ is what `SIP_RG_RT_V_012` is asking about.
 
 from __future__ import annotations
 
+import time
+
 import pytest
 
 from ..registry import register
@@ -231,6 +233,12 @@ def refresh_happens_within_the_granted_lifetime(registrar):
     *asked* for goes unreachable the moment a registrar grants less — which
     registrars do routinely, to keep bindings fresh behind NAT.
 
+    The measurement is the gap between two registrations, taken from when each
+    arrived — not from how long this test's own wait blocked. Those differ:
+    run this after another purpose has already observed the refresh and the
+    wait returns instantly, which would pass without measuring anything at
+    all.
+
     Registered advisory: the corpus marks it Recommended, and the failure mode
     is a device that is unreachable rather than one that is broken.
     """
@@ -241,14 +249,30 @@ def refresh_happens_within_the_granted_lifetime(registrar):
             f"no REGISTER that created a binding arrived in "
             f"{FIRST_TIMEOUT:.0f}s, so there is no registration whose "
             f"lifetime could be measured")
+
     granted = registrar.grant_expires
     window = granted * 2.0
-    later = registrar.wait_for_registration(2, timeout=window)
-    if later is None:
+    started = registrar.registration_times[0]
+
+    if len(registrar.registrations) < 2:
+        remaining = (started + window) - time.time()
+        if remaining > 0:
+            registrar.wait_for_registration(2, timeout=remaining)
+
+    if len(registrar.registrations) < 2:
+        waited = time.time() - started
         pytest.fail(
-            f"we granted a {granted}s registration and no refresh arrived "
-            f"within {window:.0f}s. RFC 3261 §10.2.4 makes the granted expiry "
-            f"authoritative, so the binding has already lapsed and the device "
-            f"is unreachable until it refreshes on its own schedule. Check "
-            f"whether it is honouring the Expires in our 200 OK or its own "
+            f"we granted a {granted}s registration and the device had not "
+            f"refreshed {waited:.0f}s later. RFC 3261 §10.2.4 makes the "
+            f"granted expiry authoritative, so the binding lapsed and the "
+            f"device is unreachable until it refreshes on its own schedule. "
+            f"Check whether it honours the Expires in our 200 OK or its own "
             f"configured interval")
+
+    interval = registrar.registration_times[1] - registrar.registration_times[0]
+    assert interval <= window, (
+        f"we granted a {granted}s registration and the device refreshed "
+        f"{interval:.0f}s after the first one — outside the {window:.0f}s "
+        f"this allows. §10.2.4 makes the granted expiry authoritative, so the "
+        f"binding lapses before the refresh and the device is unreachable in "
+        f"between")
