@@ -39,7 +39,7 @@ regressed.
 | `LOCAL-SDP-HOLD-IS-HONOURED` | `a=sendonly` ignored; audio kept flowing into a held call |
 | `SIP_CC_TE_CE_V_001` | (Never broken, but the common cause when everything else fails) |
 
-### Four findings the tool made on its own
+### Three findings in the terminating family
 
 All against current `master`, none previously reported.
 
@@ -52,7 +52,7 @@ All against current `master`, none previously reported.
 The first two share a cause — the device requires usable audio SDP in any
 INVITE it accepts, and logs `inbound INVITE without usable audio SDP — 488`.
 
-### A fourth finding, from the registrant family
+### A fourth, in the registrant family
 
 `SIP_RG_RT_V_012` [Recommended] — **the device refreshes on its own schedule,
 not on the one the registrar granted.**
@@ -87,7 +87,7 @@ A conformance check that has only ever passed proves nothing, so the interval
 assertion was deliberately given a window the device could not meet, and it
 failed with the numbers in it.
 
-### A fifth finding, retracted
+### And one retracted
 
 `SIP_CC_TE_SM_I_001` was reported here as a defect and was not one. The first
 version of that test sent two re-INVITEs back to back inside an established
