@@ -1,0 +1,43 @@
+name: CI
+
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+    branches: [master, main]
+
+permissions:
+  contents: read
+
+jobs:
+  unit:
+    name: unit (py${{ matrix.python }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["3.10", "3.11", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+          cache: pip
+      - name: Install
+        run: pip install -e .
+      - name: Tests
+        run: pytest tests/ -v
+      - name: Wheel packaging check
+        # `pip install -e .` cannot catch a package-data glob that misses, and
+        # a wheel without the catalogue installs fine and then lists nothing.
+        shell: python
+        run: |
+          import subprocess, sys, zipfile, glob, pathlib
+          subprocess.run([sys.executable, "-m", "pip", "wheel", "--no-deps",
+                          "-w", "/tmp/wh", "."], check=True)
+          whl = glob.glob("/tmp/wh/sip_tt-*.whl")
+          assert whl, "no wheel built"
+          names = zipfile.ZipFile(whl[0]).namelist()
+          assert any(n.endswith("sip_tt/catalog.json") for n in names), \
+              f"catalog.json missing from the wheel: {names[:20]}"
+          print(f"wheel ok: {len(names)} entries")

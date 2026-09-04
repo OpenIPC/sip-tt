@@ -1,0 +1,22 @@
+__pycache__/
+*.egg-info/
+*.pyc
+.venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+build/
+dist/
+
+# Run artefacts
+junit.xml
+results.json
+*.log
+
+# The parsed ETSI corpus is produced locally by `sip-tt corpus refresh`.
+# ETSI deliverables may not be redistributed, so neither the source PDF nor
+# the parsed text is ever committed. corpus/EXPECTED.json — identifiers,
+# counts and a checksum, all facts — is committed and is what CI verifies.
+corpus/*.pdf
+corpus/*.txt
+corpus/parsed.json

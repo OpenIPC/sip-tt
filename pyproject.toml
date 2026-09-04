@@ -1,0 +1,62 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sip-tt"
+version = "0.1.0"
+description = "Open-source, headless, CI- and AI-friendly SIP conformance test tool."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "OpenIPC contributors" }]
+keywords = ["sip", "test", "conformance", "rfc3261", "etsi", "voip", "openipc"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "License :: OSI Approved :: MIT License",
+    "Topic :: Communications :: Telephony",
+    "Topic :: System :: Networking",
+    "Topic :: Software Development :: Testing",
+    "Intended Audience :: Developers",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+]
+
+# Deliberately near-zero. There is no usable third-party SIP stack for this
+# job — a conformance tool has to be able to send what a library would refuse
+# to build — so the protocol code is stdlib sockets and nothing else.
+dependencies = [
+    "pytest>=8",
+    "pytest-xdist>=3",
+]
+
+[project.urls]
+Homepage = "https://github.com/OpenIPC/sip-tt"
+Repository = "https://github.com/OpenIPC/sip-tt"
+Issues = "https://github.com/OpenIPC/sip-tt/issues"
+OpenIPC = "https://openipc.org"
+
+[project.scripts]
+sip-tt = "sip_tt.cli:main"
+
+# Registers the runner's options (--target, --profile, ...) as soon as the
+# package is installed, so `sip-tt run` is a thin translator into pytest.main()
+# and a bare `pytest` sees the same flags.
+[project.entry-points.pytest11]
+sip_tt_runner = "sip_tt.runner.plugin"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+sip_tt = ["catalog.json"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra -q"
