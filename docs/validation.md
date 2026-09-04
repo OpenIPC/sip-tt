@@ -41,7 +41,9 @@ regressed.
 
 ### Three findings in the terminating family
 
-All against current `master`, none previously reported.
+All against `master` at `b957ff3c`, none previously reported. **All three are
+fixed by widgetii/majestic#577**, which is also the first evidence that this
+tool changes anything.
 
 | Purpose | Status | What the device does |
 | --- | --- | --- |
@@ -81,6 +83,10 @@ and stays lapsed for the best part of an hour.
 
 Advisory rather than mandatory: the corpus marks the purpose Recommended, and
 the failure mode is unreachability rather than a broken call.
+
+**Fixed by widgetii/majestic#577**: the camera now reads the granted lifetime
+— Contact parameter first, then the Expires header, which is the precedence
+§10.2.4 states — and refreshes every 10 s against a 20 s grant.
 
 The second row of that table is also the negative control for the test itself.
 A conformance check that has only ever passed proves nothing, so the interval
